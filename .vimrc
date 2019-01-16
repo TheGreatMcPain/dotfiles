@@ -59,9 +59,16 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+""(Junk) management
+" Prevent Creation of temp files.
 set nobackup
 set nowritebackup
 set noswapfile
-
-set undodir=/home/james/.vim/undo-dir
+" Create undo files in one directory.
+set undodir=$HOME/.vim/undo-dir
 set undofile
+
+" Display long lines on multiple terminal lines,
+" but don't create real 'newlines' while typing.
+set wrap
+set textwidth=0 wrapmargin=0
