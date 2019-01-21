@@ -17,3 +17,6 @@ fi
 
 # Put your fun stuff here.
 export PATH=$HOME/.local/bin:$PATH
+
+# Promptline
+source .promptline.sh

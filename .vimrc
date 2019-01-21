@@ -59,6 +59,9 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" Pathogen
+execute pathogen#infect()
+
 ""(Junk) management
 " Prevent Creation of temp files.
 set nobackup
@@ -72,3 +75,12 @@ set undofile
 " but don't create real 'newlines' while typing.
 set wrap
 set textwidth=0 wrapmargin=0
+
+" Make statusbar stay
+set laststatus=2
+
+" Use gruvbox-dark with transparency
+set background=dark
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
+hi Normal guibg=NONE ctermbg=NONE

@@ -214,7 +214,7 @@ bar {
 
 # Make Non floating windows borderless
 new_window pixel
-new_float normal
+new_float pixel
 
 # i3-gaps related settings
 gaps inner 8
@@ -254,21 +254,17 @@ bindsym XF86AudioStop exec playerctl stop
 exec --no-startup-id synclient TouchpadOff=1
 
 ### Background and Compositor
-# Desktop Background
-exec_always --no-startup-id feh --bg-scale '/home/james/Dropbox/Evangelion Wallpapers/EoE-poster.jpeg'
-# Window Compositor (Shadows n Other Fancy Shit)
+exec_always --no-startup-id feh --bg-scale '/home/james/Dropbox/Evangelion Wallpapers/children_of_nerv-dual-monitor-left.png' '/home/james/Dropbox/Evangelion Wallpapers/children_of_nerv-dual-monitor-right.png'
 exec --no-startup-id compton -b -d :0
 
 ### Utils n Shit
-# Notification Daemon
+exec --no-startup-id megasync
+exec --no-startup-id mpd
+exec --no-startup-id mpDris2
 exec --no-startup-id dunst
-# Clipboard Manager
 exec --no-startup-id clipit
-# Dropbox Cloud Storage
 exec --no-startup-id dropbox
-# Steam
 exec --no-startup-id steam -silent %U
-# Ckb Corsair driver
 exec --no-startup-id ckb-next -b
 
 ### Startup Applications ###
