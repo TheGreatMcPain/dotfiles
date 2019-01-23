@@ -19,4 +19,7 @@ fi
 export PATH=$HOME/.local/bin:$PATH
 
 # Promptline
-source .promptline.sh
+if [ "$TERM" != "linux" ]
+then
+	source .promptline.sh
+fi
