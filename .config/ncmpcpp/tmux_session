@@ -1,0 +1,13 @@
+neww
+#set -g status off
+rename-session music
+send-keys '~/.config/ncmpcpp/cover.sh' C-m
+split-window -h
+resize-pane -t 0 -x 30
+select-pane -t 1
+send-keys 'ncmpcpp' C-m
+split-window -v
+select-pane -t 2
+send-keys 'cava' C-m
+select-pane -t 1
+resize-pane -t 1 -y 35

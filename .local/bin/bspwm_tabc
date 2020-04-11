@@ -1,0 +1,115 @@
+#!/bin/sh
+
+# Usage:
+# tabc.sh <tabbedid-id> <command>
+# Commands:
+#    add <window-id>    - Add window to tabbedid
+#    remove <window-id> - Remove window from tabbedid
+#    list                               - List all clients of tabbedid
+
+IGNORE_NAMES="mpv"
+
+#
+# Functions
+#
+
+# Get wid of root window
+get_root_wid() {
+    xwininfo -root | awk '/Window id:/{print $4}'
+}
+
+# Get children of tabbed
+get_clients() {
+    id=$1
+    xwininfo -id "$id" -children | sed -n '/[0-9]\+ \(child\|children\):/,$s/ \+\(0x[0-9a-z]\+\).*/\1/p'
+}
+
+# Get class of a wid
+get_class() {
+    id=$1
+    if [ -z "$id" ]; then
+        echo ""
+    else
+        xprop -id "$id" | sed -n '/WM_CLASS/s/.*, "\(.*\)"/\1/p'
+    fi
+
+}
+
+kill_me() {
+    # Kill all previous instances
+    script_name="$0"
+    for pid in $(pidof -x "$script_name"); do
+        if [ $pid != $$ ]; then
+            kill $pid
+        fi
+    done
+}
+
+# If tabbed in focused add the next spawned window
+# to tabbed (except for non-tiled windows and
+# window names listed in IGNORE_NAMES).
+tabbed_daemon() {
+    ignore=0
+    bspc subscribe node_add | while read -r add; do
+        for tabbed in $(bspc query -N -d focused); do
+            if [ "$(get_class "$tabbed")" = "tabbed" ]; then
+                # We only will add new windows that are tiled.
+                newid=$(bspc query -N -n focused.tiled)
+                # Provide a list of window names to not add.
+                for class in $IGNORE_NAMES; do
+                    if [ "$(get_class "$newid")" = $class ]; then
+                        ignore=1
+                        break
+                    fi
+                done
+                if [ $ignore -eq 0 ]; then
+                    xdotool windowreparent "$newid" "$tabbed"
+                fi
+            fi
+        done
+    done
+}
+
+kill_me
+tabbed_daemon &
+
+#
+# Main Program
+#
+
+cmd=$1
+
+case $cmd in
+    add)
+        wid=$3
+        tabbedid=$(bspc query -N -n "$2")
+
+        if [ -z "$tabbedid" ] || [ "$(get_class "$tabbedid")" != "tabbed" ]; then
+            tabbed -c &
+            bspc subscribe node_add | while read -r add; do
+                id=$(echo "$add" | awk '{print $5}')
+                class="$(get_class "$id")"
+                if [ "$class" = "tabbed" ]; then
+                    tabbedid=$id
+                    xdotool windowreparent "$wid" "$tabbedid"
+                    exit 0
+                fi
+            done
+        xdotool windowreparent "$wid" "$tabbedid"
+    else
+        xdotool windowreparent "$wid" "$tabbedid"
+        fi
+        ;;
+    remove)
+        # Kill previous instance, or else we can't stay removed.
+        kill_me
+        wid=$2
+        tabbedid=$(bspc query -N -n focused)
+        xdotool windowreparent "$wid" "$(get_root_wid)"
+        tabbed_daemon &
+        ;;
+    list)
+        tabbedid=$2
+        get_clients "$tabbedid"
+        ;;
+esac

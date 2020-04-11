@@ -1,0 +1,2 @@
+GNUPGHOME DEFAULT=@{HOME}/.local/share/gnupg
+GTK2_RC_FILES DEFAULT=@{HOME}/.config/gtk-2.0/gtkrc-2.0

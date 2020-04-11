@@ -1,0 +1,83 @@
+#!/usr/bin/env sh
+
+# Default Values
+ALWAYS="0"
+SLEEP=0
+unset PROCESS
+unset EXEC
+unset EXECOPT
+UID=$(id -u)
+
+# Print Usage
+usage () {
+    printf "\nUsage: %s -e (command):\n" $0
+    printf "    -h:                       Print usage.\n"
+    printf "    -a:                       Always restart process.\n"
+    printf "    -s (Seconds to sleep):    Sleep before starting process.\n"
+    printf "    -p (process name):        Specify process name.\n"
+    printf "                              (Defaults to -e argument)\n"
+    printf "    -e (command):             Command to execute. (REQUIRED)\n"
+    printf "    -o (command opts):        Options to pass to '-e' command.\n\n"
+    printf "Example: \"Starts discord with script, and uses (Discord) as process name.\"\n"
+    printf "    %s -e 'script-for-discord' -p 'Discord'\n\n" $0
+    printf "Example: \"Starts steam with the options '-silent'.\"\n"
+    printf "    %s -e 'steam' -o '-silent'\n\n" $0
+    exit 2
+}
+
+main () {
+    if pgrep -u $UID -x "$PROCESS" > /dev/null; then
+        if [ $ALWAYS = 1 ]; then
+            # Kill process
+            killall -q "$PROCESS"
+            # Wait till process has stopped
+            while pgrep -x "$PROCESS" >/dev/null; do sleep 1; done
+            exec "$EXEC" $EXECOPT
+        else
+            printf "%s: is already running, and '-a' not specified.\n" "$PROCESS"
+        fi
+    else
+        if [ $SLEEP -gt 0 ]; then
+            sleep $SLEEP
+        fi
+        exec /bin/sh -c "$EXEC $EXECOPT"
+    fi
+}
+
+# Parse arguments
+while getopts as:p:e:o:h name
+do
+    case $name in
+    a)
+        ALWAYS="1";;
+    s)
+        SLEEP=$OPTARG;;
+    p)
+        PROCESS="$OPTARG";;
+    e)
+        EXEC="$OPTARG";;
+    o)
+        EXECOPT="$OPTARG";;
+    h)
+        usage;;
+    esac
+done
+shift $((OPTIND-1))
+
+# If no arguments print usage.
+if [ "$OPTIND" = 1 ]; then
+    usage
+fi
+
+# If '-e' not specified print usage.
+if ! [ -n "$EXEC" ]; then
+    usage
+fi
+
+# If '-p' not specified set PROCESS to EXEC.
+if ! [ -n "$PROCESS" ]; then
+    export PROCESS="$EXEC"
+fi
+
+# Run main in the background.
+main &

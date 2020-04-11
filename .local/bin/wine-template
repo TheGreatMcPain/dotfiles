@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#export __GL_THREADED_OPTIMIZATIONS=1
+export WINEPREFIX=$HOME/wine-prefixes/wineprefix
+export WINEARCH=win32
+export WINEDEBUG=-all
+export WINEFSYNC=1
+#export DXVK_CONFIG_FILE=$WINEPREFIX/dxvk.conf
+#export DXVK_HUD=fps,version
+#export DXVK_LOG_LEVEL=none
+#export WINEESYNC=1
+
+cd "$WINEPREFIX/drive_c/pathToExe"
+wine program.exe -options param $@

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+if pgrep -x "redshift" > /dev/null
+then
+    pkill -USR1 '^redshift$'
+    notify-send -u low "Redshift Toggled"
+else
+    notify-send -u normal "Redshift is not running!"
+fi

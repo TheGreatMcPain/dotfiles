@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+import sys, getopt
+import subprocess
+
+
+def main():
+    filename = sys.argv[0]
+    argv = sys.argv[1:]
+
+    if len(argv) == 0:
+        print(filename + " -s (or --status) -y (or --yes) -n (or --no)")
+        sys.exit(2)
+
+    try:
+        opts, args = getopt.getopt(argv, "hsyn", ["status", "yes", "no"])
+    except getopt.GetoptError:
+        print(filename + " -s (or --status) -y (or --yes) -n (or --no)")
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == "-h":
+            print(sys.argv[0] + " -s (or --status) -y (or --yes) -n (or --no)")
+            sys.exit()
+        elif opt in ("-s", "--status"):
+            enable = "status"
+        elif opt in ("-y", "--yes"):
+            enable = True
+        elif opt in ("-n", "--no"):
+            enable = False
+
+    metamode = _get_current_metamode()
+    if metamode == "":
+        sys.exit(1)
+
+    if enable == "status":
+        if _get_status(metamode):
+            print("On")
+            sys.exit(0)
+        else:
+            print("Off")
+            sys.exit(0)
+
+    print("\nCurrent metamode is:\n%s" % metamode)
+
+    if enable:
+        new_metamode = _add_force_comp_pipeline(metamode)
+    else:
+        new_metamode = _remove_force_comp_pipeline(metamode)
+
+    print("\nNew metamode is:\n%s" % new_metamode)
+
+    _apply_metamode(new_metamode)
+    print("\nApplied new metamode.")
+
+
+def _get_current_metamode():
+
+    ret = subprocess.run(["nvidia-settings", "--query", "CurrentMetaMode"],
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE)
+
+    stdout = ret.stdout.decode('utf-8')[:-1]
+    stderr = ret.stderr.decode('utf-8')[:-1]
+
+    if stderr != "":
+        print(stderr)
+
+    items_list = stdout.split("::")
+
+    if len(items_list) != 2:
+        print("Error parsing metamodes", end=" ")
+        print(": more than one \"::\"-delimited fields found")
+        return ""
+
+    metamode = items_list[1][1:].replace("\n", "")
+
+    return metamode
+
+
+def _remove_force_comp_pipeline(metamode):
+    return metamode.replace("ForceCompositionPipeline=On",
+                            "ForceCompositionPipeline=Off")
+
+
+def _add_force_comp_pipeline(metamode):
+    return metamode.replace("{", "{ForceCompositionPipeline=On, ")
+
+
+def _get_status(metamode):
+    if "ForceCompositionPipeline=On" in metamode:
+        return True
+    else:
+        return False
+
+
+def _apply_metamode(metamode):
+
+    ret = subprocess.run(
+        ["nvidia-settings", "--assign",
+         "CurrentMetaMode=%s" % metamode],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+
+    stderr = ret.stderr.decode('utf-8')[:-1]
+    if stderr != "":
+        print(stderr)
+
+
+if __name__ == "__main__":
+    main()
