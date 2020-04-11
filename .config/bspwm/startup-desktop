@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Load nvidia-settings config
+bspwm_exec -e nvidia-settings -o '--load-config-only'
+# Set nvidia power settings to "Prefer Maximum Performance"
+bspwm_exec -e nvidia-settings -o '--assign [gpu:0]/GPUPowerMizerMode=1'
+
+# Other Things
+bspwm_exec -e megasync
+bspwm_exec -e redshift-gtk
+bspwm_exec -e dropbox
+bspwm_exec -e steam -o '-silent %U'
+bspwm_exec -e ckb-next -o '-b'
+bspwm_exec -e hp-systray
+bspwm_exec -e slack -o '-u'
+bspwm_exec -e ~/.local/bin/discord-to-systray -p 'Discord'
+bspwm_exec -e ~/.local/bin/qbittorrent-to-systray -s 20 -p 'qbittorrent'

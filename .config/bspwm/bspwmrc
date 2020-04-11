@@ -1,42 +1,35 @@
 #!/bin/sh
 bspc rule -r "*"
 
-# Load nvidia-settings config
-bspwm_exec -e nvidia-settings -o '--load-config-only'
-# Set nvidia power settings to "Prefer Maximum Performance"
-bspwm_exec -e nvidia-settings -o '--assign [gpu:0]/GPUPowerMizerMode=1'
-
 # Background
 bspwm_exec -a -e multilockscreen -o "-w"
 
 # Keyboard Shortcuts
 bspwm_exec -a -e sxhkd
-    
+
 # Pulseaudio
 pulseaudio -D
-    
+
 # Compositor
 bspwm_exec -e picom -o '-b -d :0 &'
-    
-# Other Things
+
+# clears background windows when fullscreen.
 bspwm_exec -e ~/.local/bin/bspwm_cleanfullscreen -p 'bspwm_cleanfullscreen'
+
+# Allows use of pkexec
+bspwm_exec -e /usr/libexec/polkit-gnome-authentication-agent-1
+
+# Stuff I normally will have on my Desktop/Laptop.
 bspwm_exec -e unclutter
-bspwm_exec -e megasync
-bspwm_exec -e redshift-gtk
 bspwm_exec -e dunst
 bspwm_exec -e mpDris2
 bspwm_exec -e qlipper
-bspwm_exec -e dropbox
-bspwm_exec -e steam -o '-silent %U'
-bspwm_exec -e ckb-next -o '-b'
-bspwm_exec -e hp-systray
-bspwm_exec -e slack -o '-u'
-bspwm_exec -e ~/.local/bin/discord-to-systray -p 'Discord'
-bspwm_exec -e ~/.local/bin/qbittorrent-to-systray -s 20 -p 'qbittorrent'
-bspwm_exec -e /usr/libexec/polkit-gnome-authentication-agent-1
+
+# Custom startup script.
+~/.config/bspwm/startup
 
 # Status Bar
-~/.config/polybar/launch.sh &    
+~/.config/polybar/launch.sh &
 
 # Get cover art from current mpd song. to prevent
 # errors when running music setup.
@@ -47,9 +40,9 @@ bspwm_exec -e /usr/libexec/polkit-gnome-authentication-agent-1
 # 10 desktops.
 for m in $(bspc query --monitors --names); do
     bspc monitor $m -d 1 2 3 4 5 6 7 8 9 10
-    bspc config -m $m top_padding 24 
+    bspc config -m $m top_padding 24
     bspc config -m $m bottom_padding 30
-done 
+done
 
 bspc config border_width         2
 bspc config window_gap          16

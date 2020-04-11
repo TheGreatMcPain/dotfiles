@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Other Things
+bspwm_exec -e megasync
+bspwm_exec -e redshift-gtk
+bspwm_exec -e steam -o '-silent %U'
+bspwm_exec -e ~/.local/bin/discord-to-systray -p 'Discord'
