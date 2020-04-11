@@ -1,0 +1,47 @@
+#!/bin/sh
+
+wineprefix_dir=${HOME}/wine-prefixes
+oldpath=`pwd`
+cd ${wineprefix_dir}
+
+set -- $(ls --color=never -d *)
+folders=$(ls --color=never -d * | wc -l)
+counter=1
+
+echo 'Which directory for "WINEPREFIX"?'
+
+for dir in $(seq 1 $((folders)));
+do
+    eval "val=\${$dir}"
+    echo ${counter}: ${val}
+    counter=$((counter+1))
+done
+
+printf "Enter a number: "
+read selection
+
+eval "val=\${$selection}"
+wineprefix="${HOME}/wine-prefixes/${val}"
+
+export WINEPREFIX=${wineprefix}
+
+echo WINEPREFIX has been set to ${WINEPREFIX}.
+
+cd $oldpath
+
+echo 'Is the prefix "win32" or "win64"?'
+
+echo 1: win32
+echo 2: win64
+printf "Enter a number: "
+read winearch
+
+if [ ${winearch} -eq 1 ]
+then
+    export WINEARCH=win32
+fi
+if [ ${winearch} -eq 2 ]
+then
+    export WINEARCH=win64
+fi
+echo WINEARCH has been set to ${WINEARCH}

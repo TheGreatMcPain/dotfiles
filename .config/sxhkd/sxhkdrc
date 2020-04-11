@@ -1,0 +1,193 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+    kitty
+
+# program launcher
+super + d
+    dmenu_run
+
+# make sxhkd reload its configuration files:
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# i3lock (might find something different later)
+super + ctrl + shift + l
+    multilockscreen -l blur
+
+# Toggle compositor
+super + shift + F12
+    ~/.local/bin/toggle-compositor
+
+# Toggle redshift
+super + shift + F11
+    ~/.local/bin/toggle-redshift
+
+# Toggle pulseaudio
+super + shift + F10
+    ~/.local/bin/toggle-pulseaudio
+
+# Audio/Volume
+@XF86Audio{Raise,Lower}Volume
+    amixer -D pulse sset Master 5%{+,-} unmute
+
+@XF86AudioMute
+    amixer -D pulse sset Master toggle
+
+# Toggle Mic
+super + button10
+    amixer -c 1 sset Mic toggle; \
+    if [ $(~/.local/bin/mic-status) = "ON" ]; then \
+        notify-send -u low "Microphone is ON"; \
+    else; \
+        notify-send -u low "Microphone if MUTED"; \
+    fi
+
+# Mediakeys - playerctl
+@XF86Audio{Play,Pause,Next,Prev,Stop}
+    playerctl {play-pause,play-pause,next,previous,stop}
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + shift + {e,r}
+    bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }q
+    bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+    bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+    bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+    bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+super + {f,s,e}
+    bspc node -t "~{fullscreen,floating,tiled}"
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+# Now with multi-monitor support. (should work like i3)
+super + {_,shift + }{h,j,k,l}
+    mode={f,s}; \
+    direction={west,south,north,east}; \
+    monitor=$(bspc query -M --names -m $direction); \
+    if bspc query -N -n $direction -m focused > /dev/null; then \
+        bspc node -$mode $direction; \
+    else; \
+        if [ $mode = "f" ]; then \
+            if bspc query -N -d ${monitor}:focused > /dev/null; then \
+                bspc node -$mode $direction; \
+            else; \
+                bspc monitor -f $direction; \
+            fi; \
+        else; \
+            bspc node -m $direction --follow; \
+        fi; \
+    fi
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+    bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+    bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+    bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+    bspc wm -h off; \
+        bspc node {older,newer} -f; \
+        bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+    monitor=$(bspc query -M --names -m focused); \
+    bspc {desktop -f,node -d} $monitor:'^'{1-9,10}
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+    bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+super + ctrl + alt + {h,j,k,l}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Change monitor
+super + alt + {1-9,0}
+    bspc monitor -f '^'{1-9,10}
+
+super + alt + ctrl {1-9,0}; {1-9,0}
+    bspc node -d '^'{1-9,10}:'^'{1-9,10}
+
+# Add focused window to a tabbed instance in given direction
+super + t; {h,j,k,l}
+    bspwm_tabc add {west,south,north,east} "$(bspc query -N -n focused)"
+
+# Remove one tab from tabbed
+super + t; r
+    tabbed=$(bspc query -N -n focused); \
+    child=$(bspwm_tabc list $tabbed | head -n1); \
+    bspwm_tabc remove $child

@@ -1,0 +1,6 @@
+#!/bin/sh
+x0vncserver -HostsFile ~/.vnc/hostsfile -rfbauth ~/.vnc/passwd -SecurityTypes none &
+
+# Set Nvidia GPU powerlimit via nvidia-smi,
+# Please adjust for your card!
+sudo nvidia-smi -pl 75

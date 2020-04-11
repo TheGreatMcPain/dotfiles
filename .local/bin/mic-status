@@ -1,0 +1,9 @@
+#!/bin/sh
+
+status=$(amixer -D hw:Snowball sget Mic | awk '/dB/ { print $6 }')
+
+if [ $status = "[on]" ]; then
+    echo ON
+else
+    echo MUTED
+fi
