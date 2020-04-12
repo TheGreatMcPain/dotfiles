@@ -50,6 +50,10 @@ super + button10
 @XF86Audio{Play,Pause,Next,Prev,Stop}
     playerctl {play-pause,play-pause,next,previous,stop}
 
+# Toggle touchpad
+super + shift + t
+    ~/.local/bin/toggle-touchpad
+
 #
 # bspwm hotkeys
 #
