@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Disable touchpad
+~/.local/bin/toggle-touchpad disable
+
 # Other Things
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
