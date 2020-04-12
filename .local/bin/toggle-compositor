@@ -1,13 +1,15 @@
 #!/bin/sh
 
-if pgrep -x "picom" > /dev/null; then
+if pgrep -x "picom" >/dev/null; then
     pkill picom
-    if nvidia-settings --query > /dev/null; then
+    if which nvidia-settings >/dev/null; then
         nvidia-force-comp-pipeline --no
     fi
 else
-    picom -b -d :0
-    if nvidia-settings --query > /dev/null; then
+    if which nvidia-settings >/dev/null; then
         nvidia-force-comp-pipeline --yes
+        picom -b -d :0
+    else
+        picom -b -d :0 --vsync
     fi
 fi
