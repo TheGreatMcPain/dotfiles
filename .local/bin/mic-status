@@ -1,8 +1,6 @@
 #!/bin/sh
 
-status=$(amixer -c 1 sget Mic | awk '/dB/ { print $6 }')
-
-if [ $status = "[on]" ]; then
+if amixer -D pulse sget Capture | grep '\[on\]' >/dev/null; then
     echo ON
 else
     echo MUTED

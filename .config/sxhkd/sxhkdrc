@@ -39,7 +39,7 @@ super + shift + F10
 
 # Toggle Mic
 super + button10
-    amixer -c 1 sset Mic toggle; \
+    amixer -D pulse sset Capture toggle; \
     if [ $(~/.local/bin/mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
     else; \
