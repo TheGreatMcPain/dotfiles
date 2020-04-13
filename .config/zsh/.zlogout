@@ -1,2 +1,4 @@
 # Clear that shit
-clear
+if ! [ "$USER" = "root" ]; then
+    clear
+fi
