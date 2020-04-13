@@ -22,8 +22,8 @@ stty -ixon # Disable ctrl-s and ctrl-q
 shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 
 if ! { [ "$TERM" = "linux" ]; } then
-        source ~/.promptline.sh
-        if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+        [ -f ~/.promptline.sh ] && source ~/.promptline.sh
+        if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
                 neofetch --kitty /home/james/Sync/cat_pancakes.jpg --size 30%
         fi
 fi

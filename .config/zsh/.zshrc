@@ -129,7 +129,7 @@ bindkey -v '^?' backward-delete-char
 
 # Source promptline when not using tty
 if ! ( [ "$TERM" = "linux" ]; ) then
-        source ~/.promptline.sh
+        [ -f ~/.promptline.sh ] && source ~/.promptline.sh
         # Run neofetch when not using tmux
         if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
                 neofetch --kitty /home/james/Sync/cat_pancakes.jpg --size 30%
