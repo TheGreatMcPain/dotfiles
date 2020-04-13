@@ -3,6 +3,13 @@ if which x0vncserver >/dev/null; then
     x0vncserver -HostsFile ~/.vnc/hostsfile -rfbauth ~/.vnc/passwd -SecurityTypes none &>/dev/null &
 fi
 
+if which nvidia-settings >/dev/null; then
+    # Load nvidia-settings config
+    nvidia-settings --load-config-only &>/dev/null
+    # Set nvidia power settings to "Prefer Maximum Performance"
+    nvidia-settings --assign '[gpu:0]/GPUPowerMizerMode=1' &>/dev/null
+fi
+
 # Set Nvidia GPU powerlimit via nvidia-smi,
 # Please adjust for your card!
 if which nvidia-smi >/dev/null; then

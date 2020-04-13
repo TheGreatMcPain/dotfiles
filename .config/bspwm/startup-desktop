@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# Load nvidia-settings config
-bspwm_exec -e nvidia-settings -o '--load-config-only'
-# Set nvidia power settings to "Prefer Maximum Performance"
-bspwm_exec -e nvidia-settings -o '--assign [gpu:0]/GPUPowerMizerMode=1'
-
 # Other Things
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
