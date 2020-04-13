@@ -8,7 +8,7 @@ if pgrep -x "picom" >/dev/null; then
 else
     if which nvidia-settings >/dev/null; then
         nvidia-force-comp-pipeline --yes
-        picom -b -d :0
+        picom -b -d :0 --backend xrender
     else
         picom -b -d :0 --vsync
     fi
