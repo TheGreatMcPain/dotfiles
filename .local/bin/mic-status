@@ -1,6 +1,11 @@
 #!/bin/sh
 
-if amixer -D pulse sget Capture | grep '\[on\]' >/dev/null; then
+if ! pgrep -x pulseaudio >/dev/null; then
+    echo Pulse is Off
+    exit
+fi
+
+if amixer -D pulse sget Capture | grep '\[on\]' &>/dev/null; then
     echo ON
 else
     echo MUTED
