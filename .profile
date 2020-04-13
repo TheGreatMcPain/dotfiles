@@ -3,6 +3,10 @@
 pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
 pupdate $HOME/.local/bin
 
+## portage
+export MAKEOPTS="-j5 -l4"
+export EMERGE_DEFAULT_OPTS="--jobs=5 --load-average=4"
+
 ## Cleanup
 # XDG Base Dirs
 export XDG_CONFIG_HOME=$HOME/.config
