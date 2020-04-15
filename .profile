@@ -31,10 +31,13 @@ portage_env() {
     unset DISTCC_DIR
     unset CCACHE_DIR
     unset CCACHE_CONFIGPATH
+    unset WGETRC
     $@
 }
 alias emerge='portage_env emerge'
 alias ebuild='portage_env ebuild'
+alias genup='portage_env genup'
+alias sudo='portage_env sudo'
 
 # Aliases
 alias root="sudo su -"
