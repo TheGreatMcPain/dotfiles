@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+#############################################
+# Uninstaller for custom Proton version
+# that are in ~/.steam/root/compatibilitytools.d.
+#############################################
+import os
+import vdf
+from shutil import copy, rmtree
+
+
+def main():
+    home = os.path.expanduser("~")
+    compatd = home + "/.steam/root/compatibilitytools.d"
+    configVdf = home + "/.steam/root/config/config.vdf"
+    try:
+        os.path.isdir(compatd)
+    except IOError:
+        print("Error: " + compatd + " doesn't exist.")
+
+    protonDirs = getProtonDirs(compatd)
+    options = []
+    for proton in protonDirs:
+        option = {}
+        option[protonDirs[proton]] = proton
+        options.append(option)
+
+    print("Which proton version do you want to uninstall?")
+    for option in options:
+        index = options.index(option)
+        print("    " + str(index) + ") " + list(option.keys())[0])
+    oldProton = int(
+        input("Select a number between 0 and " + str(len(options) - 1) + ": "))
+    while oldProton > (len(options) - 1) or oldProton < 0:
+        oldProton = int(input("Invalid option please try again: "))
+    oldProton = options[oldProton]
+    print("\n" + list(oldProton.keys())[0] + " Seleted.\n")
+    options.remove(oldProton)
+
+    print("Which proton version do you want to use instead?")
+    for option in options:
+        index = options.index(option)
+        print("    " + str(index) + ") " + list(option.keys())[0])
+    newProton = int(
+        input("Select a number between 0 and " + str(len(options) - 1) + ": "))
+    while newProton > (len(options) - 1) or newProton < 0:
+        newProton = int(input("Invalid option please try again: "))
+    newProton = options[newProton]
+    print("\n" + list(newProton.keys())[0] + " Seleted.\n")
+
+    replaceProton(configVdf, oldProton, newProton)
+    protonNames = (list(oldProton.keys())[0], list(newProton.keys())[0])
+    print(protonNames[0] + " has been replaced with " + protonNames[1], end="")
+    print(" in " + os.path.basename(configVdf))
+    print("Deleting directory " + list(oldProton.items())[0][1])
+    rmtree(list(oldProton.items())[0][1], ignore_errors=True)
+
+
+# Gets all custom proton versions, and places
+# Their names, and full directories in a dictionary
+def getProtonDirs(compatDir):
+    protons = os.listdir(compatDir)
+    protonDirs = {}
+    for proton in protons:
+        try:
+            protonPath = os.path.join(compatDir, proton)
+            protonVdf = vdf.load(open(protonPath + "/compatibilitytool.vdf"))
+        except Exception:
+            print(proton +
+                  " Doesn't have a compatibilitytool.vdf. We'll ignore it.")
+            pass
+        else:
+            protonDirs[protonPath] = list(
+                protonVdf['compatibilitytools']['compat_tools'])[0]
+    return protonDirs
+
+
+# Replaces old proton version with a new version inside
+# steam's config.vdf.  This is so that we don't need
+# to change proton versions within steam.
+def replaceProton(configVdf, old, new):
+    old = list(old.items())[0][0]
+    new = list(new.items())[0][0]
+    try:
+        os.path.isfile(configVdf)
+    except IOError:
+        print(configVdf + " doesn't exist.")
+    else:
+        print("Backing up config.vdf to config.vdf.bak")
+        copy(configVdf, configVdf + ".bak")
+    config = vdf.load(open(configVdf))
+    compatMapping = config['InstallConfigStore']['Software']['Valve']['Steam'][
+        'CompatToolMapping']
+    for compat in compatMapping:
+        if old == compatMapping[compat]['name']:
+            compatMapping[compat]['name'] = new
+    vdf.dump(config, open(configVdf, 'w'), pretty=True)
+
+
+if __name__ == "__main__":
+    main()
