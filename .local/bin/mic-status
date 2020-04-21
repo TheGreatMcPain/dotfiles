@@ -5,8 +5,12 @@ if ! pgrep -x pulseaudio >/dev/null; then
     exit
 fi
 
-if amixer -D pulse sget Capture | grep '\[on\]' &>/dev/null; then
-    echo ON
+if [ -e "/tmp/mic-status" ]; then
+    cat "/tmp/mic-status"
 else
-    echo MUTED
+    if amixer -D pulse sget Capture | grep '\[on\]' >/dev/null; then
+        echo ON | tee "/tmp/mic-status"
+    else
+        echo MUTED | tee "/tmp/mic-status"
+    fi
 fi

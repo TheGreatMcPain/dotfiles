@@ -210,6 +210,7 @@ initial = 1
 click-left = mpc prev
 click-middle = mpc toggle
 click-right = mpc next
+double-click-left = mpc stop
 
 [module/mpd]
 type = internal/mpd
