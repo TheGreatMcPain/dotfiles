@@ -27,17 +27,11 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # Since emerge likes to take exported vars first
 # before reading /etc/make.conf we need to disable these
 # when running emerge, or ebuild.
-portage_env() {
-    unset DISTCC_DIR
-    unset CCACHE_DIR
-    unset CCACHE_CONFIGPATH
-    unset WGETRC
-    $@
-}
-alias emerge='portage_env emerge'
-alias ebuild='portage_env ebuild'
-alias genup='portage_env genup'
-alias sudo='portage_env sudo'
+alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC emerge'
+alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ebuild'
+alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC genup'
+# Use roots's .profile and env vars when running sudo.
+alias sudo='sudo -u root -i'
 
 # Aliases
 alias root="sudo su -"

@@ -28,7 +28,7 @@ fi
 # Correction
 setopt correct
 # Disable correction for sudo
-alias sudo='nocorrect sudo '
+alias sudo='nocorrect sudo -u root -i'
 
 # Prompt
 autoload -U promptinit
