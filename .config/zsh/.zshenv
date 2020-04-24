@@ -1,1 +1,1 @@
-/home/james/.profile
+../../.profile
