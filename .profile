@@ -27,9 +27,11 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # Since emerge likes to take exported vars first
 # before reading /etc/make.conf we need to disable these
 # when running emerge, or ebuild.
-alias emerge='DISTCC_DIR= CCACHE_DIR= CCACHE_CONFIGPATH= WGETRC= emerge'
-alias ebuild='DISTCC_DIR= CCACHE_DIR= CCACHE_CONFIGPATH= WGETRC= ebuild'
-alias genup='DISTCC_DIR= CCACHE_DIR= CCACHE_CONFIGPATH= WGETRC= genup'
+if [ "$USER" = "root" ]; then
+    alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC emerge'
+    alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ebuild'
+    alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC genup'
+fi
 
 # Prevent vi from running with sudo unless alias is used.
 # (Prevents Stray $XDG_CONFIG_HOME from appearing due to vimrc settings)
