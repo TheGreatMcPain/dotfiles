@@ -28,9 +28,9 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # before reading /etc/make.conf we need to disable these
 # when running emerge, or ebuild.
 if [ "$USER" = "root" ]; then
-    alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC emerge'
-    alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ebuild'
-    alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC genup'
+    alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emerge'
+    alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; ebuild'
+    alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
