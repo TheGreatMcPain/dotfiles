@@ -131,9 +131,11 @@ bindkey -v '^?' backward-delete-char
 if ! ( [ "$TERM" = "linux" ]; ) then
     [ -f ~/.promptline.sh ] && source ~/.promptline.sh
     # Run neofetch when not using tmux
-    if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
-        if ! [ "$USER" = root ]; then
-            neofetch --kitty /home/james/Sync/cat_pancakes.jpg --size 30%
+    if which neofetch >/dev/null; then
+        if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
+            if ! [ "$USER" = root ]; then
+                neofetch --kitty /home/james/Sync/cat_pancakes.jpg --size 30%
+            fi
         fi
     fi
 fi
