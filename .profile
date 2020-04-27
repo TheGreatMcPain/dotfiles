@@ -4,8 +4,10 @@ pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
 pupdate $HOME/.local/bin
 
 ## portage
-export MAKEOPTS="-j5 -l4"
-export EMERGE_DEFAULT_OPTS="--jobs=5 --load-average=4"
+export NPROC=$(nproc)
+export NPROC_PLUS_ONE=$((NPROC+1))
+export MAKEOPTS="-j$NPROC_PLUS_ONE -l$NPROC"
+export EMERGE_DEFAULT_OPTS="--jobs=$NPROC_PLUS_ONE --load-average=$NPROC"
 
 ## Cleanup
 # XDG Base Dirs
