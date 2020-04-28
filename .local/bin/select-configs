@@ -1,0 +1,18 @@
+#!/bin/sh
+# Script for creating symlinks for
+# configs that are different between
+# computers. This is so that I can use
+# this dotfiles repo on both my laptop, and desktop.
+
+COMPUTER="$1"
+
+if [ "$COMPUTER" = "desktop" ] || [ "$COMPUTER" = "laptop" ]; then
+    ln -sv ~/.config/bspwm/startup-$COMPUTER ~/.config/bspwm/startup
+    ln -sv ~/.config/kitty/$COMPUTER.conf ~/.config/kitty/separate.conf
+    ln -sv ~/.config/mpd/mpd.conf.$COMPUTER ~/.config/mpd/mpd.conf
+    ln -sv ~/.config/ncmpcpp/art.sh.$COMPUTER ~/.config/ncmpcpp/art.sh
+    ln -sv ~/.config/ncmpcpp/tmux_session.$COMPUTER ~/.config/ncmpcpp/tmux_session
+else
+    echo "Invalid option!"
+    echo "Must be 'laptop', or 'desktop'."
+fi
