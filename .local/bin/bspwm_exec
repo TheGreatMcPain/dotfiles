@@ -32,7 +32,7 @@ main () {
             killall -q "$PROCESS"
             # Wait till process has stopped
             while pgrep -x "$PROCESS" >/dev/null; do sleep 1; done
-            exec "$EXEC" $EXECOPT
+            exec /bin/sh -c "$EXEC $EXECOPT"
         else
             printf "%s: is already running, and '-a' not specified.\n" "$PROCESS"
         fi
