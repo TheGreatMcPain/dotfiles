@@ -1,0 +1,45 @@
+music_directory     "/media/shared-data/Multi Media/Music"
+playlist_directory  "~/.config/mpd/playlists"
+db_file             "~/.config/mpd/database"
+log_file            "~/.config/mpd/log"
+state_file          "~/.config/mpd/state"
+pid_file            "~/.config/mpd/pid"
+
+user                "james"
+group               "james"
+
+bind_to_address     "any"
+#bind_to_address     "~/.config/mpd/socket"
+
+audio_output {
+        type           "pulse"
+	name           "Pulse Output"
+	format         "192000:24:2"
+	mixer_type     "null"
+}
+
+audio_output {
+	type "alsa"
+	name "Intel PCH"
+	auto_resample "no"
+	auto_channels "no"
+	auto_format   "no"
+	device "hw:CARD=PCH"
+	mixer_type    "null"
+}
+
+input {
+       plugin "curl"
+}
+
+audio_output {
+        type        "fifo"
+	name        "FIFO"
+	path        "/tmp/mpd.fifo"
+	format      "44100:16:2"
+}
+
+resampler {
+	plugin  "soxr"
+	quality "very high"
+}
