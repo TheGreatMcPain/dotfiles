@@ -33,6 +33,7 @@ if [ "$USER" = "root" ]; then
     alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emerge'
     alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; ebuild'
     alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
+    alias buildkernel='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
