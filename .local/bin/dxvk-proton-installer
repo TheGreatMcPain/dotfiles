@@ -1,0 +1,66 @@
+#!/bin/sh
+
+dxvk_winelib() {
+    dxvk32="/usr/lib/dxvk"
+    dxvk64="/usr/lib64/dxvk"
+}
+
+dxvk_mingw() {
+    dxvk32="/usr/lib/dxvk-mingw"
+    dxvk64="/usr/lib64/dxvk-mingw"
+}
+
+dxvk_install() {
+    libdir=$(echo ${1} | cut -d "/" -f 3)
+    for dll in ${1}/*.dll*; do
+        if ! [ "$(echo ${dll} | cut -d . -f 3)" = "a" ]; then
+            ln -svf "${dll}" "${2}/dist/${libdir}/wine/dxvk/"
+        fi
+    done
+}
+
+proton_dir=${HOME}/.steam/root/compatibilitytools.d
+oldpath=`pwd`
+cd ${proton_dir}
+
+set -- $(ls --color=never -d *)
+folders=$(ls --color=never -d * | wc -l)
+counter=1
+
+echo "Which Proton version to install DXVK into?"
+
+for dir in $(seq 1 $((folders))); do
+    eval "val=\${$dir}"
+    echo ${counter}: ${val}
+    counter=$((counter+1))
+done
+
+printf "Enter a number: "
+read selection
+
+eval "val=\${$selection}"
+proton="${proton_dir}/${val}"
+cd ${proton}
+
+echo ""
+echo "Select DXVK build-types."
+echo "1: mingw"
+echo "2: winelib"
+
+printf "Enter a number: "
+read dxvktype
+
+if [ ${dxvktype} = "1" ]; then
+    dxvk_mingw
+fi
+if [ ${dxvktype} = "2" ]; then
+    dxvk_winelib
+fi
+
+echo ""
+echo "Linking DXVK dlls."
+
+dxvk_install ${dxvk32} "${proton}"
+dxvk_install ${dxvk64} "${proton}"
+
+cd ${oldpath}
