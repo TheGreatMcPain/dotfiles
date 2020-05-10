@@ -5,6 +5,8 @@ bspwm_exec -e mpd_discord_richpresence -o '--no-idle'
 bspwm_exec -e discordRichPresencePlex.py
 
 # Other Things
+bspwm_exec -e mpd
+bspwm_exec -e syncthing -o '-no-browser -no-restart -logflags=0'
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
 bspwm_exec -e dropbox

@@ -1,6 +1,6 @@
 ncmpcpp_directory = ~/.config/ncmpcpp
 lyrics_directory = ~/.config/ncmpcpp/lyrics
-mpd_host = "/run/user/1000/mpd/socket"
+mpd_host = "~/.config/mpd/socket"
 execute_on_song_change = "~/.config/ncmpcpp/art.sh > /dev/null 2>&1"
 user_interface = alternative
 autocenter_mode = yes

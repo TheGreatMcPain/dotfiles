@@ -56,7 +56,7 @@ export QT_QPA_PLATFORMTHEME=gtk2
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Set mpd programs to use 'socket'
-export MPD_HOST=/run/user/1000/mpd/socket
+export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 
 
 # Use NeoVim
