@@ -38,6 +38,13 @@ prompt gentoo
 # Make ls colorful
 alias ls="ls --color"
 
+# Calculator
+autoload -U zcalc
+function __calc_plugin {
+    zcalc -e "$*"
+}
+aliases[=]='noglob __calc_plugin'
+
 # History
 export HISTSIZE=2000
 export HISTFILE="$XDG_CONFIG_HOME/zsh/.zhistory"
