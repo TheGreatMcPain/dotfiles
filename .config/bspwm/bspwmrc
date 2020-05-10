@@ -12,9 +12,9 @@ pulseaudio -D
 
 # Compositor
 if which nvidia-settings &>/dev/null; then
-    bspwm_exec -e picom -o '-b -d :0 --backend xrender'
+    bspwm_exec -e picom -o '-b --backend xrender'
 else
-    bspwm_exec -e picom -o '-b -d :0 --vsync'
+    bspwm_exec -e picom -o '-b --vsync'
 fi
 
 # clears background windows when fullscreen.
