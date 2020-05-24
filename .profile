@@ -2,6 +2,7 @@
 
 pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
 pupdate $HOME/.local/bin
+export PATH
 
 ## portage
 export NPROC=$(nproc)
@@ -30,10 +31,11 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # before reading /etc/make.conf we need to disable these
 # when running emerge, or ebuild.
 if [ "$USER" = "root" ]; then
-    alias emerge='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emerge'
-    alias ebuild='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; ebuild'
-    alias genup='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
-    alias buildkernel='unset DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
+    alias emerge='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emerge'
+    alias ebuild='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; ebuild'
+    alias genup='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
+    alias buildkernel='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
+    alias crossdev='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; crossdev'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
@@ -42,7 +44,7 @@ alias sudo="~/.local/bin/block_sudo_vi"
 alias sudovi="sudo -i $EDITOR"
 
 # Aliases
-alias root="sudo su -"
+alias root="sudo su -l -"
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
 alias virtualbox='QT_QPA_PLATFORMTHEME=none virtualbox'
 alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
