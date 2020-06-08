@@ -41,7 +41,7 @@ fi
 
 # Prevent vi from running with sudo unless alias is used.
 # (Prevents Stray $XDG_CONFIG_HOME from appearing due to vimrc settings)
-alias sudo="~/.local/bin/block_sudo_vi"
+alias sudo="block_sudo_vi"
 alias sudovi="sudo -i $EDITOR"
 
 # Aliases
