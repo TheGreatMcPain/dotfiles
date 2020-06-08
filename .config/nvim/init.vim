@@ -166,8 +166,7 @@ let g:syntastic_python_checkers = ['flake8']
 augroup autoformat_settings
   autocmd FileType c,cpp,proto,java,javascript AutoFormatBuffer clang-format
   autocmd FileType python AutoFormatBuffer yapf
-"  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer clang-format
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
 augroup END
 " use google style for clang-format
 Glaive codefmt clang_format_style='google'
