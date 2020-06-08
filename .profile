@@ -1,21 +1,22 @@
 #!/usr/bin/env sh
 
 pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
-pupdate $HOME/.local/bin
+for dir in $(du "$HOME/.local/bin/" | cut -f2); do
+    pupdate $dir
+done
 export PATH
 
-## portage
+## portage/compiler settings ##
 export NPROC=$(nproc)
 export NPROC_PLUS_ONE=$((NPROC+1))
 export MAKEOPTS="-j$NPROC_PLUS_ONE -l$NPROC"
 export EMERGE_DEFAULT_OPTS="--jobs=$NPROC_PLUS_ONE --load-average=$NPROC"
 
-## Cleanup
+## Cleanup ##
 # XDG Base Dirs
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-# Applications
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export LESSHISTFILE="-"
 export INPUTRC=$XDG_CONFIG_HOME/inputrc
