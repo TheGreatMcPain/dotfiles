@@ -18,7 +18,7 @@ else
 fi
 
 # clears background windows when fullscreen.
-bspwm_exec -e ~/.local/bin/bspwm_cleanfullscreen -p 'bspwm_cleanfullscreen'
+bspwm_exec -e bspwm_cleanfullscreen -p 'bspwm_cleanfullscreen'
 
 # Allows use of pkexec
 bspwm_exec -e /usr/libexec/polkit-gnome-authentication-agent-1

@@ -20,15 +20,15 @@ super + ctrl + shift + l
 
 # Toggle compositor
 super + shift + F12
-    ~/.local/bin/toggle-compositor
+    toggle-compositor
 
 # Toggle redshift
 super + shift + F11
-    ~/.local/bin/toggle-redshift
+    toggle-redshift
 
 # Toggle pulseaudio
 super + shift + F10
-    ~/.local/bin/toggle-pulseaudio
+    toggle-pulseaudio
 
 # Audio/Volume
 @XF86Audio{Raise,Lower}Volume
@@ -41,7 +41,7 @@ super + shift + F10
 super + button10
     amixer -D pulse sset Capture toggle; \
     rm /tmp/mic-status; \
-    if [ $(~/.local/bin/mic-status) = "ON" ]; then \
+    if [ $(mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
     else; \
         notify-send -u low "Microphone if MUTED"; \
@@ -53,7 +53,7 @@ super + button10
 
 # Toggle touchpad
 super + shift + t
-    ~/.local/bin/toggle-touchpad
+    toggle-touchpad
 
 #
 # bspwm hotkeys

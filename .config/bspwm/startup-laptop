@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Disable touchpad
-~/.local/bin/toggle-touchpad disable
+toggle-touchpad disable
 
 # Other Things
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
 bspwm_exec -e steam -o '-silent %U'
-bspwm_exec -e ~/.local/bin/discord-to-systray -p 'Discord'
+bspwm_exec -e discord-to-systray -p 'Discord'

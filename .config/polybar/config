@@ -330,7 +330,7 @@ label = %date% %time%
 
 [module/mic-status]
 type = custom/script
-exec = ~/.local/bin/mic-status
+exec = mic-status
 format-prefix = "🎤 "
 
 interval = 0.5
