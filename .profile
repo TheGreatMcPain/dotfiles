@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
+# Adds directories to PATH without creating duplicates
 pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
+
+# Add all subdirectories in '.local/bin/' to PATH
 for dir in $(du "$HOME/.local/bin/" | cut -f2); do
     pupdate $dir
 done

@@ -1,4 +1,12 @@
 #!/bin/zsh
+
+# Pulled from .profile
+pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
+for dir in $(du "$HOME/.local/bin/" | cut -f2); do
+    pupdate $dir
+done
+export PATH
+
 # Completion
 autoload -Uz compinit
 compinit
