@@ -9,7 +9,7 @@ user                "james"
 group               "james"
 
 bind_to_address     "any"
-#bind_to_address     "~/.config/mpd/socket"
+bind_to_address     "~/.config/mpd/socket"
 
 audio_output {
         type           "pulse"
