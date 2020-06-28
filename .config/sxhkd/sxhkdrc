@@ -55,6 +55,10 @@ super + button10
 super + shift + t
     toggle-touchpad
 
+# Change Brightness
+@XF86MonBrightness{Up,Down}
+    xbacklight {+10,-10}
+
 #
 # bspwm hotkeys
 #
