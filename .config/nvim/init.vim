@@ -143,6 +143,8 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
 "" Set 'ycm_global_ycm_extra_conf' to the correct location of '.ycm_extra_conf.py'
 "" within <youcompleteme>/third_party/ycmd/examples.
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_use_clangd = 1
+let g:ycm_clangd_binary_path = 'clangd'
 let g:ycm_python_binary_path = 'python'
 let g:ycm_complete_in_comments = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -169,7 +171,7 @@ augroup autoformat_settings
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
 augroup END
 " use google style for clang-format
-Glaive codefmt clang_format_style='google'
+Glaive codefmt clang_format_style='file'
 
 " open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
@@ -235,5 +237,5 @@ let g:promptline_preset = {
   \'a' : [ '$vim_mode', promptline#slices#host() ],
   \'b' : [ promptline#slices#user() ],
   \'c' : [ promptline#slices#cwd() ],
-  \'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status(), promptline#slices#jobs() ],
+  \'y' : [ promptline#slices#vcs_branch(), promptline#slices#jobs() ],
   \'warn' : [ promptline#slices#last_exit_code() ]}
