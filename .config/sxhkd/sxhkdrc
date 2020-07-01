@@ -138,6 +138,8 @@ super + {o,i}
         bspc wm -h on
 
 # focus or send to the given desktop
+# Now supports multimonitor where each monitor
+# can have up to 10 workspaces each.
 super + {_,shift + }{1-9,0}
     monitor=$(bspc query -M --names -m focused); \
     bspc {desktop -f,node -d} $monitor:'^'{1-9,10}
