@@ -101,22 +101,13 @@ super + ctrl + {m,x,y,z}
 
 # focus the node in the given direction
 # Now with multi-monitor support. (should work like i3)
-super + {_,shift + }{h,j,k,l}
-    mode={f,s}; \
+super + {_, shift + , ctrl + }{h,j,k,l}
+    mode={f,s,n}; \
     direction={west,south,north,east}; \
-    monitor=$(bspc query -M --names -m $direction); \
-    if bspc query -N -n $direction -m focused > /dev/null; then \
-        bspc node -$mode $direction; \
+    if [ $mode = "f" ]; then \
+        bspc node -f $direction.local || bspc monitor -f $direction; \
     else; \
-        if [ $mode = "f" ]; then \
-            if bspc query -N -d ${monitor}:focused > /dev/null; then \
-                bspc node -$mode $direction; \
-            else; \
-                bspc monitor -f $direction; \
-            fi; \
-        else; \
-            bspc node -m $direction --follow; \
-        fi; \
+        bspc node -$mode $direction.local || bspc node -m $direction --follow; \
     fi
 
 # focus the node for the given path jump
