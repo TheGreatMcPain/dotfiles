@@ -399,7 +399,7 @@ animation-charging-framerate = 500
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+thermal-zone = ${env:TEMPZONE}
 warn-temperature = 60
 
 format = <ramp> <label>
