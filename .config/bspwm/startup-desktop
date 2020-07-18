@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Status Bar
+# With temperature zone 2
+~/.config/polybar/launch.sh 2 &
+
 # I'm an attention whore.
 bspwm_exec -e mpd_discord_richpresence -o '--no-idle'
 bspwm_exec -e discordRichPresencePlex.py

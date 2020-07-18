@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Status Bar
+# With temperature zone 0
+~/.config/polybar/launch.sh 0 &
+
 # Disable touchpad
 toggle-touchpad disable
 

@@ -32,9 +32,6 @@ bspwm_exec -e qlipper
 # Custom startup script.
 ~/.config/bspwm/startup
 
-# Status Bar
-~/.config/polybar/launch.sh &
-
 # Get cover art from current mpd song. to prevent
 # errors when running music setup.
 ~/.config/ncmpcpp/art.sh
