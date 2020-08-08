@@ -49,7 +49,7 @@ alias sudovi="sudo -i $EDITOR"
 
 # Aliases
 if [ "$USER" = "root" ]; then
-    alias root="echo You're already root!"
+    alias root="echo You're already root\!"
 else
     alias root="sudo su -l -"
 fi
