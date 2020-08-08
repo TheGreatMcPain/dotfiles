@@ -48,7 +48,12 @@ alias sudo="block_sudo_vi"
 alias sudovi="sudo -i $EDITOR"
 
 # Aliases
-alias root="sudo su -l -"
+if [ "$USER" = "root" ]; then
+    alias root="echo You're already root!"
+else
+    alias root="sudo su -l -"
+fi
+
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
 alias virtualbox='QT_QPA_PLATFORMTHEME=none virtualbox'
 alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
