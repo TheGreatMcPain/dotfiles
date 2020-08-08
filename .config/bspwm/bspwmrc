@@ -29,6 +29,9 @@ bspwm_exec -e dunst
 bspwm_exec -e mpDris2
 bspwm_exec -e qlipper
 
+# Enable numlock
+numlockx &
+
 # Custom startup script.
 ~/.config/bspwm/startup
 
