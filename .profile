@@ -57,7 +57,7 @@ fi
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
 alias virtualbox='QT_QPA_PLATFORMTHEME=none virtualbox'
 alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Make QT use Gtk themes.
 # Requires qtstyleplugin
