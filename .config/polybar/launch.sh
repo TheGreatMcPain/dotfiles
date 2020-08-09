@@ -19,8 +19,8 @@ MONITOR=$PRIMARY TRAYPOS=center TEMPZONE=$1 polybar --reload default-bottom & ec
 for m in $(polybar --list-monitors | cut -d":" -f1); do
     # Don't try to start a new bar on primary monitor.
     if ! [ $m = $PRIMARY ]; then
-	MONITOR=$m polybar --reload default-top & echo $! > $pidFile-$m.pid
-        MONITOR=$m polybar --reload default-bottom & echo $! >> $pidFile-$m.pid
+	MONITOR=$m TEMPZONE=$1 polybar --reload default-top & echo $! > $pidFile-$m.pid
+        MONITOR=$m TEMPZONE=$1 polybar --reload default-bottom & echo $! >> $pidFile-$m.pid
     fi
 done
 
