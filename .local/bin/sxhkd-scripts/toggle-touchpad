@@ -2,7 +2,7 @@
 
 devNum=$(xinput | grep -i touchpad | awk '{print $6}' | cut -c4-5)
 
-status=$(xinput list-props $devNum | grep 166 | awk '{print $4}')
+status=$(xinput list-props $devNum | grep "Device Enabled" | awk '{print $4}')
 
 if [ "$status"x = "1"x ]; then
     if [ "$1"x = "enable"x ]; then
