@@ -151,7 +151,7 @@ if ! ( [ "$TERM" = "linux" ]; ) then
     if which neofetch >/dev/null; then
         if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
             if ! [ "$USER" = root ]; then
-                neofetch --kitty /home/james/Sync/cat_pancakes.jpg --size 30%
+                neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
             fi
         fi
     fi
