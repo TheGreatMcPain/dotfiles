@@ -16,7 +16,7 @@ super + Escape
 
 # i3lock (might find something different later)
 super + ctrl + shift + l
-    multilockscreen -l blur
+    multilockscreen -l dim
 
 # Toggle compositor
 super + shift + F12
