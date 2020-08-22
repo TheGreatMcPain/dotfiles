@@ -146,12 +146,18 @@ bindkey -v '^?' backward-delete-char
 
 # Source promptline when not using tty
 if ! ( [ "$TERM" = "linux" ]; ) then
-    [ -f ~/.promptline.sh ] && source ~/.promptline.sh
-    # Run neofetch when not using tmux
+    [ -f ~/.config/promptline.sh ] && source ~/.config/promptline.sh
+    # Check if neofetch is installed.
     if which neofetch >/dev/null; then
+        # Run neofetch if not in tmux, or using neovim's terminal emulator.
         if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
             if ! [ "$USER" = root ]; then
-                neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
+                # Only display image if running in kitty terminal.
+                if [ "$TERM" = "xterm-kitty" ]; then
+                    neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
+                else
+                    neofetch
+                fi
             fi
         fi
     fi
