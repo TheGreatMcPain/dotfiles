@@ -20,6 +20,9 @@ export EMERGE_DEFAULT_OPTS="--jobs=$NPROC_PLUS_ONE --load-average=$NPROC"
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export DISTCC_DIR=$XDG_CACHE_HOME/distcc
+export CCACHE_DIR=$XDG_CACHE_HOME/ccache
+export CCACHE_CONFIGPATH=$XDG_CONFIG_HOME/ccache.conf
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export LESSHISTFILE="-"
 export INPUTRC=$XDG_CONFIG_HOME/inputrc
