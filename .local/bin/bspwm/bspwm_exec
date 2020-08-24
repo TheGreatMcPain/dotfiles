@@ -6,7 +6,12 @@ SLEEP=0
 unset PROCESS
 unset EXEC
 unset EXECOPT
-UID=$(id -u)
+
+# Check if UID is already set, because
+# bash will complain if we try to manually set UID.
+if ! echo $UID | grep $(id -u) >/dev/null; then
+    UID=$(id -u)
+fi
 
 # Print Usage
 usage () {
