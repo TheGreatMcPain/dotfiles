@@ -118,7 +118,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 # Setup Vi mode Indicator for Promptline
-if [ -f ~/.promptline.sh ]; then
+if [ -f ~/.config/promptline.sh ]; then
     function zle-keymap-select {
       vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
       __promptline
