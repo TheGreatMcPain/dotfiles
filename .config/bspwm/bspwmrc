@@ -11,7 +11,7 @@ bspwm_exec -a -e sxhkd
 pulseaudio -D
 
 # Compositor
-if which nvidia-settings &>/dev/null; then
+if which nvidia-settings >/dev/null; then
     bspwm_exec -e picom -o '-b --backend xrender'
 else
     bspwm_exec -e picom -o '-b --vsync'
