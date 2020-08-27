@@ -304,7 +304,7 @@ format-connected-underline = ${colors.darkgreen}
 ;format-connected-underline = ${colors.green}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.gray}
-label-connected = %local_ip%
+label-connected = %local_ip%%downspeed:9%%upspeed:9%
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
