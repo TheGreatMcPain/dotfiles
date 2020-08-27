@@ -43,6 +43,7 @@ if [ "$USER" = "root" ]; then
     alias genup='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
     alias buildkernel='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
     alias crossdev='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; crossdev'
+    alias emtee='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emtee'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
