@@ -42,6 +42,9 @@ Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
 
+"" ADA Support
+Plugin 'thindil/Ada-Bundle'
+
 "Plugin 'airblade/vim-gitgutter'  " in emerge
 "" File browser.
 "Plugin 'scrooloose/nerdtree'     " in emerge
