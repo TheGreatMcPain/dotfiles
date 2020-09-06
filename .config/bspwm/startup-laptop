@@ -9,7 +9,7 @@ toggle-touchpad disable
 
 # Other Things
 bspwm_exec -e mpd
-bspwm_exec -e syncthing -o '-no-browser -no-restart -logflags=0'
+bspwm_exec -e syncthing -o '-no-browser -logflags=0'
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
 bspwm_exec -e steam -o '-silent %U'
