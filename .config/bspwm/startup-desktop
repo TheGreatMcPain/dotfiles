@@ -4,13 +4,16 @@
 # With temperature zone 2
 ~/.config/polybar/launch.sh 2 &
 
-# I'm an attention whore.
+# Let people know what weird shit I watch/listen to.
 bspwm_exec -e mpd_discord_richpresence -o '--no-idle'
 bspwm_exec -e discordRichPresencePlex.py
 
+# Hide me
+bspwm_exec -e openpyn -o "-c us --netflix --p2p -o '--redirect-gateway def1 --allow-pull-fqdn --route authserver.mojang.com 255.255.255.255 net_gateway --route mcoapi.minecraft.net 255.255.255.255 net_gateway'"
+
 # Other Things
 bspwm_exec -e mpd
-bspwm_exec -e syncthing -o '-no-browser -no-restart -logflags=0'
+bspwm_exec -e syncthing -o '-no-browser -logflags=0'
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
 bspwm_exec -e dropbox
