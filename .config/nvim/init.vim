@@ -66,7 +66,7 @@ Plugin 'alvan/vim-closetag'
 "" Displays tags of the currnet file (like functions)
 "Plugin 'majutsushi/tagbar'       " in emerge
 "" Visualize indents
-"Plugin 'Yggdroot/indentLine'     " in emerge (jorgicio)
+Plugin 'Yggdroot/indentLine'     " in emerge (jorgicio)
 
 "" Vim theme
 Plugin 'morhetz/gruvbox'
@@ -232,7 +232,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 nmap <F8> :TagbarToggle<CR>
 
 " setup for indent line
-let g:indentLine_char = '│'
+let g:indentLine_char = '|'
 set tags=./tags,tags;$HOME
 
 " Promptline
