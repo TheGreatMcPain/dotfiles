@@ -1,82 +1,107 @@
-" Important plugins and their usage
+" Notable plugins and their usage
 "
-" Youcompleteme: use autocomplete directly
+" YouCompleteMe: use autocomplete directly
+"
 " NerdTree: For browsing directory structure: Use F5 for nerd tree to appear/disappear
-" tagbar: For browsing variables/functions within current file: Use F8 to tagbar to appear disappear
-" Ctrl+P: Use this for file search
 "
-" Use ctrl+w w for moving the control between nerdtree, current file and tagbar
+" TagBar: For browsing variables/functions within current file: Use F8 to
+"         tagbar to appear disappear
+"
+" CtrlP: Use ctrl+p for fuzzy file search
+"
+" Use Ctrl+w to move between windows
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+""" INITALIZATION SECTION
 
-set ignorecase                " Ignore case when searching
-set smartcase                 " Ignore 'ignorecase' if search has an uppercase.
-" set the runtime path to include app-vim/* install directory, 
-" and initualize vundle. Also add vim's directory for documentation in nvim.
+set nocompatible            " be iMproved
+filetype off                " Vundle requires that filetype detection be off
+
+" Include '/usr/share/vim/vimfiles' and '/usr/share/vim/vim81' in vim's
+" runtime path.
+"
+" This will allow NeoVim to load plugins installed by 'emerge', because
+" the app-vim/* ebuilds are not 'NeoVim aware' yet.
 set rtp=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 set rtp+=/usr/share/vim/vimfiles,/usr/share/vim/vim81
-"call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+
+"" Install Plugins via 'Vundle' into the '.config/vim/bundle' directory.
 call vundle#begin('$XDG_CONFIG_HOME/vim/bundle')
 
-" Load Plugins
-" (Commented plugins are already installed via package manager)
-" For Gentoo I've also marked where certain ebuilds come from.
+"" List of plugins installed by 'emerge'.
 
-" let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'    " in emerge (localrepo)
+" Installed by 'app-vim/vundle' from 'thegreatmcpain' overlay.
+"Plugin 'VundleVim/Vundle.vim'      " Plugin Manager
 
-"" auto/tab complete for Vim
-"Plugin 'Valloric/YouCompleteMe'  " in emerge (localrepo)
-"" Syntax checker
-"Plugin 'vim-syntastic/syntastic' " in emerge
+" Installed by 'app-vim/youcompleteme' from 'thegreatmcpain' overlay.
+"Plugin 'ycm-core/YouCompleteMe'    " auto/tab complete for Vim
 
-"" Opens a web server in browser that auto refeshes as
-"" you work on website files like html, javascript, and css.
-Plugin 'turbio/bracey.vim'
-"" codefmt needs maktaba, and glaive is needed
-"" to configure codefmt.
-Plugin 'google/vim-maktaba'
-"" Code formater
-Plugin 'google/vim-codefmt'
-Plugin 'google/vim-glaive'
+" Installed by 'app-vim/syntastic' from 'gentoo' overlay.
+"Plugin 'vim-syntastic/syntastic'   " Syntax checker
 
-"" ADA Support
-Plugin 'thindil/Ada-Bundle'
+" Installed by 'app-vim/gitgutter' from 'gentoo' overlay.
+"Plugin 'airblade/vim-gitgutter'    " Show diff symbols from version control
 
-"Plugin 'airblade/vim-gitgutter'  " in emerge
-"" File browser.
-"Plugin 'scrooloose/nerdtree'     " in emerge
-"" Statusbar theme
-"Plugin 'vim-airline/vim-airline' " in emerge
-"" Git integration.
-"Plugin 'tpope/vim-fugitive'      " in emerge
+" Installed by 'app-vim/nerdtree' from 'gentoo' overlay.
+"Plugin 'scrooloose/nerdtree'       " File browser
 
-"" Creates a powerline-style prompt using
-"" airline's theme.
-Plugin 'edkolev/promptline.vim'
+" Installed by 'app-vim/airline' from 'gentoo' overlay.
+"Plugin 'vim-airline/vim-airline'   " Status bar
 
-"" Plugin that auto closes quotes, and others.
-Plugin 'Raimondi/delimitMate'
-Plugin 'alvan/vim-closetag'
+" Installed by 'app-vim/fugitive' from 'gentoo' overlay.
+"Plugin 'tpope/vim-fugitive'        " Git integration
 
-"" Fuzzy file finder.
-"Plugin 'ctrlpvim/ctrlp.vim'      " in emerge
-"" Displays tags of the currnet file (like functions)
-"Plugin 'majutsushi/tagbar'       " in emerge
-"" Visualize indents
-Plugin 'Yggdroot/indentLine'     " in emerge (jorgicio)
+" Installed by 'app-vim/ctrlp' from 'gentoo' overlay.
+"Plugin 'ctrlpvim/ctrlp.vim'        " Fuzzy file finder
 
-"" Vim theme
-Plugin 'morhetz/gruvbox'
+" Installed by 'app-vim/tagbar' from 'gentoo' overlay.
+"Plugin 'majutsushi/tagbar'         " Displays function names using ctags
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-call glaive#Install()        " enable this line after the installation of glaive
-filetype plugin indent on    " required
+"" Plugins managed by Vundle.
 
-" custom global setting
+Plugin 'google/vim-codefmt'         " Code formatter
+Plugin 'google/vim-glaive'          " Used to configure Codefmt
+Plugin 'google/vim-maktaba'         " Codefmt requires this
+
+Plugin 'Raimondi/delimitMate'       " Auto close quotes
+Plugin 'alvan/vim-closetag'         " Auto close tags in xml, html, etc.
+
+Plugin 'Yggdroot/indentLine'        " Visualize indents
+
+Plugin 'turbio/bracey.vim'          " Live preview of your website while you edit it
+
+Plugin 'morhetz/gruvbox'            " Theme for Vim
+
+Plugin 'edkolev/promptline.vim'     " Creates a powerline style prompt using the statusbar
+
+"" Plugin's go before this line
+call vundle#end()           " Stop vundle
+call glaive#Install()       " Uncomment this line only after 'glaive' is installed
+filetype plugin indent on   " Re-enable filetype detection
+
+""" CONFIGURATION SECTION
+
+"" 'Junk' management
+
+" Prevent creation of temp files.
+set nobackup                " Don't create a backup file
+set nowritebackup           " Don't make a backup file before writing.
+set noswapfile              " Don't use a swapfile for the buffer.
+
+" Create 'undo' cache in '.config/vim/undo-dir'
+set undodir=$XDG_CONFIG_HOME/vim/undo-dir
+set undofile                " Enable undo cache.
+
+" Set view and viminfo locations to '.config/vim'
+set viewdir=$XDG_CONFIG_HOME/vim/view
+" NeoVim's viminfo and Vim's viminfo are different
+if has('nvim')
+    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/nviminfo
+else
+    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/viminfo
+endif
+
+"" Custom Global Settings
+
 set mouse=a                    " Mouse on all modes (Hold Shift to temp-disable)
 set relativenumber             " Display line numbers relative to the cursor.
 set number                     " Display the actual line number on the current line.
@@ -87,64 +112,49 @@ set cursorline                 " Highlight current line.
 set guioptions=                " Options for GUI Vim.
 set scrolloff=3                " Show extra lines while scrolling.
 syntax on                      " Colorize syntax.
+
 " Display long lines on multiple terminal lines,
 " but don't create real 'newlines' while typing.
 set linebreak                  " When displaying long lines wrap at words.
 set wrap                       " Display long lines on multiple lines.
 set textwidth=0 wrapmargin=0   " Don't create newlines when typing long lines.
-set updatetime=100             " Set time that vim writes to swap (also effects gitgutter)
 
-" indent for global
+" Global indent settings
 set expandtab                  " Use spaces when tabbing.
 set shiftwidth=4               " Number of spaces between each tab.
 set softtabstop=4              " Simulate real tabs with spaces.
 set autoindent                 " Copy previous intend when creating a newline.
-set smarttab                   " Basically helps remove whitespace. 
+set smarttab                   " Basically helps remove whitespace.
 
-""(Junk) management
-" Prevent Creation of temp files.
-set nobackup                    " Don't create a backup file.
-set nowritebackup               " Don't make backup file before writing.
-set noswapfile                  " Don't use a swapfile for the buffer.
-" Create undo files in one directory.
-set undodir=$XDG_CONFIG_HOME/vim/undo-dir " Force all undo cache into a directory.
-set undofile                    " Create undofiles.
-" Set view and viminnfo
-set viewdir=$XDG_CONFIG_HOME/vim/view
+" Search Settings
+set ignorecase                 " Ignore case when searching
+set smartcase                  " Ignore 'ignorecase' if search has an uppercase.
+
+" Misc Settings
+set updatetime=100             " Set time that vim writes to swap (effects gitgutter)
+"set autochdir                 " Auto change working directory to current
+
+" NeoVim's terminal emulator Settings.
 if has('nvim')
-    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/viminfo
-else
-    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/nviminfo
-endif
-
-" Auto change working directory to current file.
-"" Currently disabled to allow be to easily run
-"" :make while in a different directory within the same project.
-"set autochdir
-
-" Disable scrolloff inside terminal emulator. (Neovim)
-if has('nvim')
+    " Disable scrolloff while inside terminal
     au BufEnter term://* startinsert
     au TermEnter * setlocal scrolloff=0
     au TermLeave * setlocal scrolloff=3
+
+    " Custom mappings for terminal
     tnoremap <Esc> <C-\><C-n>
     tnoremap <M-[> <Esc>
     tnoremap <C-v><Esc> <Esc>
 endif
 
-" When inside project with Makefile that has a run target
-" Pressing F9 will build and run the project. (neovim)
-if has ('nvim')
-    map <F9> :w <CR> :make <CR> :edit term://make run <CR>
-endif
-
-" indent for special file
-autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent 
+" Indent settings for special files.
+autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
 
-" setup for ycm
-"" Set 'ycm_global_ycm_extra_conf' to the correct location of '.ycm_extra_conf.py'
-"" within <youcompleteme>/third_party/ycmd/examples.
+""" PLUGIN CONFIGURATION SECTION
+
+"" Setup for YouCompleteMe
+" Set location of '.ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/examples/.ycm_extra_conf.py'
 let g:ycm_use_clangd = 1
 let g:ycm_clangd_binary_path = 'clangd'
@@ -157,7 +167,7 @@ let g:ycm_semantic_triggers =  {
   \ 'cpp' : ['re!\w{2}'],
   \ }
 
-" setup for syntastic
+"" Setup for Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -167,22 +177,24 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
-" autoformat
+"" Setup Autoformatter
 augroup autoformat_settings
   autocmd FileType c,cpp,proto,java,javascript AutoFormatBuffer clang-format
   autocmd FileType python AutoFormatBuffer yapf
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
 augroup END
-" use google style for clang-format
+" Use style specified by '.clang-format' file
 Glaive codefmt clang_format_style='file'
 
+"" NerdTree Setup
 " open NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
+" Toggle NerdTree with F5
 map <silent> <F5> : NERDTreeToggle<CR>
 
-" closetag Setup
+"" CloseTag Setup
 let g:closetag_filesnames = '*.html,*.xhtml,*.phtml,*.xml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.xml'
 let g:closetag_filetypes = 'html,xhtml,phtml,xml'
@@ -195,27 +207,16 @@ let g:closetag_regions = {
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-" setup for Bracey
-"" Specify port, because by default there's a change that Bracey will pick
-"" a port that will be bigger than 65545 which causes problems.
+"" Setup Bracey
 let g:bracey_server_port = 5454
 
-" setup for delimitMate
+"" Setup delimitMate
 let g:delimitMate_expand_cr = 1
-" Prevent collision with closetag
+" Prevent collision with CloseTag
 au FileType html,xhtml,phtml,jsx,xml let b:delimitMate_matchpairs = "(:),[:],{:}"
 
-" setup for gruvbox
-set t_Co=256
-set background=dark
-colorscheme gruvbox
-" let g:gruvbox_contrast_dark = 'soft'
-" Disables background to allow for transparency.
-hi Normal guibg=NONE ctermbg=NONE
-
-" setup for ctrlp
-"" We have a shit-ton of files set limit to unlimited.
-let g:ctrlp_max_files = 0
+"" Setup Ctrlp
+let g:ctrlp_max_files = 0       " Unlimited files
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
@@ -228,14 +229,22 @@ let g:ctrlp_custom_ignore = {
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" setup for tagbar
+"" TagBar Setup
 nmap <F8> :TagbarToggle<CR>
 
-" setup for indent line
+"" IndentLine Setup
 let g:indentLine_char = '|'
 set tags=./tags,tags;$HOME
 
-" Promptline
+"" Gruvbox Setup
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+" let g:gruvbox_contrast_dark = 'soft'
+" Disables background to allow for transparency.
+hi Normal guibg=NONE ctermbg=NONE
+
+"" PromptLine Setup
 let g:promptline_preset = {
   \'a' : [ '$vim_mode', promptline#slices#host() ],
   \'b' : [ promptline#slices#user() ],
