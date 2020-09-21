@@ -234,6 +234,8 @@ nmap <F8> :TagbarToggle<CR>
 
 "" IndentLine Setup
 let g:indentLine_char = '|'
+autocmd FileType json IndentLinesDisable     " indentLine hides quotes on json
+
 set tags=./tags,tags;$HOME
 
 "" Gruvbox Setup
