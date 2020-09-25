@@ -47,6 +47,15 @@ super + button10
         notify-send -u low "Microphone if MUTED"; \
     fi
 
+super + F10
+    amixer -D pulse sset Capture toggle; \
+    rm /tmp/mic-status; \
+    if [ $(mic-status) = "ON" ]; then \
+        notify-send -u low "Microphone is ON"; \
+    else; \
+        notify-send -u low "Microphone if MUTED"; \
+    fi
+
 # Mediakeys - playerctl
 @XF86Audio{Play,Pause,Next,Prev,Stop}
     playerctl {play-pause,play-pause,next,previous,stop}
