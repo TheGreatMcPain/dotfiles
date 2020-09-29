@@ -2,7 +2,11 @@
 
 pidFile="$HOME/.config/polybar/polybar"
 
-UID=$(id -u)
+# Check if UID is already set, because
+# bash has it set to readonly.
+if ! echo $UID | grep $(id -u) >/dev/null; then
+    UID=$(id -u)
+fi
 
 # Terminate already running bar instances
 killall -q polybar
