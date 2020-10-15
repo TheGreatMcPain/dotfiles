@@ -65,12 +65,9 @@ setopt autocd
 setopt extendedglob
 setopt COMPLETE_ALIASES
 
-# VI mode indicator for promptline
+# Enable vi mode
 bindkey -v
-export KEYTIMEOUT=1
-vim_ins_mode="INSERT"
-vim_cmd_mode="NORMAL"
-vim_mode=$vim_ins_mode
+# export KEYTIMEOUT=1
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -117,26 +114,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
     add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Setup Vi mode Indicator for Promptline
-if [ -f ~/.config/promptline.sh ]; then
-    function zle-keymap-select {
-      vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-      __promptline
-      zle reset-prompt
-    }
-    zle -N zle-keymap-select
-    
-    function zle-line-finish {
-      vim_mode=$vim_ins_mode
-    }
-    zle -N zle-line-finish
-    
-    function TRAPINT() {
-      vim_mode=$vim_ins_mode
-      return $(( 128 + $1 ))
-    }
-fi
-
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -144,9 +121,15 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Source promptline when not using tty
+# Enable powerlevel10k
+source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Run neofetch if running in 'kitty'
+# If not kitty just run neofetch without the image.
 if ! ( [ "$TERM" = "linux" ]; ) then
-    [ -f ~/.config/promptline.sh ] && source ~/.config/promptline.sh
     # Check if neofetch is installed.
     if which neofetch >/dev/null; then
         # Run neofetch if not in tmux, or using neovim's terminal emulator.
