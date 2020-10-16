@@ -83,7 +83,7 @@ export VISUAL=nvim
 eval "$(dircolors /etc/DIR_COLORS)"
 
 # If gpg-agent isn't running it to run.
-pgrep gpg-agent || gpg-connect-agent reloadagent /bye
+pgrep gpg-agent &>/dev/null || gpg-connect-agent reloadagent /bye &>/dev/null
 
 # Use GnuPG as ssh-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
