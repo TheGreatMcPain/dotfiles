@@ -19,7 +19,7 @@ zmodload zsh/complist
 # Enable sudo Completion
 zstyle ':completion::complete:*' gain-privileges 1
 
-# Better ssh completion
+# Better ssh completion reads .ssh/{config,known_hosts}
 h=()
 if [[ -r ~/.ssh/config ]]; then
     h=($h ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
@@ -41,7 +41,7 @@ alias sudo='nocorrect block_sudo_vi'
 # Prompt
 autoload -U promptinit
 promptinit
-prompt gentoo
+# prompt gentoo
 
 # Make ls colorful
 alias ls="ls --color"
@@ -67,7 +67,9 @@ setopt COMPLETE_ALIASES
 
 # Enable vi mode
 bindkey -v
-# export KEYTIMEOUT=1
+export KEYTIMEOUT=1
+
+### Make ArrowKeys, PageUp/Down, Home/End, etc. work. ###
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -114,6 +116,8 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
     add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
+### END Make ArrowKeys, PageUp/Down, Home/End, etc. work. ###
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -121,26 +125,28 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Enable powerlevel10k
-source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+# Enable powerlevel10k on non-tty terminals
+if ! ( [ "$TERM" = "linux" ]; ) then
+    # Enable powerlevel10k
+    source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
+    
+    # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+    [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+else
+    prompt gentoo
+fi
 
 # Run neofetch if running in 'kitty'
-# If not kitty just run neofetch without the image.
-if ! ( [ "$TERM" = "linux" ]; ) then
-    # Check if neofetch is installed.
-    if which neofetch >/dev/null; then
-        # Run neofetch if not in tmux, or using neovim's terminal emulator.
-        if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
-            if ! [ "$USER" = root ]; then
-                # Only display image if running in kitty terminal.
-                if [ "$TERM" = "xterm-kitty" ]; then
-                    neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
-                else
-                    neofetch
-                fi
+# If not in kitty just run neofetch without the image.
+if which neofetch >/dev/null; then
+    # Run neofetch if not in tmux, or using neovim's terminal emulator.
+    if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
+        if ! [ "$USER" = root ]; then
+            # Only display image if running in kitty terminal.
+            if [ "$TERM" = "xterm-kitty" ]; then
+                neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
+            else
+                neofetch
             fi
         fi
     fi
