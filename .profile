@@ -44,6 +44,7 @@ if [ "$USER" = "root" ]; then
     alias buildkernel='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
     alias crossdev='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; crossdev'
     alias emtee='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emtee'
+    alias haskell-updater='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; haskell-updater'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
