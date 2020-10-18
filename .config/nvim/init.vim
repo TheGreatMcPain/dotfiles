@@ -71,10 +71,6 @@ Plugin 'turbio/bracey.vim'          " Live preview of your website while you edi
 
 Plugin 'morhetz/gruvbox'            " Theme for Vim
 
-Plugin 'edkolev/promptline.vim'     " Creates a powerline style prompt using the statusbar
-
-Plugin 'vbe0201/vimdiscord'         " Discord rich presence
-
 "" Plugin's go before this line
 call vundle#end()           " Stop vundle
 call glaive#Install()       " Uncomment this line only after 'glaive' is installed
