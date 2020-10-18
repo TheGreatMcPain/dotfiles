@@ -14,7 +14,6 @@
 """ INITALIZATION SECTION
 
 set nocompatible            " be iMproved
-filetype off                " Vundle requires that filetype detection be off
 
 " Include '/usr/share/vim/vimfiles' and '/usr/share/vim/vim81' in vim's
 " runtime path.
@@ -24,57 +23,49 @@ filetype off                " Vundle requires that filetype detection be off
 set rtp=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 set rtp+=/usr/share/vim/vimfiles,/usr/share/vim/vim81
 
-"" Install Plugins via 'Vundle' into the '.config/vim/bundle' directory.
-call vundle#begin('$XDG_CONFIG_HOME/vim/bundle')
+"" Install Plugins via 'vim-plug' into the '.config/nvim/autoload/plugged' directory.
+call plug#begin('~/.config/nvim/autoload/plugged')
 
 "" List of plugins installed by 'emerge'.
 
-" Installed by 'app-vim/vundle' from 'thegreatmcpain' overlay.
-"Plugin 'VundleVim/Vundle.vim'      " Plugin Manager
-
 " Installed by 'app-vim/youcompleteme' from 'thegreatmcpain' overlay.
-"Plugin 'ycm-core/YouCompleteMe'    " auto/tab complete for Vim
+"Plug 'ycm-core/YouCompleteMe'    " auto/tab complete for Vim
 
 " Installed by 'app-vim/syntastic' from 'gentoo' overlay.
-"Plugin 'vim-syntastic/syntastic'   " Syntax checker
+"Plug 'vim-syntastic/syntastic'   " Syntax checker
 
 " Installed by 'app-vim/gitgutter' from 'gentoo' overlay.
-"Plugin 'airblade/vim-gitgutter'    " Show diff symbols from version control
+"Plug 'airblade/vim-gitgutter'    " Show diff symbols from version control
 
 " Installed by 'app-vim/nerdtree' from 'gentoo' overlay.
-"Plugin 'scrooloose/nerdtree'       " File browser
+"Plug 'scrooloose/nerdtree'       " File browser
 
 " Installed by 'app-vim/airline' from 'gentoo' overlay.
-"Plugin 'vim-airline/vim-airline'   " Status bar
+"Plug 'vim-airline/vim-airline'   " Status bar
 
 " Installed by 'app-vim/fugitive' from 'gentoo' overlay.
-"Plugin 'tpope/vim-fugitive'        " Git integration
+"Plug 'tpope/vim-fugitive'        " Git integration
 
 " Installed by 'app-vim/ctrlp' from 'gentoo' overlay.
-"Plugin 'ctrlpvim/ctrlp.vim'        " Fuzzy file finder
+"Plug 'ctrlpvim/ctrlp.vim'        " Fuzzy file finder
 
 " Installed by 'app-vim/tagbar' from 'gentoo' overlay.
-"Plugin 'majutsushi/tagbar'         " Displays function names using ctags
+"Plug 'majutsushi/tagbar'         " Displays function names using ctags
 
-"" Plugins managed by Vundle.
+"" Plugins managed by vim-plug.
 
-Plugin 'google/vim-codefmt'         " Code formatter
-Plugin 'google/vim-glaive'          " Used to configure Codefmt
-Plugin 'google/vim-maktaba'         " Codefmt requires this
-
-Plugin 'Raimondi/delimitMate'       " Auto close quotes
-Plugin 'alvan/vim-closetag'         " Auto close tags in xml, html, etc.
-
-Plugin 'Yggdroot/indentLine'        " Visualize indents
-
-Plugin 'turbio/bracey.vim'          " Live preview of your website while you edit it
-
-Plugin 'morhetz/gruvbox'            " Theme for Vim
+Plug 'google/vim-codefmt'         " Code formatter
+Plug 'google/vim-glaive'          " Used to configure Codefmt
+Plug 'google/vim-maktaba'         " Codefmt requires this
+Plug 'Raimondi/delimitMate'       " Auto close quotes
+Plug 'alvan/vim-closetag'         " Auto close tags in xml, html, etc.
+Plug 'Yggdroot/indentLine'        " Visualize indents
+Plug 'turbio/bracey.vim'          " Live preview of your website while you edit it
+Plug 'morhetz/gruvbox'            " Theme for Vim
 
 "" Plugin's go before this line
-call vundle#end()           " Stop vundle
+call plug#end()           " Stop vim-plug
 call glaive#Install()       " Uncomment this line only after 'glaive' is installed
-filetype plugin indent on   " Re-enable filetype detection
 
 """ CONFIGURATION SECTION
 
