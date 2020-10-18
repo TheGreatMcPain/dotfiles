@@ -13,6 +13,7 @@ bspwm_exec -e openpyn -o "-c us --netflix --p2p -o '--redirect-gateway def1 --al
 
 # Other Things
 bspwm_exec -e mpd
+bspwm_exec -e gamemoded
 bspwm_exec -e syncthing -o '-no-browser -logflags=0'
 bspwm_exec -e megasync
 bspwm_exec -e redshift-gtk
@@ -20,6 +21,5 @@ bspwm_exec -e dropbox
 bspwm_exec -e steam -o '-silent %U'
 bspwm_exec -e ckb-next -o '-b'
 bspwm_exec -e hp-systray
-#bspwm_exec -e slack -o '-u'
 bspwm_exec -e discord-to-systray -p 'Discord'
 bspwm_exec -e qbittorrent-to-systray -s 20 -p 'qbittorrent'
