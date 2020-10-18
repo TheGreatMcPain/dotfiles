@@ -243,11 +243,3 @@ colorscheme gruvbox
 " let g:gruvbox_contrast_dark = 'soft'
 " Disables background to allow for transparency.
 hi Normal guibg=NONE ctermbg=NONE
-
-"" PromptLine Setup
-let g:promptline_preset = {
-  \'a' : [ '$vim_mode', promptline#slices#host() ],
-  \'b' : [ promptline#slices#user() ],
-  \'c' : [ promptline#slices#cwd() ],
-  \'y' : [ promptline#slices#vcs_branch(), promptline#slices#jobs() ],
-  \'warn' : [ promptline#slices#last_exit_code() ]}
