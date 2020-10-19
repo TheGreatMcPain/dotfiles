@@ -11,12 +11,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
 "" List of plugins installed by 'emerge'.
 
-" Installed by 'app-vim/youcompleteme' from 'thegreatmcpain' overlay.
-"Plug 'ycm-core/YouCompleteMe'    " auto/tab complete for Vim
-
-" Installed by 'app-vim/syntastic' from 'gentoo' overlay.
-"Plug 'vim-syntastic/syntastic'   " Syntax checker
-
 " Installed by 'app-vim/gitgutter' from 'gentoo' overlay.
 "Plug 'airblade/vim-gitgutter'    " Show diff symbols from version control
 
@@ -36,16 +30,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 "Plug 'majutsushi/tagbar'         " Displays function names using ctags
 
 "" Plugins managed by vim-plug.
-
-Plug 'google/vim-codefmt'         " Code formatter
-Plug 'google/vim-glaive'          " Used to configure Codefmt
-Plug 'google/vim-maktaba'         " Codefmt requires this
-Plug 'Raimondi/delimitMate'       " Auto close quotes
-Plug 'alvan/vim-closetag'         " Auto close tags in xml, html, etc.
-Plug 'Yggdroot/indentLine'        " Visualize indents
-Plug 'turbio/bracey.vim'          " Live preview of your website while you edit it
-Plug 'morhetz/gruvbox'            " Theme for Vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}         " VSCode like extensions for NeoVim
+Plug 'jackguo380/vim-lsp-cxx-highlight'                 " clangd based syntax highlighting for c-family languages
+Plug 'Raimondi/delimitMate'                             " Auto close quotes
+Plug 'alvan/vim-closetag'                               " Auto close tags in xml, html, etc.
+Plug 'Yggdroot/indentLine'                              " Visualize indents
+Plug 'turbio/bracey.vim'                                " Live preview of your website while you edit it
+Plug 'morhetz/gruvbox'                                  " Theme for Vim
 
 "" Plugin's go before this line
 call plug#end()           " Stop vim-plug
-call glaive#Install()       " Uncomment this line only after 'glaive' is installed

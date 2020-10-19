@@ -19,9 +19,7 @@ source $HOME/.config/nvim/general/settings.vim
 source $HOME/.config/nvim/plug-config/gruvbox.vim
 
 """ PLUGIN CONFIGURATION SECTION
-source $HOME/.config/nvim/plug-config/youcompleteme.vim
-source $HOME/.config/nvim/plug-config/synctastic.vim
-source $HOME/.config/nvim/plug-config/codefmt.vim
+source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/closetag.vim
 source $HOME/.config/nvim/plug-config/bracey.vim
