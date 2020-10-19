@@ -32,6 +32,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 "" Plugins managed by vim-plug.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " VSCode like extensions for NeoVim
 Plug 'jackguo380/vim-lsp-cxx-highlight'                 " clangd based syntax highlighting for c-family languages
+Plug 'igankevich/mesonic'                               " meson buildsystem integration
 Plug 'Raimondi/delimitMate'                             " Auto close quotes
 Plug 'alvan/vim-closetag'                               " Auto close tags in xml, html, etc.
 Plug 'Yggdroot/indentLine'                              " Visualize indents
