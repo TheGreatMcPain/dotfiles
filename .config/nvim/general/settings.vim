@@ -39,9 +39,10 @@ set textwidth=0 wrapmargin=0   " Don't create newlines when typing long lines.
 
 " Global indent settings
 set expandtab                  " Use spaces when tabbing.
-set shiftwidth=4               " Number of spaces between each tab.
-set softtabstop=4              " Simulate real tabs with spaces.
+set shiftwidth=2               " Number of spaces between each tab.
+set softtabstop=2              " Simulate real tabs with spaces.
 set autoindent                 " Copy previous intend when creating a newline.
+set smartindent                " Make indenting smart
 set smarttab                   " Basically helps remove whitespace.
 
 " Search Settings
@@ -65,7 +66,3 @@ if has('nvim')
     tnoremap <M-[> <Esc>
     tnoremap <C-v><Esc> <Esc>
 endif
-
-" Indent settings for special files.
-autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
