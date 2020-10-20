@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline'                          " Status bar
 Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy file finder
 Plug 'liuchengxu/vista.vim'                             " View and search LSP symbols, tags
 Plug 'tmux-plugins/vim-tmux'                            " tmux.conf support for vim.
+Plug 'gentoo/gentoo-syntax'                             " Gentoo support
 
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
