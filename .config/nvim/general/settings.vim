@@ -1,11 +1,5 @@
-" Set view and viminfo locations to '.config/vim'
-set viewdir=$XDG_CONFIG_HOME/vim/view
-" NeoVim's viminfo and Vim's viminfo are different
-if has('nvim')
-    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/nviminfo
-else
-    set viminfo+='1000,n$XDG_CONFIG_HOME/vim/viminfo
-endif
+" set leader key
+let g:mapleader = "\<Space>"
 
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers

@@ -1,11 +1,3 @@
-" Include '/usr/share/vim/vimfiles' and '/usr/share/vim/vim81' in vim's
-" runtime path.
-"
-" This will allow NeoVim to load plugins installed by 'emerge', because
-" the app-vim/* ebuilds are not 'NeoVim aware' yet.
-"set rtp=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
-"set rtp+=/usr/share/vim/vimfiles,/usr/share/vim/vim81
-
 "" Install Plugins via 'vim-plug' into the '.config/nvim/autoload/plugged' directory.
 call plug#begin('~/.config/nvim/autoload/plugged')
 
