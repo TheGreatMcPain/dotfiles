@@ -3,8 +3,8 @@
 "
 " This will allow NeoVim to load plugins installed by 'emerge', because
 " the app-vim/* ebuilds are not 'NeoVim aware' yet.
-set rtp=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
-set rtp+=/usr/share/vim/vimfiles,/usr/share/vim/vim81
+"set rtp=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+"set rtp+=/usr/share/vim/vimfiles,/usr/share/vim/vim81
 
 "" Install Plugins via 'vim-plug' into the '.config/nvim/autoload/plugged' directory.
 call plug#begin('~/.config/nvim/autoload/plugged')
@@ -22,6 +22,7 @@ Plug 'tpope/vim-fugitive'                               " Git integration
 Plug 'vim-airline/vim-airline'                          " Status bar
 Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy file finder
 Plug 'liuchengxu/vista.vim'                             " View and search LSP symbols, tags
+Plug 'tmux-plugins/vim-tmux'                            " tmux.conf support for vim.
 
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
