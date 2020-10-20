@@ -1,14 +1,3 @@
-"" 'Junk' management
-
-" Prevent creation of temp files.
-set nobackup                " Don't create a backup file
-set nowritebackup           " Don't make a backup file before writing.
-set noswapfile              " Don't use a swapfile for the buffer.
-
-" Create 'undo' cache in '.config/vim/undo-dir'
-set undodir=$XDG_CONFIG_HOME/vim/undo-dir
-set undofile                " Enable undo cache.
-
 " Set view and viminfo locations to '.config/vim'
 set viewdir=$XDG_CONFIG_HOME/vim/view
 " NeoVim's viminfo and Vim's viminfo are different
@@ -18,41 +7,53 @@ else
     set viminfo+='1000,n$XDG_CONFIG_HOME/vim/viminfo
 endif
 
-"" Custom Global Settings
+syntax enable                           " Enables syntax highlighing
+set hidden                              " Required to keep multiple buffers open multiple buffers
+set encoding=utf-8                      " The encoding displayed
+set pumheight=10                        " Makes popup menu smaller
+set fileencoding=utf-8                  " The encoding written to file
+set ruler          			            " Show the cursor position all the time
+set cmdheight=2                         " More space for displaying messages
+set iskeyword+=-                      	" treat dash separated words as a word text object"
+set mouse=a                             " Enable your mouse
+set splitbelow                          " Horizontal splits will automatically be below
+set splitright                          " Vertical splits will automatically be to the right
+set t_Co=256                            " Support 256 colors
+set conceallevel=0                      " So that I can see `` in markdown files
+set tabstop=2                           " Insert 2 spaces for a tab
+set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set softtabstop=2                       " Simulate real tabs with spaces.
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+set expandtab                           " Converts tabs to spaces
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+set laststatus=0                        " Always display the status line
+set number                              " Line numbers
+set relativenumber                      " Display line numbers relative to the cursor.
+set cursorline                          " Enable highlighting of the current line
+"set background=dark                     " tell vim what the background color looks like
+set showtabline=2                       " Always show tabs
+"set noshowmode                          " We don't need to see things like -- INSERT -- anymore
+set nobackup                            " This is recommended by coc
+set nowritebackup                       " This is recommended by coc
+set noswapfile                          " Don't use a swapfile for the buffer.
+set undofile                            " Enable undo cache.
+set undodir=$XDG_CONFIG_HOME/vim/undo-dir
+set updatetime=300                      " Faster completion
+set timeoutlen=500                      " By default timeoutlen is 1000 ms
+set formatoptions-=cro                  " Stop newline continution of comments
+set clipboard=unnamedplus               " Copy paste between vim and everything else
+set showcmd                             " Show keypresses in normal-mode.
+set backspace=indent,eol,start          " (:help 'backspace') for info.
+set scrolloff=3                         " Show extra lines while scrolling.
+set linebreak                           " When displaying long lines wrap at words.
+set wrap                                " Display long lines on multiple lines.
+set textwidth=0 wrapmargin=0            " Don't create newlines when typing long lines.
+set ignorecase                          " Ignore case when searching
+set smartcase                           " Ignore 'ignorecase' if search has an uppercase.
+"set autochdir                           " Your working directory will always be the same as your working directory
 
-set mouse=a                    " Mouse on all modes (Hold Shift to temp-disable)
-set relativenumber             " Display line numbers relative to the cursor.
-set number                     " Display the actual line number on the current line.
-set showcmd                    " Show keypresses in normal-mode.
-set encoding=utf-8             " Self-explainitory
-set backspace=indent,eol,start " (:help 'backspace') for info.
-set cursorline                 " Highlight current line.
-set guioptions=                " Options for GUI Vim.
-set scrolloff=3                " Show extra lines while scrolling.
-syntax on                      " Colorize syntax.
-
-" Display long lines on multiple terminal lines,
-" but don't create real 'newlines' while typing.
-set linebreak                  " When displaying long lines wrap at words.
-set wrap                       " Display long lines on multiple lines.
-set textwidth=0 wrapmargin=0   " Don't create newlines when typing long lines.
-
-" Global indent settings
-set expandtab                  " Use spaces when tabbing.
-set shiftwidth=2               " Number of spaces between each tab.
-set softtabstop=2              " Simulate real tabs with spaces.
-set autoindent                 " Copy previous intend when creating a newline.
-set smartindent                " Make indenting smart
-set smarttab                   " Basically helps remove whitespace.
-
-" Search Settings
-set ignorecase                 " Ignore case when searching
-set smartcase                  " Ignore 'ignorecase' if search has an uppercase.
-
-" Misc Settings
-set updatetime=100             " Set time that vim writes to swap (effects gitgutter)
-"set autochdir                 " Auto change working directory to current
-set tags=./tags,tags;$HOME
+au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 
 " NeoVim's terminal emulator Settings.
 if has('nvim')
