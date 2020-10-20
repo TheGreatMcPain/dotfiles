@@ -23,4 +23,4 @@ source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/closetag.vim
 source $HOME/.config/nvim/plug-config/bracey.vim
 source $HOME/.config/nvim/plug-config/ctrlp.vim
-source $HOME/.config/nvim/plug-config/tagbar.vim
+source $HOME/.config/nvim/plug-config/vista.vim

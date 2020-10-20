@@ -21,7 +21,7 @@ Plug 'airblade/vim-gitgutter'                           " Show diff symbols from
 Plug 'tpope/vim-fugitive'                               " Git integration
 Plug 'vim-airline/vim-airline'                          " Status bar
 Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy file finder
-Plug 'majutsushi/tagbar'                                " Displays function names using ctags
+Plug 'liuchengxu/vista.vim'                             " View and search LSP symbols, tags
 
-"" Plugin's go before this line
+" Plugin's go before this line
 call plug#end()           " Stop vim-plug
