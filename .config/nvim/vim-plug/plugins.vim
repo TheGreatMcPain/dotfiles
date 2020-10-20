@@ -19,7 +19,6 @@ Plug 'turbio/bracey.vim'                                " Live preview of your w
 Plug 'morhetz/gruvbox'                                  " Theme for Vim
 Plug 'airblade/vim-gitgutter'                           " Show diff symbols from version control
 Plug 'tpope/vim-fugitive'                               " Git integration
-Plug 'scrooloose/nerdtree'                              " File browser
 Plug 'vim-airline/vim-airline'                          " Status bar
 Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy file finder
 Plug 'majutsushi/tagbar'                                " Displays function names using ctags
