@@ -25,5 +25,8 @@ Plug 'liuchengxu/vista.vim'                             " View and search LSP sy
 Plug 'tmux-plugins/vim-tmux'                            " tmux.conf support for vim.
 Plug 'gentoo/gentoo-syntax'                             " Gentoo support
 
+" NeoVim in FireFox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
