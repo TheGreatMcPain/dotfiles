@@ -1,0 +1,6 @@
+# Seperate configs into seperate files.
+import:
+  - HOME/.config/alacritty/theme.yml
+  - HOME/.config/alacritty/font.yml
+  - HOME/.config/alacritty/misc.yml
+  - HOME/.config/alacritty/keybinds.yml
