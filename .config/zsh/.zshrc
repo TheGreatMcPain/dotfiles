@@ -144,7 +144,7 @@ if which neofetch >/dev/null; then
             if [ "$TERM" = "xterm-kitty" ]; then
                 neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
             else
-                neofetch
+                neofetch --ascii "$(fortune -o -s | cowsay -f stegosaurus)"
             fi
         fi
     fi
