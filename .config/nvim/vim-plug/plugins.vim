@@ -20,5 +20,10 @@ Plug 'gentoo/gentoo-syntax'                             " Gentoo support
 " NeoVim in FireFox
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
+" Use vim-plug to load coc-cord instead.
+if ! exists('g:started_by_firenvim')
+    Plug 'dakyskye/coc-cord', { 'do': 'yarn install --frozen-lockfile; yarn build' }
+endif
+
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
