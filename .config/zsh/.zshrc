@@ -137,15 +137,9 @@ fi
 # Run neofetch if running in 'kitty'
 # If not in kitty just run neofetch without the image.
 if which neofetch >/dev/null; then
-    # Run neofetch if not in tmux, or using neovim's terminal emulator.
-    if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || [ -n "$MYVIMRC" ]; ) then
-        if ! [ "$USER" = root ]; then
-            # Only display image if running in kitty terminal.
-            if [ "$TERM" = "xterm-kitty" ]; then
-                neofetch --kitty $HOME/.config/neofetch/startup_image.jpg --size 30%
-            else
-                neofetch --ascii "$(fortune -o -s | cowsay -f stegosaurus)"
-            fi
-        fi
+    # Don't run neofetch if in tmux, using neovim's terminal emulator, or using root.
+    if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || \
+        [ -n "$MYVIMRC" ] || [ "$USER" = root ]; ) then
+        neofetch --ascii "$(fortune -o -s | cowsay -f stegosaurus)"
     fi
 fi
