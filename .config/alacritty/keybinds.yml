@@ -7,3 +7,5 @@ key_bindings:
   - { key: N, mods: Control, action: SpawnNewInstance }
   - { key: J, mods: Control|Shift, action: ScrollLineDown }
   - { key: K, mods: Control|Shift, action: ScrollLineUp }
+  - { key: Down, mods: Control|Shift, action: ScrollLineDown }
+  - { key: Up, mods: Control|Shift, action: ScrollLineUp }
