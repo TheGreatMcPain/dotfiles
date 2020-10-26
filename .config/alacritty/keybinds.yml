@@ -5,3 +5,7 @@ key_bindings:
   - { key: Equals, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
   - { key: N, mods: Control, action: SpawnNewInstance }
+  - { key: J, mods: Control|Shift, action: ScrollLineDown }
+  - { key: K, mods: Control|Shift, action: ScrollLineUp }
+  - { key: Down, mods: Control|Shift, action: ScrollLineDown }
+  - { key: Up, mods: Control|Shift, action: ScrollLineUp }
