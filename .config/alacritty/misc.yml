@@ -1,7 +1,7 @@
 window:
   padding:
-    x: 2
-    y: 2
+    x: 0
+    y: 0
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -13,7 +13,7 @@ scrolling:
   multiplier: 10
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
