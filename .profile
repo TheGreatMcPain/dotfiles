@@ -82,6 +82,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Set mpd programs to use 'socket'
 export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 
+# Have sxhkd use /bin/sh,
+# because zsh takes a bit to open since I use powerlevel10k now.
+export SXHKD_SHELL=/bin/sh
 
 # Use NeoVim
 export EDITOR=nvim
