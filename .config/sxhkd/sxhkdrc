@@ -47,7 +47,7 @@ super + button10
     rm /tmp/mic-status; \
     if [ $(mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
-    else; \
+    else \
         notify-send -u low "Microphone if MUTED"; \
     fi
 
@@ -56,7 +56,7 @@ super + F10
     rm /tmp/mic-status; \
     if [ $(mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
-    else; \
+    else \
         notify-send -u low "Microphone if MUTED"; \
     fi
 
@@ -119,7 +119,7 @@ super + {_, shift + , ctrl + }{h,j,k,l}
     direction={west,south,north,east}; \
     if [ $mode = "f" ]; then \
         bspc node -f $direction.local || bspc monitor -f $direction; \
-    else; \
+    else \
         bspc node -$mode $direction.local || bspc node -m $direction --follow; \
     fi
 
