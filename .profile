@@ -65,6 +65,13 @@ alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
+# Use nvimpager as PAGER, and replace cat with nvimpager
+if which nvimpager >/dev/null; then
+  alias cat="nvimpager"
+  export MANPAGER="nvimpager"
+  export PAGER="nvimpager"
+fi
+
 # Make QT use Gtk themes.
 # Requires qtstyleplugin
 export QT_QPA_PLATFORMTHEME=gtk2
