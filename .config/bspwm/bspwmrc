@@ -64,3 +64,4 @@ bspc config pointer_follows_monitor true
 #bspc rule -a Kupfer.py focus=on
 bspc rule -a Zathura state=tiled
 bspc rule -a Screenkey manage=off
+bspc rule -a MEGAsync manage=off
