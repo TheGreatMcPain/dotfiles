@@ -22,7 +22,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Use vim-plug to load coc-cord instead.
 if ! exists('g:started_by_firenvim')
-    Plug 'dakyskye/coc-cord', { 'do': 'yarn install --frozen-lockfile; yarn build' }
+    Plug 'LeonardSSH/coc-discord-rpc', { 'do': 'yarn install --frozen-lockfile; yarn build' }
 endif
 
 " Plugin's go before this line
