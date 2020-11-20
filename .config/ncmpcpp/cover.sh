@@ -10,8 +10,8 @@ function ImageLayer {
 }
 
 COVER="/tmp/cover.png"
-X_PADDING=-1
-Y_PADDING=-1
+X_PADDING=0
+Y_PADDING=0
 
 function add_cover {
     if [ -e $COVER ]; then
