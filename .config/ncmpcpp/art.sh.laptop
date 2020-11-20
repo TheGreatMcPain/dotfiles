@@ -15,7 +15,7 @@
 
 MUSIC_DIR="/media/shared-data/Multi Media/Music"
 COVER="/tmp/cover.png"
-COVER_SIZE=185
+COVER_SIZE=188
 
 BORDERS=false
 BORDER_WIDTH=5
