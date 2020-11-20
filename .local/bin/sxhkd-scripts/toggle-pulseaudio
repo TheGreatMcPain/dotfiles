@@ -3,7 +3,9 @@
 if ! pulseaudio --check; then
     pulseaudio -D
     notify-send --urgency=low "Pulseaudio Started"
+    echo "ON" > /tmp/pulse-status
 else
     pulseaudio -k
     notify-send --urgency=low "Pulseaudio Stopped"
+    echo "OFF" > /tmp/pulse-status
 fi

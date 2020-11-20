@@ -1,8 +1,21 @@
 #!/bin/sh
 
-if ! pgrep -x pulseaudio >/dev/null; then
-    echo Pulse is Off
-    exit
+# Check if pulse-status exists.
+# If not create it.
+if [ -e "/tmp/pulse-status" ]; then
+    if [ "$(cat /tmp/pulse-status)"x = "OFF"x ]; then
+      echo "Pulse is Off"
+      exit
+    fi
+else
+    # Check if pulseaudio is running.
+    if ! pgrep -x pulseaudio >/dev/null; then
+        echo OFF > /tmp/pulse-status
+        echo "Pulse is Off"
+        exit
+    else
+        echo ON > /tmp/pulse-status
+    fi
 fi
 
 if [ -e "/tmp/mic-status" ]; then
