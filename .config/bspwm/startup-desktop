@@ -13,6 +13,7 @@ bspwm_exec -e openpyn -o "-c us --netflix --p2p -o '--redirect-gateway def1 --al
 
 # Other Things
 bspwm_exec -e mpd
+bspwm_exec -e mpdscribble
 bspwm_exec -e gamemoded
 bspwm_exec -e syncthing -o '-no-browser -logflags=0'
 bspwm_exec -e megasync
