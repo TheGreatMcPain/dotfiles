@@ -15,6 +15,9 @@ export NPROC_PLUS_ONE=$((NPROC+1))
 export MAKEOPTS="-j$NPROC_PLUS_ONE -l$NPROC"
 export EMERGE_DEFAULT_OPTS="--jobs=$NPROC_PLUS_ONE --load-average=$NPROC"
 
+## Workaround fuse issue with appimages.
+export APPIMAGE_EXTRACT_AND_RUN=1
+
 ## Cleanup ##
 # XDG Base Dirs
 export XDG_CONFIG_HOME=$HOME/.config
