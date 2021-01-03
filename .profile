@@ -41,13 +41,14 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # before reading /etc/make.conf we need to disable these
 # when running emerge, or ebuild.
 if [ "$USER" = "root" ]; then
-    alias emerge='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emerge'
-    alias ebuild='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; ebuild'
-    alias genup='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; genup'
-    alias buildkernel='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; buildkernel'
-    alias crossdev='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; crossdev'
-    alias emtee='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; emtee'
-    alias haskell-updater='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC ; haskell-updater'
+    alias fix-emerge-env='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC'
+    alias emerge='fix-emerge-env ; emerge'
+    alias ebuild='fix-emerge-env ; ebuild'
+    alias genup='fix-emerge-env ; genup'
+    alias buildkernel='fix-emerge-env ; buildkernel'
+    alias crossdev='fix-emerge-env ; crossdev'
+    alias emtee='fix-emerge-env ; emtee'
+    alias haskell-updater='fix-emerge-env ; haskell-updater'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
