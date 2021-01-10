@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
+################################################
+#
+# This script tries to mimic i3's 'exec' command
+#
+################################################
 
 # Default Values
 ALWAYS="0"
@@ -31,10 +36,10 @@ usage () {
 }
 
 main () {
-    if pgrep -u $UID -x "$PROCESS" > /dev/null; then
+    if pgrep -xU $UID "$PROCESS" > /dev/null; then
         if [ $ALWAYS = 1 ]; then
             # Kill process
-            killall -q "$PROCESS"
+            pkill -xU $UID "$PROCESS"
             # Wait till process has stopped
             while pgrep -x "$PROCESS" >/dev/null; do sleep 1; done
             exec /bin/sh -c "$EXEC $EXECOPT"
