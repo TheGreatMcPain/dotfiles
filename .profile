@@ -34,7 +34,6 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-export VIMINIT=":source $XDG_CONFIG_HOME"/vim/init.vim
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # Since emerge likes to take exported vars first
