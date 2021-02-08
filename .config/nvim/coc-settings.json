@@ -24,5 +24,18 @@
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
+  },
+
+  "languageserver": {
+    "racket": {
+      "command": "racket",
+      "args": [
+        "--lib",
+        "racket-langserver"
+      ],
+      "filetypes": [
+        "scheme"
+      ]
+    }
   }
 }
