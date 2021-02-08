@@ -26,3 +26,4 @@ source $HOME/.config/nvim/plug-config/closetag.vim
 source $HOME/.config/nvim/plug-config/bracey.vim
 source $HOME/.config/nvim/plug-config/ctrlp.vim
 source $HOME/.config/nvim/plug-config/vista.vim
+source $HOME/.config/nvim/plug-config/scmindent.vim
