@@ -16,6 +16,7 @@ Plug 'ctrlpvim/ctrlp.vim'                               " Fuzzy file finder
 Plug 'liuchengxu/vista.vim'                             " View and search LSP symbols, tags
 Plug 'tmux-plugins/vim-tmux'                            " tmux.conf support for vim.
 Plug 'gentoo/gentoo-syntax'                             " Gentoo support
+Plug 'wlangstroth/vim-racket'                           " Racket support
 
 " NeoVim in FireFox
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
