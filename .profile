@@ -48,6 +48,7 @@ if [ "$USER" = "root" ]; then
     alias crossdev='fix-emerge-env ; crossdev'
     alias emtee='fix-emerge-env ; emtee'
     alias haskell-updater='fix-emerge-env ; haskell-updater'
+    alias lto-rebuild='fix-emerge-env ; lto-rebuild'
 fi
 
 # Prevent vi from running with sudo unless alias is used.
