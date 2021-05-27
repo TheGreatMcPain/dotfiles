@@ -93,6 +93,9 @@ export SXHKD_SHELL=/bin/sh
 export EDITOR=nvim
 export VISUAL=nvim
 
+# slrn (Usenet)
+export NNTPSERVER="news.newsgroup.ninja"
+
 # Set LS_COLORS
 eval "$(dircolors /etc/DIR_COLORS)"
 
