@@ -8,7 +8,10 @@ bspwm_exec -a -e multilockscreen -o "-w"
 bspwm_exec -a -e sxhkd
 
 # Pulseaudio
-pulseaudio -D
+# pulseaudio -D
+
+# Pipewire (Kill pulseaudio first if running)
+pulseaudio --kill; pipewire &
 
 # Compositor
 if which nvidia-settings >/dev/null; then

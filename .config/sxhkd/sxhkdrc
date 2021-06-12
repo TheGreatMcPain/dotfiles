@@ -30,9 +30,13 @@ super + shift + F12
 super + shift + F11
     toggle-redshift
 
-# Toggle pulseaudio
+# # Toggle pulseaudio
+# super + shift + F10
+#     toggle-pulseaudio
+# Toggle PipeWire
+
 super + shift + F10
-    toggle-pulseaudio
+    toggle-pipewire
 
 # Audio/Volume
 @XF86Audio{Raise,Lower}Volume
