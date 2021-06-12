@@ -43,6 +43,7 @@ promptinit
 
 # Make ls colorful
 alias ls="ls --color"
+alias grep="grep --color"
 
 # Calculator
 autoload -U zcalc
@@ -122,6 +123,19 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+
+# Download powerlevel10k if folder doesn't exist.
+if ! [ -d "${ZDOTDIR}/powerlevel10k" ]; then
+    echo "PowerLevel10k not in ZDOTDIR! Installing from github."
+
+    # Clone repo
+    git clone https://github.com/romkatv/powerlevel10k "${ZDOTDIR}/powerlevel10k"
+else
+    # Update powerlevel10k
+    pushd "${ZDOTDIR}/powerlevel10k" >/dev/null
+    git pull >/dev/null
+    popd >/dev/null
+fi
 
 # Enable powerlevel10k on non-tty terminals
 if ! ( [ "$TERM" = "linux" ]; ) then
