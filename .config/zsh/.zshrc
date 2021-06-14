@@ -130,11 +130,6 @@ if ! [ -d "${ZDOTDIR}/powerlevel10k" ]; then
 
     # Clone repo
     git clone https://github.com/romkatv/powerlevel10k "${ZDOTDIR}/powerlevel10k"
-else
-    # Update powerlevel10k
-    pushd "${ZDOTDIR}/powerlevel10k" >/dev/null
-    git pull >/dev/null
-    popd >/dev/null
 fi
 
 # Enable powerlevel10k on non-tty terminals
