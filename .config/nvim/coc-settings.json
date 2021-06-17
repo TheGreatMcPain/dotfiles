@@ -37,6 +37,11 @@
       "filetypes": [
         "scheme"
       ]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"]
     }
   },
 
