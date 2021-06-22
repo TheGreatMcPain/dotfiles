@@ -76,6 +76,13 @@ if which nvimpager >/dev/null; then
   export PAGER="nvimpager"
 fi
 
+# Emacs doesn't really work well with 'TERM=alacritty'.
+# Make emacs use 'TERM=alacritty-direct'
+if [ "$TERM" = "alacritty" ]; then
+    alias emacs="TERM=alacritty-direct emacs"
+    alias emacsclient="TERM=alacritty-direct emacsclient"
+fi
+
 # Make QT use Gtk themes.
 # Requires qtstyleplugin
 export QT_QPA_PLATFORMTHEME=gtk2
