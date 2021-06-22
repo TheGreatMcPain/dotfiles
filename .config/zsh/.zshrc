@@ -34,7 +34,7 @@ fi
 # Correction
 setopt correct
 # Disable correction for sudo
-alias sudo='nocorrect block_sudo_vi'
+alias sudo='nocorrect sudo'
 
 # Prompt
 autoload -U promptinit
