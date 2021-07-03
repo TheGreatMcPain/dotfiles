@@ -51,11 +51,6 @@ if [ "$USER" = "root" ]; then
     alias lto-rebuild='fix-emerge-env ; lto-rebuild'
 fi
 
-# Prevent vi from running with sudo unless alias is used.
-# (Prevents Stray $XDG_CONFIG_HOME from appearing due to vimrc settings)
-alias sudo="block_sudo_vi"
-alias sudovi="sudo -i $EDITOR"
-
 # Aliases
 if [ "$USER" = "root" ]; then
     alias root="echo You\'re already root\!"
