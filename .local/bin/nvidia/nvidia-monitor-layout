@@ -22,9 +22,9 @@ elif [ $1 = "3-720p" ]; then
 fi
 
 # Make sure ForceCompositionPipeline is respected.
-if [ $forceComp = "On" ]; then
+if [ "$forceComp"x = "On"x ]; then
     nvidia-force-comp-pipeline --yes > /dev/null
-elif [ $forceComp = "Off" ]; then
+elif [ "$forceComp"x = "Off"x ]; then
     nvidia-force-comp-pipeline --no > /dev/null
 fi
 
