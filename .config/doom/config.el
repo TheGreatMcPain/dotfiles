@@ -56,6 +56,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Disable pylint and flake8 (because their a bit annoying)
+(use-package! flycheck
+  :config (setq-default flycheck-disabled-checkers '(python-pylint python-flake8)))
+
 ;; Start elcord on launch
 (elcord-mode)
 
