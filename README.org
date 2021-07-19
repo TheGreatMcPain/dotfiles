@@ -1,0 +1,76 @@
+* My Dotfiles
+WM: bspwm
+Terminal: alacritty
+Editor: Neovim, Emacs
+Shell: zsh
+Status Bar: Polybar
+GTK/QT Theme: Gruvbox Material Dark
+Font: Hack with Nerd Font icons
+
+* TODO Screenshots
+* TODO Gentoo Package List
+alacritty
+bspwm
+cava
+dunst
+mpd
+mpDris2
+ncmpcpp
+neofetch
+neovim
+emacs
+polybar
+ranger
+rofi
+sxhkd
+zsh
+picom
+redshift
+wmctrl
+fortune
+cowsay
+
+** ncmpcpp (with tmux interface)
+mpc
+ueberzug
+inotify-tools
+ffmpeg
+
+** startup common
+multilockscreen
+sxhkd
+pipwire (or pulseaudio)
+picom
+polkit-gnome
+unclutter
+dunst
+mpDris2
+qlipper
+numlockx
+
+*** startup desktop
+polybar
+mpd_discord_richpresence
+discordRichPresencePlex
+openpyn
+mpd
+mpdscribble
+gamemoded
+syncthing
+megasync
+redshift
+dropbox (TODO remove from startup)
+steam
+ckb-next
+hp-systray
+discord
+qtbittorrent (no X11)
+
+*** startup laptop
+polybar
+mpd
+syncthing
+megasync
+redshift
+steam
+discord
