@@ -92,7 +92,11 @@
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                ranger-mode-hook
+                ranger-preview-dir-hook
+                ranger-parent-dir-hook
+                treemacs-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (defun jimjam/set-font-faces ()
@@ -557,6 +561,11 @@
     (setq eshell-visual-commands '("htop" "zsh" "vim")))
 
   (eshell-git-prompt-use-theme 'powerline))
+
+(use-package ranger
+  :config (ranger-override-dired-mode t)
+  :custom
+  (ranger-show-literal nil))
 
 (use-package elcord
   :config

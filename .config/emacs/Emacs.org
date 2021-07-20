@@ -138,7 +138,11 @@ This section configures basic UI settings that remove elements to make Emacs loo
   ;; Disable line numbers for some modes
   (dolist (mode '(org-mode-hook
                   term-mode-hook
-                  eshell-mode-hook))
+                  eshell-mode-hook
+                  ranger-mode-hook
+                  ranger-preview-dir-hook
+                  ranger-parent-dir-hook
+                  treemacs-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 #+end_src
@@ -919,6 +923,19 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
       (setq eshell-visual-commands '("htop" "zsh" "vim")))
 
     (eshell-git-prompt-use-theme 'powerline))
+
+#+end_src
+
+* File Management
+** Ranger (ranger emulation for dired)
+[[https://github.com/ralesi/ranger.el#installation][ranger.el]] is a package that makes dired act more like the terminal file manager ~ranger~.
+
+#+begin_src emacs-lisp
+
+   (use-package ranger
+     :config (ranger-override-dired-mode t)
+     :custom
+     (ranger-show-literal nil))
 
 #+end_src
 
