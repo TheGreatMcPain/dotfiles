@@ -93,8 +93,16 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 export SXHKD_SHELL=/bin/sh
 
 # Use NeoVim
-export EDITOR=nvim
-export VISUAL=nvim
+# export EDITOR=nvim
+# export VISUAL=nvim
+
+# Use Emacs
+# (If already in emacs this will open the file inside the current emacs frame,
+#  but if no emacs daemon is running open emacs inside the terminal.)
+#
+# See: https://emacs.stackexchange.com/questions/8078
+export EDITOR="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+export VISUAL="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
 
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"

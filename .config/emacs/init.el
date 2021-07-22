@@ -143,6 +143,10 @@
   (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1)
+
+  ; (evil-ex-define-cmd "q" 'kill-this-buffer)
+  ; (evil-ex-define-cmd "quit" 'evil-quit)
+
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
@@ -566,6 +570,9 @@
   :config (ranger-override-dired-mode t)
   :custom
   (ranger-show-literal nil))
+
+;; Make current emacs session a daemon if a server isn't already running.
+(unless (server-running-p) (server-start))
 
 (use-package elcord
   :config

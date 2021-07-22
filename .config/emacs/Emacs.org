@@ -205,6 +205,10 @@ We'll also setup [[https://github.com/emacsmirror/undo-fu][undo-fu]] for ~evil-m
     (setq evil-undo-system 'undo-fu)
     :config
     (evil-mode 1)
+
+    ; (evil-ex-define-cmd "q" 'kill-this-buffer)
+    ; (evil-ex-define-cmd "quit" 'evil-quit)
+
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
@@ -936,6 +940,25 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
      :config (ranger-override-dired-mode t)
      :custom
      (ranger-show-literal nil))
+
+#+end_src
+
+* Start Emacs Daemon
+So, in my system's environment variables I set ~EDITOR~ and ~VISUAL~ to ~emacsclient -a ~/.local/bin/emacs-nw.sh~ and inside the ~emacs-nw.sh~ has...
+
+#+begin_src shell
+  #!/bin/sh
+  exec emacs -nw "$@"
+#+end_src
+
+The idea is that when a terminal program asks for an editor ~emacsclient~ will try to open the file in a running emacs daemon.  If it's able to connect to an emacs daemon it'll open the program's file in a new buffer, but it ~emacsclient~ can't find an emacs daemon it'll simply call the ~--alternative-editor~, or ~-a~, which in this case will open emacs inside the current terminal.
+
+In order for this to work properly emacs needs to start a daemon on launch.
+
+#+begin_src emacs-lisp
+
+  ;; Make current emacs session a daemon if a server isn't already running.
+  (unless (server-running-p) (server-start))
 
 #+end_src
 
