@@ -93,6 +93,7 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 eshell-mode-hook
+                vterm-mode-hook
                 ranger-mode-hook
                 ranger-preview-dir-hook
                 ranger-parent-dir-hook
@@ -424,6 +425,14 @@
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
+(use-package yasnippet
+  :hook (prog-mode . yas-minor-mode)
+  :config (yas-reload-all))
+
+(use-package yasnippet-snippets)
+
+;; (use-package srefactor)
+
 (defun jimjam/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-setments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
@@ -439,12 +448,13 @@
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (setq lsp-ui-doc-position 'bottom))
+  (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
   :after lsp)
 
-(use-package lsp-ivy)
+(use-package lsp-ivy
+  :after lsp)
 
 (use-package typescript-mode
   :mode "\\.ts\\'"

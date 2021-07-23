@@ -101,8 +101,13 @@ export SXHKD_SHELL=/bin/sh
 #  but if no emacs daemon is running open emacs inside the terminal.)
 #
 # See: https://emacs.stackexchange.com/questions/8078
-export EDITOR="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-export VISUAL="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+if [ "$TERM" = "alacritty" ]; then
+    export EDITOR="TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+    export VISUAL="TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+else
+    export EDITOR="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+    export VISUAL="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+fi
 
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"
