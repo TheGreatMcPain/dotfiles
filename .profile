@@ -102,8 +102,8 @@ export SXHKD_SHELL=/bin/sh
 #
 # See: https://emacs.stackexchange.com/questions/8078
 if [ "$TERM" = "alacritty" ]; then
-    export EDITOR="TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-    export VISUAL="TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+    export EDITOR="env TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
+    export VISUAL="env TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
 else
     export EDITOR="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
     export VISUAL="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
