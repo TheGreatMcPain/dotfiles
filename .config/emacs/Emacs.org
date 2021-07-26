@@ -639,6 +639,8 @@ The ~which-key~ integration adds helpful descriptions of the various keys so you
     :hook (lsp-mode . jimjam/lsp-mode-setup)
     :init
     (setq lsp-keymap-prefix "C-c l") ;; Or "C-l", "s-l"
+    :custom
+    (lsp-enable-on-type-formatting nil)
     :config
     (lsp-enable-which-key-integration t))
 
@@ -725,7 +727,11 @@ I like to at least keep somethings consistant between my Emacs and NeoVim config
 *** C/C++
 Not much going on here right now. We are basically using ccls as our language server and lsp-mode handles the rest. Emacs does have built-in modes for C/C++ files (I think cuda-mode is not built-in though).
 
+We also set the default coding style to "linux" which is close to the custom style doom-emacs uses.
+
 #+begin_src emacs-lisp
+
+  (setq c-default-style "linux")
 
   (use-package ccls
     :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp)))

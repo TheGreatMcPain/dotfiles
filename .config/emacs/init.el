@@ -442,6 +442,8 @@
   :hook (lsp-mode . jimjam/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l") ;; Or "C-l", "s-l"
+  :custom
+  (lsp-enable-on-type-formatting nil)
   :config
   (lsp-enable-which-key-integration t))
 
@@ -466,6 +468,8 @@
 
 (use-package python-mode
   :hook (python-mode . lsp-deferred))
+
+(setq c-default-style "linux")
 
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp)))
