@@ -124,6 +124,16 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+if [[ "$TERM" == "dumb" ]]; then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    # unfunction precmd
+    # unfunction preexec
+    PS1="$ "
+    return
+fi
+
 # Download powerlevel10k if folder doesn't exist.
 if ! [ -d "${ZDOTDIR}/powerlevel10k" ]; then
     echo "PowerLevel10k not in ZDOTDIR! Installing from github."
@@ -142,6 +152,8 @@ if ! ( [ "$TERM" = "linux" ]; ) then
 else
     prompt gentoo
 fi
+
+
 
 # Run neofetch if running in 'kitty'
 # If not in kitty just run neofetch without the image.
