@@ -1,29 +1,14 @@
 #!/bin/sh
 
-# Check if pulse-status exists.
-# If not create it.
-if [ -e "/tmp/pulse-status" ]; then
-    if [ "$(cat /tmp/pulse-status)"x = "OFF"x ]; then
-      echo "Pulse is Off"
-      exit
-    fi
-else
-    # Check if pulseaudio is running.
-    if ! pgrep -x pulseaudio >/dev/null; then
-        echo OFF > /tmp/pulse-status
-        echo "Pulse is Off"
-        exit
-    else
-        echo ON > /tmp/pulse-status
-    fi
+# Check if pulseaudio/pipwire are running and exit if not.
+if ! pgrep -x pulseaudio >/dev/null && ! pgrep -x pipewire >/dev/null; then
+    echo "PA is Off"
+    exit
 fi
 
-if [ -e "/tmp/mic-status" ]; then
-    cat "/tmp/mic-status"
+# Check if Capture device is not muted and echo a message if not.
+if amixer -D pulse sget Capture | grep '\[on\]' >/dev/null; then
+    echo ON
 else
-    if amixer -D pulse sget Capture | grep '\[on\]' >/dev/null; then
-        echo ON | tee "/tmp/mic-status"
-    else
-        echo MUTED | tee "/tmp/mic-status"
-    fi
+    echo MUTED
 fi

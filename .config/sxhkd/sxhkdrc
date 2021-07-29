@@ -33,8 +33,8 @@ super + shift + F11
 # # Toggle pulseaudio
 # super + shift + F10
 #     toggle-pulseaudio
-# Toggle PipeWire
 
+# Toggle PipeWire
 super + shift + F10
     toggle-pipewire
 
@@ -48,7 +48,6 @@ super + shift + F10
 # Toggle Mic
 super + button10
     amixer -D pulse sset Capture toggle; \
-    rm /tmp/mic-status; \
     if [ $(mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
     else \
@@ -57,7 +56,6 @@ super + button10
 
 super + F10
     amixer -D pulse sset Capture toggle; \
-    rm /tmp/mic-status; \
     if [ $(mic-status) = "ON" ]; then \
         notify-send -u low "Microphone is ON"; \
     else \
