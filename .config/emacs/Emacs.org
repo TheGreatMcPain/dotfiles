@@ -20,6 +20,16 @@ The following variables will need to be adjusted for your machine.
 
 #+end_src
 
+* Indentation Setup
+I prefer that emacs doesn't insert actual tab characters when indenting.
+
+#+begin_src emacs-lisp
+
+  (setq-default indent-tabs-mode nil
+                tab-width 4)
+
+#+end_src
+
 * Startup Performance
 
 #+begin_src emacs-lisp
@@ -619,7 +629,6 @@ TODO create function that enables ~semantic-mode~, runs ~srefactor-refactor-at-p
 #+end_src
 
 ** Languages
-
 *** Language Servers
 **** lsp-mode
 We use the excellent [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] to enable IDE-like functionality for many different programming languages via "language servers" that speak the [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol]]. Before trying to set up ~lsp-mode~ for a particular language, check out the [[https://emacs-lsp.github.io/lsp-mode/page/languages/][documentation for your language]] so that you can learn which language servers are available and how to install them.
@@ -740,6 +749,17 @@ We also set the default coding style to "linux" which is close to the custom sty
 
 #+end_src
 
+*** Yaml
+Pretty much explains itself.
+
+#+begin_src emacs-lisp
+
+  (use-package yaml-mode
+    :mode "Procfile\\'"
+    :hook (yaml-mode . lsp-deferred))
+
+#+end_src
+
 ** Company Mode
 [[http://company-mode.github.io/][Company Mode]] provides a nicer in-buffer completion interface than ~completion-at-point~ which is more reminiscent of what you would expect from an IDE. We add a simple configuration to make the keybindings a little more useful (~TAB~ now completes the selection and initiates completion at the current location if needed).
 
@@ -748,8 +768,9 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
 #+begin_src emacs-lisp
 
   (use-package company
-    :after lsp-mode
-    :hook (lsp-mode . company-mode)
+    ; :after lsp-mode
+    ; :hook (lsp-mode . company-mode)
+    :config (setq global-company-mode 1)
     :bind (:map company-active-map
                 ("<tab>" . company-complete-selecion))
           (:map lsp-mode-map

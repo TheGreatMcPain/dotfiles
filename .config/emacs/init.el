@@ -8,6 +8,9 @@
 ;; Transparency Level
 (defvar jimjam/frame-transparency '(90 . 90))
 
+(setq-default indent-tabs-mode nil
+              tab-width 4)
+
 ;; The default is 800 kilobytes. Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -476,9 +479,14 @@
   :config
   (setq ccls-executable "/usr/bin/ccls"))
 
+(use-package yaml-mode
+  :mode "Procfile\\'"
+  :hook (yaml-mode . lsp-deferred))
+
 (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
+  ; :after lsp-mode
+  ; :hook (lsp-mode . company-mode)
+  :config (setq global-company-mode 1)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selecion))
         (:map lsp-mode-map
