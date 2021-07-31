@@ -553,7 +553,12 @@
   :config
   (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")
   (setq vterm-shell "zsh")
-  (setq vterm-max-scrollback 10000))
+  (setq vterm-max-scrollback 10000)
+
+  ;; Allow vterm to change the current directory
+  (add-to-list 'vterm-eval-cmds '("update-pwd"
+                                  (lambda (path)
+                                           (setq default-directory path)))))
 
 (when (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "powershell.exe")
