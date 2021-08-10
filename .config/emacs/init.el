@@ -23,32 +23,30 @@
 
 (add-hook 'emacs-startup-hook #'jimjam/display-startup-time)
 
-;; Initialize package sources
-(require 'package)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
-(use-package auto-package-update
-  :custom
-  (auto-package-update-interval 7)
-  (auto-package-update-prompt-before-update t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe)
-  (auto-package-update-at-time "09:00"))
+;; (use-package auto-package-update
+;;   :custom
+;;   (auto-package-update-interval 7)
+;;   (auto-package-update-prompt-before-update t)
+;;   (auto-package-update-hide-results t)
+;;   :config
+;;   (auto-package-update-maybe)
+;;   (auto-package-update-at-time "09:00"))
 
 ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
 ;; reliably, set `user-emacs-directory` before loading no-littering!
@@ -60,6 +58,16 @@
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+(use-package tramp
+   ;; :load-path "/usr/local/share/emacs/site-lisp"
+   :config
+   (setq tramp-yesno-prompt-regexp (concat
+                                    (regexp-opt
+                                     '("Are you sure you want to continue connecting (yes/no)?"
+                                       "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
+                                     t)
+                                    "\\s-*")))
 
 (setq inhibit-startup-message t)
 
@@ -184,6 +192,13 @@
   :config
   (setq which-key-idle-delay 0.3))
 
+(use-package counsel
+:bind (("M-x" . counsel-M-x)
+       ("C-x b" . counsel-ibuffer)
+       ("C-x C-f" . counsel-find-file)
+       :map minibuffer-local-map
+       ("C-r" . 'counsel-minibuffer-history)))
+
 (use-package ivy
   :diminish
   :bind (
@@ -206,13 +221,6 @@
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
-
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
 
 (use-package helpful
   :custom
@@ -440,7 +448,11 @@
   (setq lsp-headerline-breadcrumb-setments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
+;; Use my fork as it contains fixes for tramp.
 (use-package lsp-mode
+  :straight (lsp-mode :type git :host github :repo "emacs-lsp/lsp-mode"
+                      :fork (:host github
+                             :repo "TheGreatMcPain/lsp-mode"))
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . jimjam/lsp-mode-setup)
   :init
@@ -448,7 +460,14 @@
   :custom
   (lsp-enable-on-type-formatting nil)
   :config
-  (lsp-enable-which-key-integration t))
+  (lsp-enable-which-key-integration t)
+  (progn
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-tramp-connection "/usr/lib/llvm/12/bin/clangd")
+                      :major-modes '(c-mode c++-mode objc-mode cuda-mode)
+                      :remote? t
+                      :server-id 'clangd-remote)))
+  )
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -474,10 +493,7 @@
 
 (setq c-default-style "linux")
 
-(use-package ccls
-  :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp)))
-  :config
-  (setq ccls-executable "/usr/bin/ccls"))
+(add-hook 'c-mode-hook #'lsp-deferred)
 
 (use-package yaml-mode
   :mode "Procfile\\'"
@@ -538,6 +554,8 @@
   :hook (prog-mode . dtrt-indent-mode)
   :config
   (setq dtrt-indent-run-after-smie t))
+
+(use-package meson-mode)
 
 (use-package term
   :config
