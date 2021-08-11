@@ -1,3 +1,21 @@
+" Global list of extentions.
+let g:coc_global_extentions = [
+      \'coc-clangd',
+      \'coc-dictionary',
+      \'coc-discord-rpc',
+      \'coc-explorer',
+      \'coc-java',
+      \'coc-json',
+      \'coc-marketplace',
+      \'coc-prettier',
+      \'coc-pyright',
+      \'coc-snippets',
+      \'coc-sql',
+      \'coc-tag',
+      \'coc-vimlsp',
+      \'coc-word'
+      \]
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
