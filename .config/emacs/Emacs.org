@@ -113,9 +113,9 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
 tramp-mode is a built-in emacs package that handles remote file editing.  The current version available through emacs-27 doesn't play nice with lsp-mode well, so we grab the latest version.
 
 #+begin_src emacs-lisp
-
+  
   (use-package tramp
-     ;; :load-path "/usr/local/share/emacs/site-lisp"
+     :straight (tramp :build t :pre-build (("make" "autoloads")))
      :config
      (setq tramp-yesno-prompt-regexp (concat
                                       (regexp-opt
@@ -123,7 +123,7 @@ tramp-mode is a built-in emacs package that handles remote file editing.  The cu
                                          "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
                                        t)
                                       "\\s-*")))
-
+  
 #+end_src
 
 * Basic UI Configuration
@@ -844,6 +844,37 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
   ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
   (use-package forge)
 
+#+end_src
+
+** Git-Gutter
+GitGutter is a package that adds 'diff markers' on the editor's 'gutter' (The gutter is also where line numbers are shown).
+Along with diff markers GitGutter also allows staging, and unstaging inside the file's buffer.
+
+#+begin_src emacs-lisp
+  
+  (use-package git-gutter
+    :config
+    (global-git-gutter-mode t)
+    (git-gutter:linum-setup)
+    (global-set-key (kbd "C-x C-g") 'git-gutter)
+    (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
+  
+    ;; Jump to next/previous hunk
+    (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
+    (global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+  
+    ;; Stage current hunk
+    (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+  
+    ;; Revert current hunk
+    (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+  
+    ;; Mark current hunk
+    (global-set-key (kbd "C-x v SPC") #'git-gutter:mark-hunk)
+  
+    :custom
+    (git-gutter:update-interval 2))
+  
 #+end_src
 
 ** Rainbow Delimiters
