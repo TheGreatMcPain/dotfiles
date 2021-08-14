@@ -71,6 +71,14 @@ Emacs has a built-in package manager but it doesn't make it easy to automaticall
 
 #+end_src
 
+We also want to prevent ~package.el~ from loading on startup. (Written to ~early-init.el~)
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+  
+  (setq package-enable-at-startup nil)
+  
+#+end_src
+
 * Automatic Package Updates (currently disabled, because of 'straight.el')
 Since we are currently using straight.el I've disabled this, because auto-package-update doesn't support it yet.
 
@@ -1065,12 +1073,33 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
 
 #+end_src
 
+* Better EDITOR integration
+The with-editor package (from magit) utilizes ~emacsclient~ and daemon functionality to provide better integration with terminals inside emacs.
+Basically it allows you to run a program that calls the ~EDITOR~ environment variable to open a emacs buffer within the current emacs frame.
+
+#+begin_src emacs-lisp
+  
+  (defun jimjam/setup-with-editor ()
+    (dolist (mode '(shell-mode-hook
+                    eshell-mode-hook
+                    term-exec-hook
+                    vterm-mode-hook))
+      (add-hook mode 'with-editor-export-editor)))
+  
+  (use-package with-editor
+    :config
+    (jimjam/setup-with-editor))
+  
+#+end_src
+
 * Start Emacs Daemon
 So, in my system's environment variables I set ~EDITOR~ and ~VISUAL~ to ~emacsclient -a ~/.local/bin/emacs-nw.sh~ and inside the ~emacs-nw.sh~ has...
 
 #+begin_src shell
+
   #!/bin/sh
   exec emacs -nw "$@"
+  
 #+end_src
 
 The idea is that when a terminal program asks for an editor ~emacsclient~ will try to open the file in a running emacs daemon.  If it's able to connect to an emacs daemon it'll open the program's file in a new buffer, but it ~emacsclient~ can't find an emacs daemon it'll simply call the ~--alternative-editor~, or ~-a~, which in this case will open emacs inside the current terminal.

@@ -639,6 +639,17 @@
   :custom
   (ranger-show-literal nil))
 
+(defun jimjam/setup-with-editor ()
+  (dolist (mode '(shell-mode-hook
+                  eshell-mode-hook
+                  term-exec-hook
+                  vterm-mode-hook))
+    (add-hook mode 'with-editor-export-editor)))
+
+(use-package with-editor
+  :config
+  (jimjam/setup-with-editor))
+
 ;; Make current emacs session a daemon if a server isn't already running.
 (unless (server-running-p) (server-start))
 
