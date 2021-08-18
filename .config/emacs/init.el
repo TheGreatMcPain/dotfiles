@@ -442,8 +442,6 @@
 
 (use-package yasnippet-snippets)
 
-;; (use-package srefactor)
-
 (defun jimjam/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-setments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
@@ -493,7 +491,19 @@
 
 (setq c-default-style "linux")
 
-(add-hook 'c-mode-hook #'lsp-deferred)
+(use-package cc-mode
+  :hook ((c-mode c++-mode objc-mode cuda-mode) . lsp-deferred))
+
+;; Download member-functions.el, if not there already, from emacswiki and load it.
+(let ((member-functions-file
+      (expand-file-name "lisp/member-functions.el" user-emacs-directory)))
+  (unless (file-exists-p member-functions-file)
+    (require 'url)
+    (make-directory (file-name-directory member-functions-file))
+    (url-copy-file "http://www.emacswiki.org/emacs/download/member-functions.el"
+                   member-functions-file))
+  (add-to-list 'load-path (file-name-directory member-functions-file))
+  (load "member-functions"))
 
 (use-package yaml-mode
   :mode "Procfile\\'"
@@ -530,6 +540,24 @@
   :config (counsel-projectile-mode))
 
 (use-package magit
+  :config
+  (setq dotfiles-git-dir (concat "--git-dir=" (expand-file-name "~/.dotfiles")))
+  (setq dotfiles-work-tree (concat "--work-tree=" (expand-file-name "~")))
+
+  (defun dotfiles-magit-status ()
+    (interactive)
+    (add-to-list 'magit-git-global-arguments dotfiles-git-dir)
+    (add-to-list 'magit-git-global-arguments dotfiles-work-tree)
+    (call-interactively 'magit-status))
+  (global-set-key (kbd "<f5> d") 'dotfiles-magit-status)
+
+  ;; wrapper to remove additional args before starting magit
+  (defun magit-status-with-removed-dotfiles-args ()
+    (interactive)
+    (setq magit-git-global-arguments (remove dotfiles-git-dir magit-git-global-arguments))
+    (setq magit-git-global-arguments (remove dotfiles-work-tree magit-git-global-arguments))
+    (call-interactively 'magit-status))
+  (global-set-key (kbd "C-x g") 'magit-status-with-removed-dotfiles-args)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
