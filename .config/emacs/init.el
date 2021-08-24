@@ -489,21 +489,27 @@
 (use-package python-mode
   :hook (python-mode . lsp-deferred))
 
+(defun jimjam/setup-member-functions ()
+  ;; Download member-functions.el, if not there already, from emacswiki and load it.
+  (let ((member-functions-file
+         (expand-file-name "lisp/member-functions.el" user-emacs-directory)))
+    (unless (file-exists-p member-functions-file)
+      (require 'url)
+      (make-directory (file-name-directory member-functions-file))
+      (url-copy-file "https://gitlab.com/TheGreatMcPain/emacs-member-functions/-/raw/master/member-functions.el"
+                     member-functions-file))
+    (add-to-list 'load-path (file-name-directory member-functions-file))
+    (load "member-functions")))
+
+(defun jimjam/cc-mode-startup-stuff ()
+  (interactive)
+  (jimjam/setup-member-functions)
+  (lsp-deferred))
+
 (setq c-default-style "linux")
 
 (use-package cc-mode
-  :hook ((c-mode c++-mode objc-mode cuda-mode) . lsp-deferred))
-
-;; Download member-functions.el, if not there already, from emacswiki and load it.
-(let ((member-functions-file
-      (expand-file-name "lisp/member-functions.el" user-emacs-directory)))
-  (unless (file-exists-p member-functions-file)
-    (require 'url)
-    (make-directory (file-name-directory member-functions-file))
-    (url-copy-file "http://www.emacswiki.org/emacs/download/member-functions.el"
-                   member-functions-file))
-  (add-to-list 'load-path (file-name-directory member-functions-file))
-  (load "member-functions"))
+  :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
 
 (use-package yaml-mode
   :mode "Procfile\\'"

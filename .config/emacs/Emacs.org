@@ -759,33 +759,40 @@ I like to at least keep somethings consistant between my Emacs and NeoVim config
 #+end_src
 
 *** C/C++
-Not much going on here right now. We are basically using clangd as our language server and lsp-mode handles the rest.
-We also set the default coding style to "linux" which is close to the custom style doom-emacs uses.
-
-#+begin_src emacs-lisp
-  
-  (setq c-default-style "linux")
-  
-  (use-package cc-mode
-    :hook ((c-mode c++-mode objc-mode cuda-mode) . lsp-deferred))
-  
-#+end_src
-
 **** member-functions.el
 [[https://www.emacswiki.org/emacs/ExpandMemberFunctions][member-functions.el]] is a elisp file that contains a function that creates member functions in implementation files based on the contents of the open header file.
 
 #+begin_src emacs-lisp
   
-  ;; Download member-functions.el, if not there already, from emacswiki and load it.
-  (let ((member-functions-file
-        (expand-file-name "lisp/member-functions.el" user-emacs-directory)))
-    (unless (file-exists-p member-functions-file)
-      (require 'url)
-      (make-directory (file-name-directory member-functions-file))
-      (url-copy-file "http://www.emacswiki.org/emacs/download/member-functions.el"
-                     member-functions-file))
-    (add-to-list 'load-path (file-name-directory member-functions-file))
-    (load "member-functions"))
+  (defun jimjam/setup-member-functions ()
+    ;; Download member-functions.el, if not there already, from emacswiki and load it.
+    (let ((member-functions-file
+           (expand-file-name "lisp/member-functions.el" user-emacs-directory)))
+      (unless (file-exists-p member-functions-file)
+        (require 'url)
+        (make-directory (file-name-directory member-functions-file))
+        (url-copy-file "https://gitlab.com/TheGreatMcPain/emacs-member-functions/-/raw/master/member-functions.el"
+                       member-functions-file))
+      (add-to-list 'load-path (file-name-directory member-functions-file))
+      (load "member-functions")))
+  
+#+end_src
+
+**** cc-mode configuration
+Not much going on here right now. We are basically using clangd as our language server and lsp-mode handles the rest.
+We also set the default coding style to "linux" which is close to the custom style doom-emacs uses.
+
+#+begin_src emacs-lisp
+  
+  (defun jimjam/cc-mode-startup-stuff ()
+    (interactive)
+    (jimjam/setup-member-functions)
+    (lsp-deferred))
+  
+  (setq c-default-style "linux")
+  
+  (use-package cc-mode
+    :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
   
 #+end_src
 
