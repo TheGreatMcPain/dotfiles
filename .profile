@@ -115,8 +115,8 @@ export NNTPSERVER="news.newsgroup.ninja"
 # Set LS_COLORS
 eval "$(dircolors /etc/DIR_COLORS)"
 
-# If gpg-agent isn't running it to run.
-pgrep gpg-agent &>/dev/null || gpg-connect-agent reloadagent /bye &>/dev/null
+# Fix gpg-agent pinentry issues. (For some reason it doesn't find the X display)
+echo "UPDATESTARTUPTTY" | gpg-connect-agent &>/dev/null
 
 # Use GnuPG as ssh-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
