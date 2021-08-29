@@ -71,13 +71,6 @@ if which nvimpager >/dev/null; then
   export PAGER="nvimpager"
 fi
 
-# Emacs doesn't really work well with 'TERM=alacritty'.
-# Make emacs use 'TERM=alacritty-direct'
-if [ "$TERM" = "alacritty" ]; then
-    alias emacs="TERM=alacritty-direct emacs"
-    alias emacsclient="TERM=alacritty-direct emacsclient"
-fi
-
 # Make QT use Gtk themes.
 # Requires qtstyleplugin
 export QT_QPA_PLATFORMTHEME=gtk2
@@ -96,18 +89,12 @@ export SXHKD_SHELL=/bin/sh
 # export EDITOR=nvim
 # export VISUAL=nvim
 
-# Use Emacs
-# (If already in emacs this will open the file inside the current emacs frame,
-#  but if no emacs daemon is running open emacs inside the terminal.)
-#
-# See: https://emacs.stackexchange.com/questions/8078
-if [ "$TERM" = "alacritty" ]; then
-    export EDITOR="env TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-    export VISUAL="env TERM=alacritty-direct emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-else
-    export EDITOR="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-    export VISUAL="emacsclient -a $HOME/.local/bin/emacs-nw.sh"
-fi
+# If emacs daemon isn't running start it.
+# emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon >/dev/null 2>&1 &
+
+# Use Emacs (fix alacritty issues too)
+export EDITOR="emacs-c -nw"
+export VISUAL="emacs-c -nw"
 
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"
