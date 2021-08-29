@@ -16,3 +16,8 @@ fi
 if which nvidia-smi >/dev/null; then
     sudo nvidia-smi -pl 75 &>/dev/null
 fi
+
+# Don't use 'x' cursor icon when hovering over desktop.
+if which xsetroot >/dev/null; then
+    xsetroot -cursor_name arrow
+fi
