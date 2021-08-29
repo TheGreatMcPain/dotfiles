@@ -2,4 +2,4 @@
 [ -f ~/.xprofile ] && . ~/.xprofile
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
-exec bspwm
+exec dbus-run-session bspwm
