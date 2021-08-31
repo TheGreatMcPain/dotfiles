@@ -1,9 +1,12 @@
 ;; NOTE: init.el is generated from Emacs.org. Please edit that file
 ;;       in Emacs and init.el will be generated automatically!
 
+(defun jimjam/get-font-size ()
+  (if (string-equal (system-name) "james-gentoo-laptop") 100 120))
+
 ;; You will most likely need to adjust this font size for your system!
-(defvar jimjam/default-font-size 120)
-(defvar jimjam/default-variable-font-size 120)
+(defvar jimjam/default-font-size (jimjam/get-font-size))
+(defvar jimjam/default-variable-font-size (jimjam/get-font-size))
 
 ;; Transparency Level
 (defvar jimjam/frame-transparency '(90 . 90))
