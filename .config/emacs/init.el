@@ -397,6 +397,8 @@
   (define-key global-map (kbd "C-c j")
     (lambda () (interactive) (org-capture nil "jj")))
 
+  (setq org-image-actual-width nil)
+
   (jimjam/org-font-setup))
 
 (use-package org-bullets
@@ -513,6 +515,11 @@
 
 (use-package cc-mode
   :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
+
+(use-package graphviz-dot-mode
+  :config
+  (setq graphviz-dot-indent-width 4)
+  (load "company-graphviz-dot"))
 
 (use-package yaml-mode
   :mode "Procfile\\'"
