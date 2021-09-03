@@ -517,6 +517,7 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
 
 (use-package graphviz-dot-mode
+  :after company
   :config
   (setq graphviz-dot-indent-width 4)
   (load "company-graphviz-dot"))

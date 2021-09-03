@@ -802,11 +802,12 @@ We also set the default coding style to "linux" which is close to the custom sty
 #+end_src
 
 *** Dot (graphviz)
-Small language for making graphs.
+dot is Small language for making graphs.
 
 #+begin_src emacs-lisp
   
   (use-package graphviz-dot-mode
+    :after company
     :config
     (setq graphviz-dot-indent-width 4)
     (load "company-graphviz-dot"))
