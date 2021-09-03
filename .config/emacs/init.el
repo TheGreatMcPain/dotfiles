@@ -516,6 +516,11 @@
 (use-package cc-mode
   :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
 
+(use-package lsp-java
+  :config
+  (setq lsp-java-java-path "/opt/openjdk-bin-11/bin/java")
+  (add-hook 'java-mode-hook 'lsp))
+
 (use-package graphviz-dot-mode
   :after company
   :config
