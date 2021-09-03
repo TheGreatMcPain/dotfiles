@@ -703,7 +703,24 @@
 ;; Make current emacs session a daemon if a server isn't already running.
 (unless (server-running-p) (server-start))
 
+(defun elcord--enable-on-frame-created (f)
+  (elcord-mode +1))
+
+(defun elcord--disable-elcord-if-no-frames (f)
+  (when (let ((frames (delete f (visible-frame-list))))
+          (or (null frames)
+              (and (null (cdr frames))
+                   (eq (car frames) terminal-frame))))
+    (elcord-mode -1)
+    (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
+
+(defun jimjam/elcord-mode-hook ()
+  (if elcord-mode
+      (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+    (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
 (use-package elcord
   :config
   (setq elcord-quiet t)
+  (add-hook 'elcord-mode-hook 'jimjam/elcord-mode-hook)
   (elcord-mode 1))

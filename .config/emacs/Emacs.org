@@ -1179,15 +1179,34 @@ In order for this to work properly emacs needs to start a daemon on launch.
 Some stuff that hasn't been covered by Emacs from Scratch yet, or just some personal emacs stuff.
 
 ** Elcord
-elcord is a package that adds Discord Rich Presence to Emacs. It basically updates your Discord status to let everyone know your currently using Emacs.
+[[https://github.com/Mstrodl/elcord][elcord]] is a package that adds Discord Rich Presence to Emacs. It basically updates your Discord status to let everyone know your currently using Emacs.
+
+I've added the code from [[https://github.com/Mstrodl/elcord/issues/17][this issue]] which tells elcord to stop when no frames are visible.  This allows using emacs as a daemon without elcord from constantly telling Discord that you're editing the stratch buffer dispite not having any frames open.
 
 #+begin_src emacs-lisp
-
+  
+  (defun elcord--enable-on-frame-created (f)
+    (elcord-mode +1))
+  
+  (defun elcord--disable-elcord-if-no-frames (f)
+    (when (let ((frames (delete f (visible-frame-list))))
+            (or (null frames)
+                (and (null (cdr frames))
+                     (eq (car frames) terminal-frame))))
+      (elcord-mode -1)
+      (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
+  
+  (defun jimjam/elcord-mode-hook ()
+    (if elcord-mode
+        (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+      (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+  
   (use-package elcord
     :config
     (setq elcord-quiet t)
+    (add-hook 'elcord-mode-hook 'jimjam/elcord-mode-hook)
     (elcord-mode 1))
-
+  
 #+end_src
 
 ** Ebuild Mode
