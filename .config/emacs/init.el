@@ -511,7 +511,8 @@
   (jimjam/setup-member-functions)
   (lsp-deferred))
 
-(setq c-default-style "linux")
+(setq c-default-style "linux"
+      c-basic-offset 2)
 
 (use-package cc-mode
   :hook ((c-mode c++-mode objc-mode cuda-mode) . jimjam/cc-mode-startup-stuff))
