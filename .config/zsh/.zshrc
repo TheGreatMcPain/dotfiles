@@ -205,7 +205,11 @@ add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
 # The escape sequence "51;A" has also the role of identifying the end of the
 # prompt
 vterm_set_directory() {
-    vterm_cmd update-pwd "/-:""$(whoami)""@""$(hostname)"":""$(pwd)/"
+    if [ -n "$SSH_CONNECTION" ]; then
+        vterm_cmd update-pwd "/-:""$(whoami)""@""$(hostname)"":""$(pwd)/"
+    else
+        vterm_cmd update-pwd "$(pwd)/"
+    fi
 }
 
 # Run vterm_set_directory after every directory change.
