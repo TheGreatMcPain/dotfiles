@@ -586,7 +586,7 @@
 ;; NOTE: Make sure to configure a Github token before using this package!
 ;; - https://magit.vc/manual/forge/Token-Creation.html#Token-Creation
 ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
-(use-package forge)
+;; (use-package forge)
 
 (use-package git-gutter
   :config
