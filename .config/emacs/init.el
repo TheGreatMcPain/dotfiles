@@ -701,6 +701,116 @@
   :custom
   (ranger-show-literal nil))
 
+(use-package mu4e
+  :straight nil
+  :ensure nil ;; Needs to be installed via package manager
+  :config
+
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir (expand-file-name "~/.local/share/mail"))
+
+  (setq mu4e-contexts
+        (list
+         ;; Personal account
+         (make-mu4e-context
+          :name "sixsupersonic"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/sixsupersonic-gmail" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address  . "sixsupersonic@gmail.com")
+                  (user-full-name     . "James McClain")
+                  (mu4e-drafts-folder . "/sixsupersonic-gmail/[Gmail]/Drafts")
+                  (mu4e-sent-folder   . "/sixsupersonic-gmail/[Gmail]/Sent Mail")
+                  (mu4e-refile-folder . "/sixsupersonic-gmail/[Gmail]/All Mail")
+                  (mu4e-trash-folder  . "/sixsupersonic-gmail/[Gmail]/Trash")
+                  (mu4e-maildir-shortcuts . ((:maildir "/sixsupersonic-gmail/Inbox" :key ?i)
+                                              (:maildir "/sixsupersonic-gmail/[Gmail]/Drafts" :key ?d)
+                                              (:maildir "/sixsupersonic-gmail/[Gmail]/Sent Mail" :key ?s)
+                                              (:maildir "/sixsupersonic-gmail/[Gmail]/All Mail" :key ?a)
+                                              (:maildir "/sixsupersonic-gmail/[Gmail]/Trash" :key ?t)))))
+
+         ;; School account
+         (make-mu4e-context
+          :name "uni-edu"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/uni-edu" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address  . "jmcclain@uni.edu")
+                  (user-full-name     . "James McClain")
+                  (mu4e-drafts-folder . "/uni-edu/[Gmail]/Drafts")
+                  (mu4e-sent-folder   . "/uni-edu/[Gmail]/Sent Mail")
+                  (mu4e-refile-folder . "/uni-edu/[Gmail]/All Mail")
+                  (mu4e-trash-folder  . "/uni-edu/[Gmail]/Trash")
+                  (mu4e-maildir-shortcuts . ((:maildir "/uni-edu/Inbox" :key ?i)
+                                              (:maildir "/uni-edu/[Gmail]/Drafts" :key ?d)
+                                              (:maildir "/uni-edu/[Gmail]/Sent Mail" :key ?s)
+                                              (:maildir "/uni-edu/[Gmail]/All Mail" :key ?a)
+                                              (:maildir "/uni-edu/[Gmail]/Trash" :key ?t)))))
+
+         ;; School account
+         (make-mu4e-context
+          :name "james_mcclain2017"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/james_mcclain2017-gmail" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address  . "james.mcclain2017@gmail.com")
+                  (user-full-name     . "James McClain")
+                  (mu4e-drafts-folder . "/james_mcclain2017-gmail/[Gmail]/Drafts")
+                  (mu4e-sent-folder   . "/james_mcclain2017-gmail/[Gmail]/Sent Mail")
+                  (mu4e-refile-folder . "/james_mcclain2017-gmail/[Gmail]/All Mail")
+                  (mu4e-trash-folder  . "/james_mcclain2017-gmail/[Gmail]/Trash")
+                  (mu4e-maildir-shortcuts . ((:maildir "/james_mcclain2017-gmail/Inbox" :key ?i)
+                                             (:maildir "/james_mcclain2017-gmail/[Gmail]/Drafts" :key ?d)
+                                             (:maildir "/james_mcclain2017-gmail/[Gmail]/Sent Mail" :key ?s)
+                                             (:maildir "/james_mcclain2017-gmail/[Gmail]/All Mail" :key ?a)
+                                             (:maildir "/james_mcclain2017-gmail/[Gmail]/Trash" :key ?t)))))
+
+         ;; Protonmail account (via hydroxide)
+         (make-mu4e-context
+          :name "protonmail-jmcclain2020"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/jmcclain2020-protonmail" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address  . "jmcclain2020@protonmail.com")
+                  (user-full-name     . "James McClain")
+                  (mu4e-drafts-folder . "/jmcclain2020-protonmail/Drafts")
+                  (mu4e-sent-folder   . "/jmcclain2020-protonmail/Sent")
+                  (mu4e-refile-folder . "/jmcclain2020-protonmail/Archive")
+                  (mu4e-trash-folder  . "/jmcclain2020-protonmail/Trash")
+                  (mu4e-maildir-shortcuts . ((:maildir "/jmcclain2020-protonmail/Inbox" :key ?i)
+                                             (:maildir "/jmcclain2020-protonmail/Drafts" :key ?d)
+                                             (:maildir "/jmcclain2020-protonmail/Sent" :key ?s)
+                                             (:maildir "/jmcclain2020-protonmail/Archive" :key ?a)
+                                             (:maildir "/jmcclain2020-protonmail/Trash" :key ?t)))))
+
+         ;; Microsoft account (Beware yee who enter here)
+         (make-mu4e-context
+          :name "hotmail-j_mcclain2010"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/j_mcclain2010-hotmail" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address  . "j.mcclain2010@hotmail.com")
+                  (user-full-name     . "James McClain")
+                  (mu4e-drafts-folder . "/j_mcclain2010-hotmail/Drafts")
+                  (mu4e-sent-folder   . "/j_mcclain2010-hotmail/Sent")
+                  (mu4e-refile-folder . "/j_mcclain2010-hotmail/Archive")
+                  (mu4e-trash-folder  . "/j_mcclain2010-hotmail/Trash")
+                  (mu4e-maildir-shortcuts . ((:maildir "/j_mcclain2010-hotmail/Inbox" :key ?i)
+                                             (:maildir "/j_mcclain2010-hotmail/Drafts" :key ?d)
+                                             (:maildir "/j_mcclain2010-hotmail/Sent" :key ?s)
+                                             (:maildir "/j_mcclain2010-hotmail/Archive" :key ?a)
+                                             (:maildir "/j_mcclain2010-hotmail/Trash" :key ?t))))))))
+
 (defun jimjam/setup-with-editor ()
   (dolist (mode '(shell-mode-hook
                   eshell-mode-hook

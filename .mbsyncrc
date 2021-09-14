@@ -1,0 +1,112 @@
+IMAPAccount sixsupersonic-gmail
+Host imap.gmail.com
+User sixsupersonic@gmail.com
+PassCmd "pass mbsync-sixsupersonic"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore sixsupersonic-gmail-remote
+Account sixsupersonic-gmail
+
+MaildirStore sixsupersonic-gmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/sixsupersonic-gmail/
+Inbox ~/.local/share/mail/sixsupersonic-gmail/Inbox
+
+Channel sixsupersonic-gmail
+Far :sixsupersonic-gmail-remote:
+Near :sixsupersonic-gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Create Both
+SyncState *
+
+IMAPAccount uni-edu
+Host imap.gmail.com
+User jmcclain@uni.edu
+PassCmd "pass mbsync-uni-edu"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore uni-edu-remote
+Account uni-edu
+
+MaildirStore uni-edu-local
+Subfolders Verbatim
+Path ~/.local/share/mail/uni-edu/
+Inbox ~/.local/share/mail/uni-edu/Inbox
+
+Channel uni-edu
+Far :uni-edu-remote:
+Near :uni-edu-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Create Both
+SyncState *
+
+IMAPAccount james_mcclain2017-gmail
+Host imap.gmail.com
+User james.mcclain2017@gmail.com
+PassCmd "pass mbsync-james_mcclain2017"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore james_mcclain2017-gmail-remote
+Account james_mcclain2017-gmail
+
+MaildirStore james_mcclain2017-gmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/james_mcclain2017-gmail/
+Inbox ~/.local/share/mail/james_mcclain2017-gmail/Inbox
+
+Channel james_mcclain2017-gmail
+Far :james_mcclain2017-gmail-remote:
+Near :james_mcclain2017-gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Create Both
+SyncState *
+
+IMAPAccount jmcclain2020-protonmail
+Host 127.0.0.1
+Port 1143
+User jmcclain2020
+PassCmd "pass mbsync-jmcclain2020"
+AuthMechs LOGIN
+SSLType None
+
+IMAPStore jmcclain2020-protonmail-remote
+Account jmcclain2020-protonmail
+
+MaildirStore jmcclain2020-protonmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/jmcclain2020-protonmail/
+Inbox ~/.local/share/mail/jmcclain2020-protonmail/Inbox
+
+Channel jmcclain2020-protonmail
+Far :jmcclain2020-protonmail-remote:
+Near :jmcclain2020-protonmail-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *
+
+IMAPAccount j_mcclain2010-hotmail
+Host outlook.office365.com
+Port 993
+User j.mcclain2010@hotmail.com
+PassCmd "pass mbsync-j_mcclain2010"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore j_mcclain2010-hotmail-remote
+Account j_mcclain2010-hotmail
+
+MaildirStore j_mcclain2010-hotmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/j_mcclain2010-hotmail/
+Inbox ~/.local/share/mail/j_mcclain2010-hotmail/Inbox
+
+Channel j_mcclain2010-hotmail
+Far :j_mcclain2010-hotmail-remote:
+Near :j_mcclain2010-hotmail-local:
+Patterns *
+Create Both
+SyncState *
