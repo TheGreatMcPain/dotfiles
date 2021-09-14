@@ -2,7 +2,7 @@
 # This is simply a wrapper script for emacsclient.
 
 # Start daemon if not already running
-emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon
+emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon --chdir "$HOME"
 
 # Fix color issues with emacs inside alacritty.
 if [ $TERM = "alacritty" ]; then
