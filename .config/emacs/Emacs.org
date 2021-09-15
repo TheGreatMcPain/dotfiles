@@ -847,7 +847,7 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
   (use-package company
     ; :after lsp-mode
     ; :hook (lsp-mode . company-mode)
-    :config (setq global-company-mode 1)
+    :config (global-company-mode t)
     :bind (:map company-active-map
                 ("<tab>" . company-complete-selecion))
           (:map lsp-mode-map
@@ -859,6 +859,14 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
   (use-package company-box
     :hook (company-mode . company-box-mode))
 
+#+end_src
+
+** Code formatting
+
+#+begin_src emacs-lisp
+  
+  (use-package format-all)
+  
 #+end_src
 
 ** Projectile

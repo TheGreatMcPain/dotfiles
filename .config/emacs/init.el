@@ -535,7 +535,7 @@
 (use-package company
   ; :after lsp-mode
   ; :hook (lsp-mode . company-mode)
-  :config (setq global-company-mode 1)
+  :config (global-company-mode t)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selecion))
         (:map lsp-mode-map
@@ -546,6 +546,8 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
+(use-package format-all)
 
 (use-package projectile
   :diminish projectile-mode
