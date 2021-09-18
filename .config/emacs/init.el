@@ -63,14 +63,20 @@
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 (use-package tramp
-   :straight (tramp :build t :pre-build (("make" "autoloads")))
-   :config
-   (setq tramp-yesno-prompt-regexp (concat
-                                    (regexp-opt
-                                     '("Are you sure you want to continue connecting (yes/no)?"
-                                       "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
-                                     t)
-                                    "\\s-*")))
+  :ensure nil
+  :straight nil)
+
+;; Update tramp for lsp-mode (If the current one is too old).
+(if (version< tramp-version "2.5.0-pre")
+  (use-package tramp
+    :straight (tramp :build t :pre-build (("make" "autoloads")))
+    :config
+    (setq tramp-yesno-prompt-regexp (concat
+                                     (regexp-opt
+                                      '("Are you sure you want to continue connecting (yes/no)?"
+                                        "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
+                                      t)
+                                     "\\s-*"))))
 
 (setq inhibit-startup-message t)
 
