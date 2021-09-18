@@ -120,6 +120,16 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
 
 #+end_src
 
+* native-comp settings
+Settings related to the native-comp feature in emacs 28
+
+#+begin_src emacs-lisp
+  
+  ;; Disable warnings from async compiler.
+  (setq native-comp-async-report-warnings-errors nil)
+  
+#+end_src
+
 * Use newer Tramp version
 tramp-mode is a built-in emacs package that handles remote file editing.  The current version available through emacs-27 doesn't play nice with lsp-mode well, so we grab the latest version.
 

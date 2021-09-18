@@ -62,6 +62,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+;; Disable warnings from async compiler.
+(setq native-comp-async-report-warnings-errors nil)
+
 (use-package tramp
   :ensure nil
   :straight nil)
