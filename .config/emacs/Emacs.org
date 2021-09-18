@@ -120,6 +120,14 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
 
 #+end_src
 
+* Disable 'deprecated' warnings
+
+#+begin_src emacs-lisp :tangle ./early-init.el 
+  
+  (setq byte-compile-warnings '(not obsolete))
+  
+#+end_src
+
 * native-comp settings
 Settings related to the native-comp feature in emacs 28
 
