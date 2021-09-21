@@ -921,24 +921,6 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
 #+begin_src emacs-lisp
   
   (use-package magit
-    :config
-    (setq dotfiles-git-dir (concat "--git-dir=" (expand-file-name "~/.dotfiles")))
-    (setq dotfiles-work-tree (concat "--work-tree=" (expand-file-name "~")))
-  
-    (defun dotfiles-magit-status ()
-      (interactive)
-      (add-to-list 'magit-git-global-arguments dotfiles-git-dir)
-      (add-to-list 'magit-git-global-arguments dotfiles-work-tree)
-      (call-interactively 'magit-status))
-    (global-set-key (kbd "<f5> d") 'dotfiles-magit-status)
-  
-    ;; wrapper to remove additional args before starting magit
-    (defun magit-status-with-removed-dotfiles-args ()
-      (interactive)
-      (setq magit-git-global-arguments (remove dotfiles-git-dir magit-git-global-arguments))
-      (setq magit-git-global-arguments (remove dotfiles-work-tree magit-git-global-arguments))
-      (call-interactively 'magit-status))
-    (global-set-key (kbd "C-x g") 'magit-status-with-removed-dotfiles-args)
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
   
