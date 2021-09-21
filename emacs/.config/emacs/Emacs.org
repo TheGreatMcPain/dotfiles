@@ -143,21 +143,18 @@ tramp-mode is a built-in emacs package that handles remote file editing.  The cu
 
 #+begin_src emacs-lisp
   
-  (use-package tramp
-    :ensure nil
-    :straight nil)
-  
-  ;; Update tramp for lsp-mode (If the current one is too old).
-  (if (version< tramp-version "2.5.0-pre")
-    (use-package tramp
-      :straight (tramp :build t :pre-build (("make" "autoloads")))
-      :config
-      (setq tramp-yesno-prompt-regexp (concat
-                                       (regexp-opt
-                                        '("Are you sure you want to continue connecting (yes/no)?"
-                                          "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
-                                        t)
-                                       "\\s-*"))))
+  ;; Emacs 28 hasn't been released yet this means we can assume that
+  ;; the tramp version will be too old if the emacs version is under 28.
+  (if (version< emacs-major-version "28")
+      (use-package tramp
+        :straight (tramp :build t :pre-build (("make" "autoloads")))
+        :config
+        (setq tramp-yesno-prompt-regexp (concat
+                                         (regexp-opt
+                                          '("Are you sure you want to continue connecting (yes/no)?"
+                                            "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
+                                          t)
+                                         "\\s-*"))))
   
 #+end_src
 
