@@ -67,7 +67,7 @@
 
 ;; Emacs 28 hasn't been released yet this means we can assume that
 ;; the tramp version will be too old if the emacs version is under 28.
-(if (version< emacs-major-version "28")
+(if (< emacs-major-version 28)
     (use-package tramp
       :straight (tramp :build t :pre-build (("make" "autoloads")))
       :config
