@@ -454,6 +454,9 @@
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'jimjam/org-babel-tangle-config)))
 
+(use-package org-make-toc
+  :hook (org-mode . org-make-toc-mode))
+
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
