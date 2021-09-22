@@ -2,5 +2,5 @@
 
 # Install stow packages
 for d in $(find * -maxdepth 0 -type d); do
-    stow -v -t ~/ -R $d
+    stow -v -t ~/ -S $d
 done
