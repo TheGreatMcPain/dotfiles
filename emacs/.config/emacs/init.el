@@ -254,6 +254,12 @@
 (jimjam/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text"))
 
+(use-package perspective
+  :bind (("C-x k" . persp-kill-buffer*)
+         ("C-x C-b" . persp-counsel-switch-buffer))
+  :init
+  (persp-mode))
+
 (defun jimjam/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
