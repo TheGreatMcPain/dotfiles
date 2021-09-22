@@ -432,7 +432,8 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
-   (python . t)))
+   (python . t)
+   (C . t)))
 
 (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
@@ -441,6 +442,7 @@
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("cc" . "src C"))
 
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun jimjam/org-babel-tangle-config ()

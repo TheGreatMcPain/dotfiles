@@ -620,26 +620,28 @@ We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]
 To execute or export code in ~org-mode~ code blocks, you’ll need to set up ~org-babel-load-languages~ for each language you’d like to use. [[https://orgmode.org/worg/org-contrib/babel/languages.html][This page]] documents all of the languages that you can use with ~org-babel~.
 
 #+begin_src emacs-lisp
-
+  
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (python . t)))
-
+     (python . t)
+     (C . t)))
+  
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
-
+  
 #+end_src
 
 ** Src Block Templates
 
 #+begin_src emacs-lisp
-
+  
   (require 'org-tempo)
 
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-
+  (add-to-list 'org-structure-template-alist '("cc" . "src C"))
+  
 #+end_src
 
 ** Auto-tangle Configuration Files
