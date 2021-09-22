@@ -7,7 +7,7 @@
 # ./install adopt  | (Atopt stow packages)
 
 # Install stow packages
-stow() {
+install() {
     for d in $(find * -maxdepth 0 -type d); do
         stow -v -t ~/ -S $d
     done
@@ -28,11 +28,11 @@ restow() {
 }
 
 if [ "$1"x = "stow"x ]; then
-    stow
+    install
 elif [ "$1"x = "adopt"x ]; then
     adopt
 elif [ "$1"x = "restow"x ]; then
     restow
 else
-    stow
+    install
 fi
