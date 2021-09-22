@@ -202,11 +202,13 @@
   (setq which-key-idle-delay 0.3))
 
 (use-package counsel
-:bind (("M-x" . counsel-M-x)
-       ("C-x b" . counsel-ibuffer)
-       ("C-x C-f" . counsel-find-file)
-       :map minibuffer-local-map
-       ("C-r" . 'counsel-minibuffer-history)))
+  :bind (("C-x b" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
 
 (use-package ivy
   :diminish
