@@ -1,6 +1,38 @@
 #!/bin/sh
 
+# TheGreatMcPain's dotfiles install script. (requires stow)
+#
+# ./install stow   | (Install stow packages) DEFAULT
+# ./install restow | (Restow stow packages)
+# ./install adopt  | (Atopt stow packages)
+
 # Install stow packages
-for d in $(find * -maxdepth 0 -type d); do
-    stow -v -t ~/ -S $d
-done
+stow() {
+    for d in $(find * -maxdepth 0 -type d); do
+        stow -v -t ~/ -S $d
+    done
+}
+
+# Adopt stow packages.
+adopt() {
+    for d in $(find * -maxdepth 0 -type d); do
+        stow -v -t ~/ --adopt $d
+    done
+}
+
+# Restow stow packages.
+restow() {
+    for d in $(find * -maxdepth 0 -type d); do
+        stow -v -t ~/ --adopt $d
+    done
+}
+
+if [ "$1"x = "stow"x ]; then
+    stow
+elif [ "$1"x = "adopt"x ]; then
+    adopt
+elif [ "$1"x = "restow"x ]; then
+    restow
+else
+    stow
+fi
