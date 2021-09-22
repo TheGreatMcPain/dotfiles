@@ -1,6 +1,82 @@
 #+title TheGreatMcPain's Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include all :ignore (this)
+:END:
+:CONTENTS:
+- [[#welcome][Welcome!]]
+- [[#indentation-setup][Indentation Setup]]
+- [[#startup-performance][Startup Performance]]
+- [[#package-system-setup][Package System Setup]]
+- [[#automatic-package-updates-currently-disabled-because-of-straightel][Automatic Package Updates (currently disabled, because of 'straight.el')]]
+- [[#keep-folders-clean][Keep Folders Clean]]
+- [[#disable-deprecated-warnings][Disable 'deprecated' warnings]]
+- [[#native-comp-settings][native-comp settings]]
+- [[#use-newer-tramp-version][Use newer Tramp version]]
+- [[#basic-ui-configuration][Basic UI Configuration]]
+  - [[#font-configuration][Font Configuration]]
+- [[#keybinding-configuration][Keybinding Configuration]]
+- [[#ui-configuration][UI Configuration]]
+  - [[#color-theme][Color Theme]]
+  - [[#better-modeline][Better Modeline]]
+  - [[#which-key][Which Key]]
+  - [[#ivy-and-counsel][Ivy and Counsel]]
+  - [[#helpful-help-commands][Helpful Help Commands]]
+  - [[#text-scaling][Text Scaling]]
+- [[#perspectiveel][Perspective.el]]
+- [[#org-mode][Org Mode]]
+  - [[#better-font-faces][Better font Faces]]
+  - [[#basic-config][Basic Config]]
+  - [[#nicer-heading-bullets][Nicer Heading Bullets]]
+  - [[#center-org-buffers][Center Org Buffers]]
+  - [[#configure-babel-languages][Configure Babel Languages]]
+  - [[#src-block-templates][Src Block Templates]]
+  - [[#auto-tangle-configuration-files][Auto-tangle Configuration Files]]
+  - [[#auto-table-of-contents][Auto Table-of-Contents]]
+- [[#development][Development]]
+  - [[#commenting][Commenting]]
+  - [[#snippets][Snippets]]
+  - [[#languages][Languages]]
+    - [[#language-servers][Language Servers]]
+      - [[#lsp-mode][lsp-mode]]
+      - [[#lsp-ui][lsp-ui]]
+      - [[#lsp-treemacs][lsp-treemacs]]
+      - [[#lsp-ivy][lsp-ivy]]
+    - [[#typescript][TypeScript]]
+    - [[#python][Python]]
+    - [[#cc][C/C++]]
+      - [[#member-functionsel][member-functions.el]]
+      - [[#cc-mode-configuration][cc-mode configuration]]
+    - [[#java][Java]]
+    - [[#dot-graphviz][Dot (graphviz)]]
+    - [[#yaml][Yaml]]
+  - [[#company-mode][Company Mode]]
+  - [[#code-formatting][Code formatting]]
+  - [[#projectile][Projectile]]
+  - [[#magit][Magit]]
+  - [[#git-gutter][Git-Gutter]]
+  - [[#rainbow-delimiters][Rainbow Delimiters]]
+  - [[#smartparens][SmartParens]]
+  - [[#tab-auto-detection][Tab Auto-detection]]
+  - [[#meson][Meson]]
+- [[#terminals][Terminals]]
+  - [[#term-mode][term-mode]]
+  - [[#for-better-color-support][For better color support]]
+  - [[#vterm-emacs-libvterm][vterm (emacs-libvterm)]]
+  - [[#shell-mode][shell-mode]]
+  - [[#eshell][Eshell]]
+- [[#file-management][File Management]]
+  - [[#ranger-ranger-emulation-for-dired][Ranger (ranger emulation for dired)]]
+- [[#email-with-mu4e][Email with mu4e]]
+- [[#better-editor-integration][Better EDITOR integration]]
+- [[#start-emacs-daemon][Start Emacs Daemon]]
+- [[#misc][Misc]]
+  - [[#elcord][Elcord]]
+  - [[#ebuild-mode][Ebuild Mode]]
+:END:
+
 * Welcome!
 This is my Emacs configuration it's mostly based on the configuration from SystemCrafter's Emacs From Scratch series on Youtube. This Org Mode file is designed to generate the ~init.el~ configuration file which is loaded by Emacs on startup.
 
@@ -659,6 +735,15 @@ This snippet adds a hook to ~org-mode~ buffers so that ~efs/org-babel-tangle-con
 
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'jimjam/org-babel-tangle-config)))
 
+#+end_src
+
+** Auto Table-of-Contents
+
+#+begin_src emacs-lisp
+  
+  (use-package org-make-toc
+    :hook (org-mode . org-make-toc-mode))
+  
 #+end_src
 
 * Development
