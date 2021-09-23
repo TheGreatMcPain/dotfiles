@@ -198,6 +198,23 @@ vterm_cmd() {
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
 
+# Used by vterm_set_directory():
+# This function will return the pid of the top-level parent process
+top_level_parent_pid () {
+    if [ -z $1 ]; then
+        pid=$(exec sh -c 'echo "$PPID"')       
+    else
+        pid=$1
+    fi
+    ppid=$(ps -o 'ppid=' -p $pid)
+
+    if [ $ppid -eq 1 ]; then
+        echo $pid
+    else
+        top_level_parent_pid $ppid
+    fi
+}
+
 # Sync directory and host in the shell with Emacs's current directory.
 # You may need to manually specify the hostname instead of $(hostname) in case
 # $(hostname) does not return the correct string to connect to the server.
