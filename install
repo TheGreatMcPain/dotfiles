@@ -23,7 +23,7 @@ adopt() {
 # Restow stow packages.
 restow() {
     for d in $(find * -maxdepth 0 -type d); do
-        stow -v -t ~/ --adopt $d
+        stow -v -t ~/ -R $d
     done
 }
 
