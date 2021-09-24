@@ -595,7 +595,6 @@
 (use-package git-gutter
   :config
   (global-git-gutter-mode t)
-  (git-gutter:linum-setup)
   (global-set-key (kbd "C-x C-g") 'git-gutter)
   (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 
