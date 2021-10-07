@@ -258,7 +258,10 @@
   :bind (("C-x k" . persp-kill-buffer*)
          ("C-x C-b" . persp-counsel-switch-buffer))
   :init
-  (persp-mode))
+  (persp-mode)
+  :config
+  (setq persp-state-default-file
+        (concat user-emacs-directory "persp-state")))
 
 (defun jimjam/org-font-setup ()
   ;; Replace list hyphen with dot
