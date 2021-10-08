@@ -1,8 +1,7 @@
 " Global list of extentions.
-let g:coc_global_extentions = [
+let g:coc_global_extensions = [
       \'coc-clangd',
       \'coc-dictionary',
-      \'coc-discord-rpc',
       \'coc-explorer',
       \'coc-java',
       \'coc-json',
