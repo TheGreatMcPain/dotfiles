@@ -224,6 +224,6 @@ if which neofetch >/dev/null; then
     # Don't run neofetch if in tmux, using neovim's terminal emulator, or using root.
     if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || \
         [ -n "$MYVIMRC" ] || [ "$USER" = root ]; ) then
-        neofetch --ascii "$(fortune -o -s | cowsay -f stegosaurus)"
+        neofetch --ascii "$(fortune -s | cowsay -f stegosaurus)"
     fi
 fi
