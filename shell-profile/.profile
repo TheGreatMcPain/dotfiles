@@ -85,16 +85,18 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 # because zsh takes a bit to open since I use powerlevel10k now.
 export SXHKD_SHELL=/bin/sh
 
-# Use NeoVim
-# export EDITOR=nvim
-# export VISUAL=nvim
+if [ "$USER" = "snakes" ]; then
+    # Use NeoVim when logged in as snakes.
+    export EDITOR=nvim
+    export VISUAL=nvim
+else
+    # If emacs daemon isn't running start it.
+    # emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon >/dev/null 2>&1 &
 
-# If emacs daemon isn't running start it.
-# emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon >/dev/null 2>&1 &
-
-# Use Emacs (fix alacritty issues too)
-export EDITOR="emacs-c -nw"
-export VISUAL="emacs-c -nw"
+    # Use Emacs (fix alacritty issues too)
+    export EDITOR="emacs-c -nw"
+    export VISUAL="emacs-c -nw"
+fi
 
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"
