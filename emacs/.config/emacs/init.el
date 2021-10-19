@@ -695,6 +695,24 @@
   :custom
   (ranger-show-literal nil))
 
+(use-package mu4e
+  :straight nil
+  :ensure nil ;; Needs to be installed via package manager
+  :config
+
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir (expand-file-name "~/.local/share/mail"))
+
+  (add-to-list 'load-path (expand-file-name "secret" user-emacs-directory))
+  (load "my-mu4e-contexts")
+
+  (setq mu4e-contexts (my-mu4e-contexts)))
+
 (defun jimjam/setup-with-editor ()
   (dolist (mode '(shell-mode-hook
                   eshell-mode-hook

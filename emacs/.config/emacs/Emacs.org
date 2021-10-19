@@ -1180,11 +1180,11 @@ Useful key bindings:
 One advantage of ~shell-mode~ on Windows is that it’s the only way to run ~cmd.exe~, PowerShell, Git Bash, etc from within Emacs. Here’s an example of how you would set up ~shell-mode~ to run PowerShell on Windows:
 
 #+begin_src emacs-lisp
-
+  
   (when (eq system-type 'windows-nt)
     (setq explicit-shell-file-name "powershell.exe")
     (setq explicit-powershell.exe-args '()))
-
+  
 #+end_src
 
 ** Eshell
@@ -1248,6 +1248,30 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
      :custom
      (ranger-show-literal nil))
 
+#+end_src
+
+* Email with mu4e
+
+#+begin_src emacs-lisp
+  
+  (use-package mu4e
+    :straight nil
+    :ensure nil ;; Needs to be installed via package manager
+    :config
+  
+    ;; This is set to 't' to avoid mail syncing issues when using mbsync
+    (setq mu4e-change-filenames-when-moving t)
+  
+    ;; Refresh mail using isync every 10 minutes
+    (setq mu4e-update-interval (* 10 60))
+    (setq mu4e-get-mail-command "mbsync -a")
+    (setq mu4e-maildir (expand-file-name "~/.local/share/mail"))
+  
+    (add-to-list 'load-path (expand-file-name "secret" user-emacs-directory))
+    (load "my-mu4e-contexts")
+  
+    (setq mu4e-contexts (my-mu4e-contexts)))
+  
 #+end_src
 
 * Better EDITOR integration
