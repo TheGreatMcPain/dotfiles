@@ -207,6 +207,8 @@ add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
 vterm_set_directory() {
     if [ -n "$SSH_CONNECTION" ]; then
         vterm_cmd update-pwd "/-:""$(whoami)""@""$(hostname)"":""$(pwd)/"
+    elif [ -n "$SUDO_USER" ]; then
+        vterm_cmd update-pwd "/-:""$(whoami)""@""$(hostname)"":""$(pwd)/"
     else
         vterm_cmd update-pwd "$(pwd)/"
     fi
