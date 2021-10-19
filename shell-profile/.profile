@@ -55,7 +55,7 @@ fi
 if [ "$USER" = "root" ]; then
     alias root="echo You\'re already root\!"
 else
-    alias root="sudo su -l -"
+    alias root="sudo -i"
 fi
 
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
