@@ -13,7 +13,7 @@
     "java"
   ],
 
-  "python.linting.enabled": true,
+  "python.linting.enabled": false,
   "python.linting.pylintEnabled": true,
   "python.formatting.provider": "black",
 
