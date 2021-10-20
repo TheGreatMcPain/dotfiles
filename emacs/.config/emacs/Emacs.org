@@ -1267,6 +1267,16 @@ For more thoughts on Eshell, check out these articles by Pierre Neidhardt:
     (setq mu4e-get-mail-command "mbsync -a")
     (setq mu4e-maildir (expand-file-name "~/.local/share/mail"))
   
+    ;; Setup initial smtp configuration.
+    (load "smtpmail")
+    (load "starttls")
+    (setq message-send-mail-function (quote smtpmail-send-it))
+    (setq smtpmail-stream-type 'starttls)
+    (setq smtpmail-debug-info t)
+    (setq smtpmail-debug-verb t)
+    (setq smtpmail-smtp-service 587)
+  
+    ;; Load mu4e contexts from seperate file.
     (add-to-list 'load-path (expand-file-name "secret" user-emacs-directory))
     (load "my-mu4e-contexts")
   
