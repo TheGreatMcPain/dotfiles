@@ -18,6 +18,8 @@ Plug 'tmux-plugins/vim-tmux'                            " tmux.conf support for 
 Plug 'gentoo/gentoo-syntax'                             " Gentoo support
 Plug 'wlangstroth/vim-racket'                           " Racket support
 
+Plug 'jbyuki/instant.nvim'                              " Collaberative editing
+
 " NeoVim in FireFox
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
