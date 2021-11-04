@@ -9,4 +9,4 @@ if [ $TERM = "alacritty" ]; then
     export TERM="alacritty-direct"
 fi
 
-exec emacsclient -c $@
+exec emacsclient -c "$@"
