@@ -1,5 +1,5 @@
 configuration {
-	theme: "/usr/share/rofi/themes/gruvbox-dark.rasi";
 	sort: true;
 	sorting-method: "normal";
 }
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
