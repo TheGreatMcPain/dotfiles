@@ -2,7 +2,7 @@
 ;;       in Emacs and init.el will be generated automatically!
 
 (defun jimjam/get-font-size ()
-  (if (string-equal (system-name) "james-gentoo-laptop") 100 120))
+  (if (string-equal (system-name) "james-gentoo-laptop") 100 175))
 
 ;; You will most likely need to adjust this font size for your system!
 (defvar jimjam/default-font-size (jimjam/get-font-size))
