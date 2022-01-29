@@ -75,6 +75,18 @@ super + shift + t
     xbacklight {+10,-10}
 
 #
+# dunst hotkeys (ported from older dunst config)
+#
+ctrl + {_,shift + }space
+    dunstctl {close,close-all}
+
+ctrl + grave
+    dunstctl history-pop
+
+ctrl + >
+    dunstctl context
+
+#
 # bspwm hotkeys
 #
 
