@@ -75,15 +75,16 @@ super + shift + t
     xbacklight {+10,-10}
 
 #
-# dunst hotkeys (ported from older dunst config)
+# dunst hotkeys
 #
-ctrl + {_,shift + }space
+
+super + n + {_,shift + }space
     dunstctl {close,close-all}
 
-ctrl + grave
+super + n + grave
     dunstctl history-pop
 
-ctrl + >
+super + n + >
     dunstctl context
 
 #
