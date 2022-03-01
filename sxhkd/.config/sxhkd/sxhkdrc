@@ -78,14 +78,8 @@ super + shift + t
 # dunst hotkeys
 #
 
-super + n + {_,shift + }space
+super + {_,shift + }F9
     dunstctl {close,close-all}
-
-super + n + grave
-    dunstctl history-pop
-
-super + n + >
-    dunstctl context
 
 #
 # bspwm hotkeys
