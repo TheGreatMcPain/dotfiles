@@ -41,6 +41,16 @@ audio_output {
 
 audio_output {
 	type "alsa"
+	name "iFi Hip Dac 2"
+	auto_resample "no"
+	auto_channels "no"
+	auto_format   "no"
+	device "hw:CARD=Audio"
+	mixer_type    "null"
+}
+
+audio_output {
+	type "alsa"
 	name "Nvidia HDMI"
 	auto_resample "no"
 	auto_channels "no"
