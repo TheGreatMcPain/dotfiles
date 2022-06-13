@@ -11,7 +11,7 @@ bspwm_exec -a -e sxhkd
 # pulseaudio -D
 
 # Pipewire (Kill pulseaudio first if running)
-pulseaudio --kill; pipewire &
+pulseaudio --kill; gentoo-pipewire-launcher &
 
 # Compositor
 if which nvidia-settings >/dev/null; then

@@ -3,7 +3,7 @@
 if ! pgrep -x "pipewire" >/dev/null; then
     notify-send --urgency=low "PipeWire Started"
     echo "ON" > /tmp/pulse-status
-    exec pipewire
+    exec gentoo-pipewire-launcher
 else
     notify-send --urgency=low "PipeWire Stopped"
     echo "OFF" > /tmp/pulse-status
