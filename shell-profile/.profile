@@ -64,9 +64,8 @@ alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles'
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
-# Use nvimpager as PAGER, and replace cat with nvimpager
+# Use nvimpager as PAGER
 if which nvimpager >/dev/null; then
-  alias cat="nvimpager"
   export MANPAGER="nvimpager"
   export PAGER="nvimpager"
 fi
