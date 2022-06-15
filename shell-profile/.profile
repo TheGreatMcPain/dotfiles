@@ -90,7 +90,7 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 # because zsh takes a bit to open since I use powerlevel10k now.
 export SXHKD_SHELL=/bin/sh
 
-if which emacs >/dev/null; then
+if which /usr/bin/emacs >/dev/null; then
     # If emacs daemon warn the user.
     if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
         echo "Emacs daemon not-running! start it with: emacs-start-daemon"
