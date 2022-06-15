@@ -58,6 +58,12 @@ else
     alias root="sudo -i"
 fi
 
+# Emacs
+alias emacs="emacsclient -a 'emacs' -c"
+alias em="emacsclient -a 'emacs -nw' -c -nw"
+alias emacs-kill-daemon="emacsclient -e '(save-buffers-kill-emacs)'"
+alias emacs-start-daemon='/usr/bin/emacs --daemon & disown'
+
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
 alias virtualbox='QT_QPA_PLATFORMTHEME=none virtualbox'
 alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
@@ -85,12 +91,14 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 export SXHKD_SHELL=/bin/sh
 
 if which emacs >/dev/null; then
-    # If emacs daemon isn't running start it.
-    # emacsclient -a false -e 't' >/dev/null 2>&1 || emacs --daemon >/dev/null 2>&1 &
+    # If emacs daemon warn the user.
+    if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
+        echo "Emacs daemon not-running! start it with: emacs-start-daemon"
+    fi
 
-    # Use Emacs (fix alacritty issues too)
-    export EDITOR="emacs-c -nw"
-    export VISUAL="emacs-c -nw"
+    # Use Emacs
+    export EDITOR="emacsclient -c -nw"
+    export VISUAL=$EDITOR
 else
     # Use NeoVim if emacs is not present.
     export EDITOR=nvim
