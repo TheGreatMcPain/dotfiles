@@ -7,6 +7,9 @@ bspwm_exec -a -e multilockscreen -o "-w"
 # Keyboard Shortcuts
 bspwm_exec -a -e sxhkd
 
+# Emacs daemon
+bspwm_exec -a -e /usr/bin/emacs -o "--daemon"
+
 # Pulseaudio
 # pulseaudio -D
 
