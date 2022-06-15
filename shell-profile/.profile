@@ -94,6 +94,10 @@ if which emacs >/dev/null; then
     # If emacs daemon warn the user.
     if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
         echo "Emacs daemon not-running! start it with: emacs-start-daemon"
+        if [ "$USER" = "root" ]; then
+            echo "User is 'root' auto-starting Emacs daemon."
+            /usr/bin/emacs --daemon >/dev/null 2>&1
+        fi
     fi
 
     # Use Emacs
