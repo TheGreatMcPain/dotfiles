@@ -423,8 +423,7 @@ animation-charging-framerate = 500
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = ${env:TEMPZONE}
-hwmon-path = /sys/class/hwmon/hwmon2/temp1_input
+hwmon-path = ${env:HWMONPATH}
 warn-temperature = 60
 
 format = <ramp> <label>
