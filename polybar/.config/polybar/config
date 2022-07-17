@@ -89,7 +89,7 @@ label-disconnected-foreground = ${colors.gray}
 
 [module/eth-usage]
 type = internal/network
-interface = enp9s0
+interface = enp6s0
 interval = 3.0
 
 format-connected-underline = ${colors.darkgreen}
@@ -319,7 +319,7 @@ label-disconnected-foreground = ${colors.gray}
 
 [module/eth]
 type = internal/network
-interface = enp9s0
+interface = enp6s0
 interval = 3.0
 
 format-connected-underline = ${colors.darkgreen}
@@ -424,6 +424,7 @@ animation-charging-framerate = 500
 [module/temperature]
 type = internal/temperature
 thermal-zone = ${env:TEMPZONE}
+hwmon-path = /sys/class/hwmon/hwmon2/temp1_input
 warn-temperature = 60
 
 format = <ramp> <label>
