@@ -1,8 +1,12 @@
 #!/bin/sh
 
+# If my 3060 is attached to the nvidia driver then use it to render Vulkan and OpenGL
+export PRIMUS_VK_DISPLAYID=10de:1c81
+export PRIMUS_VK_RENDERID=10de:2504
+
 # Status Bar
 # With temperature zone 2
-~/.config/polybar/launch.sh 2 &
+~/.config/polybar/launch.sh '/sys/class/hwmon/hwmon2/temp1_input' &
 
 # Let people know what weird shit I watch/listen to.
 bspwm_exec -e mpd_discord_richpresence -o '--no-idle'
@@ -11,14 +15,17 @@ bspwm_exec -e discord-rich-presence-plex
 # Hide me
 # bspwm_exec -e openpyn -o "-c us --netflix --p2p -o '--redirect-gateway def1 --allow-pull-fqdn --route authserver.mojang.com 255.255.255.255 net_gateway --route mcoapi.minecraft.net 255.255.255.255 net_gateway'"
 
+# Lights
+bspwm_exec -e openrgb -o '--startminimized --mode direct --color FFFFF'
+
 # Other Things
 bspwm_exec -e mpd
 bspwm_exec -e mpdscribble
 bspwm_exec -e gamemoded
-bspwm_exec -e syncthing -o '-no-browser -logflags=0'
+#bspwm_exec -e syncthing -o '-no-browser -logflags=0'
 # bspwm_exec -e megasync # MEMORY LEAKS
 bspwm_exec -e redshift-gtk
-bspwm_exec -e steam -o '-silent %U'
+bspwm_exec -e steam -o '-silent %U -no-cef-sandbox'
 bspwm_exec -e ckb-next -o '-b'
 # bspwm_exec -e hp-systray
 bspwm_exec -e discord-to-systray -p 'Discord'
