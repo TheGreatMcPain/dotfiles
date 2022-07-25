@@ -29,15 +29,15 @@ audio_output {
 	mixer_type    "null"
 }
 
-audio_output {
-	type "alsa"
-	name "Xonar DGX"
-	auto_resample "no"
-	auto_channels "no"
-	auto_format   "no"
-	device "hw:CARD=DGX"
-	mixer_type     "null"
-}
+# audio_output {
+# 	type "alsa"
+# 	name "Xonar DGX"
+# 	auto_resample "no"
+# 	auto_channels "no"
+# 	auto_format   "no"
+# 	device "hw:CARD=DGX"
+# 	mixer_type     "null"
+# }
 
 audio_output {
 	type "alsa"
