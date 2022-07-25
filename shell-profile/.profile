@@ -71,7 +71,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.d
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
 # Use nvimpager as PAGER
-if which nvimpager >/dev/null; then
+if which nvimpager &>/dev/null; then
   export MANPAGER="nvimpager"
   export PAGER="nvimpager"
 fi
@@ -90,7 +90,7 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 # because zsh takes a bit to open since I use powerlevel10k now.
 export SXHKD_SHELL=/bin/sh
 
-if which /usr/bin/emacs >/dev/null; then
+if which /usr/bin/emacs &>/dev/null; then
     # If emacs daemon warn the user.
     if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
         echo "Emacs daemon not-running! start it with: emacs-start-daemon"
