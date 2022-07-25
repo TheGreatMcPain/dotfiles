@@ -2,12 +2,12 @@
 
 if pgrep -x "picom" >/dev/null; then
     pkill picom
-    if which nvidia-settings >/dev/null; then
-        nvidia-force-comp-pipeline --no
-    fi
+    #if which nvidia-settings >/dev/null; then
+    #    nvidia-force-comp-pipeline --no
+    #fi
 else
     if which nvidia-settings >/dev/null; then
-        nvidia-force-comp-pipeline --yes
+        #nvidia-force-comp-pipeline --yes
         picom -b --backend xrender
     else
         picom -b --vsync
