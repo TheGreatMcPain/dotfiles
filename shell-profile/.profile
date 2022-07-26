@@ -59,8 +59,8 @@ else
 fi
 
 # Emacs
-alias emacs="emacsclient -a 'emacs' -c"
-alias em="emacsclient -a 'emacs -nw' -c -nw"
+alias emacs-client="emacsclient -a 'emacs' -c"
+alias emacs-client-nw="emacsclient -a 'emacs -nw' -c -nw"
 alias emacs-kill-daemon="emacsclient -e '(save-buffers-kill-emacs)'"
 alias emacs-start-daemon='/usr/bin/emacs --daemon & disown'
 
@@ -93,11 +93,7 @@ export SXHKD_SHELL=/bin/sh
 if which /usr/bin/emacs &>/dev/null; then
     # If emacs daemon warn the user.
     if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
-        echo "Emacs daemon not-running! start it with: emacs-start-daemon"
-        if [ "$USER" = "root" ]; then
-            echo "User is 'root' auto-starting Emacs daemon."
-            /usr/bin/emacs --daemon >/dev/null 2>&1
-        fi
+        /usr/bin/emacs --daemon >/dev/null 2>&1
     fi
 
     # Use Emacs
