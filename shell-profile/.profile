@@ -20,6 +20,7 @@ export APPIMAGE_EXTRACT_AND_RUN=1
 
 ## Cleanup ##
 # XDG Base Dirs
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -90,15 +91,19 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 # because zsh takes a bit to open since I use powerlevel10k now.
 export SXHKD_SHELL=/bin/sh
 
+# EDITOR settings
 if which /usr/bin/emacs &>/dev/null; then
-    # If emacs daemon warn the user.
+    # If emacs daemon is running use emacsclient as EDITOR
+    # otherwise fallback to NeoVim.
     if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
-        /usr/bin/emacs --daemon >/dev/null 2>&1
+        # Use NeoVim if emacs daemon is not running.
+        export EDITOR=nvim
+        export VISUAL=nvim
+    else
+        # Use Emacs
+        export EDITOR="emacsclient -c -nw"
+        export VISUAL=$EDITOR
     fi
-
-    # Use Emacs
-    export EDITOR="emacsclient -c -nw"
-    export VISUAL=$EDITOR
 else
     # Use NeoVim if emacs is not present.
     export EDITOR=nvim
