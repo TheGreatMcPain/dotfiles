@@ -65,19 +65,6 @@
 ;; Disable warnings from async compiler.
 (setq native-comp-async-report-warnings-errors nil)
 
-;; Emacs 28 hasn't been released yet this means we can assume that
-;; the tramp version will be too old if the emacs version is under 28.
-(if (< emacs-major-version 28)
-    (use-package tramp
-      :straight (tramp :build t :pre-build (("make" "autoloads")))
-      :config
-      (setq tramp-yesno-prompt-regexp (concat
-                                       (regexp-opt
-                                        '("Are you sure you want to continue connecting (yes/no)?"
-                                          "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
-                                        t)
-                                       "\\s-*"))))
-
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1) ; Disable visible scrollbar
@@ -257,6 +244,8 @@
 (use-package perspective
   :bind (("C-x k" . persp-kill-buffer*)
          ("C-x C-b" . persp-counsel-switch-buffer))
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))
   :init
   (persp-mode)
   :config
@@ -473,11 +462,7 @@
   (setq lsp-headerline-breadcrumb-setments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
-;; Use my fork as it contains fixes for tramp.
 (use-package lsp-mode
-  :straight (lsp-mode :type git :host github :repo "emacs-lsp/lsp-mode"
-                      :fork (:host github
-                             :repo "TheGreatMcPain/lsp-mode"))
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . jimjam/lsp-mode-setup)
   :init
@@ -485,14 +470,7 @@
   :custom
   (lsp-enable-on-type-formatting nil)
   :config
-  (lsp-enable-which-key-integration t)
-  (progn
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-tramp-connection "/usr/lib/llvm/12/bin/clangd")
-                      :major-modes '(c-mode c++-mode objc-mode cuda-mode)
-                      :remote? t
-                      :server-id 'clangd-remote)))
-  )
+  (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)

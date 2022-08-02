@@ -14,7 +14,6 @@
 - [[#keep-folders-clean][Keep Folders Clean]]
 - [[#disable-deprecated-warnings][Disable 'deprecated' warnings]]
 - [[#native-comp-settings][native-comp settings]]
-- [[#use-newer-tramp-version][Use newer Tramp version]]
 - [[#basic-ui-configuration][Basic UI Configuration]]
   - [[#font-configuration][Font Configuration]]
 - [[#keybinding-configuration][Keybinding Configuration]]
@@ -211,26 +210,6 @@ Settings related to the native-comp feature in emacs 28
   
   ;; Disable warnings from async compiler.
   (setq native-comp-async-report-warnings-errors nil)
-  
-#+end_src
-
-* Use newer Tramp version
-tramp-mode is a built-in emacs package that handles remote file editing.  The current version available through emacs-27 doesn't play nice with lsp-mode well, so we grab the latest version.
-
-#+begin_src emacs-lisp
-  
-  ;; Emacs 28 hasn't been released yet this means we can assume that
-  ;; the tramp version will be too old if the emacs version is under 28.
-  (if (< emacs-major-version 28)
-      (use-package tramp
-        :straight (tramp :build t :pre-build (("make" "autoloads")))
-        :config
-        (setq tramp-yesno-prompt-regexp (concat
-                                         (regexp-opt
-                                          '("Are you sure you want to continue connecting (yes/no)?"
-                                            "Are you sure you want to continue connecting (yes/no/[fingerprint])?")
-                                          t)
-                                         "\\s-*"))))
   
 #+end_src
 
@@ -784,16 +763,12 @@ The ~lsp-keymap-prefix~ setting enables you to define a prefix for where ~lsp-mo
 The ~which-key~ integration adds helpful descriptions of the various keys so you should be able to learn a lot just by pressing ~C-c l~ in a ~lsp-mode~ buffer and trying different things that you find there.
 
 #+begin_src emacs-lisp
-  
+
   (defun jimjam/lsp-mode-setup ()
     (setq lsp-headerline-breadcrumb-setments '(path-up-to-project file symbols))
     (lsp-headerline-breadcrumb-mode))
-  
-  ;; Use my fork as it contains fixes for tramp.
+
   (use-package lsp-mode
-    :straight (lsp-mode :type git :host github :repo "emacs-lsp/lsp-mode"
-                        :fork (:host github
-                               :repo "TheGreatMcPain/lsp-mode"))
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . jimjam/lsp-mode-setup)
     :init
@@ -801,15 +776,8 @@ The ~which-key~ integration adds helpful descriptions of the various keys so you
     :custom
     (lsp-enable-on-type-formatting nil)
     :config
-    (lsp-enable-which-key-integration t)
-    (progn
-      (lsp-register-client
-       (make-lsp-client :new-connection (lsp-tramp-connection "/usr/lib/llvm/12/bin/clangd")
-                        :major-modes '(c-mode c++-mode objc-mode cuda-mode)
-                        :remote? t
-                        :server-id 'clangd-remote)))
-    )
-  
+    (lsp-enable-which-key-integration t))
+
 #+end_src
 
 **** lsp-ui
