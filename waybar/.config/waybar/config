@@ -7,8 +7,8 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces", "tray", "mpd"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["pulseaudio", "network", "disk", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
     "wlr/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
@@ -109,6 +109,10 @@
     "memory": {
         "interval": 30,
         "format": "{used:0.1f}G/{total:0.1f}G "
+    },
+    "disk": {
+        "interval": 30,
+        "format": "{free} ",
     },
     "temperature": {
         // "thermal-zone": 2,
