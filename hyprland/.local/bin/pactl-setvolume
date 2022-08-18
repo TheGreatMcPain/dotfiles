@@ -1,0 +1,15 @@
+#!/bin/sh
+
+CUR_VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+
+MAX_VOLUME=100
+
+NEW_VOLUME=$(($CUR_VOLUME + $1))
+
+echo $NEW_VOLUME
+
+if [ $NEW_VOLUME -le $MAX_VOLUME ]; then
+  pactl set-sink-volume @DEFAULT_SINK@ "$1"%
+else
+  pactl set-sink-volume @DEFAULT_SINK@ $MAX_VOLUME%
+fi
