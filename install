@@ -6,6 +6,19 @@
 # ./install restow | (Restow stow packages)
 # ./install adopt  | (Atopt stow packages)
 
+# Create directory stucture
+makedirs() {
+    if ! [ -f "./install" ]; then
+        echo "Not in root of repo."
+        exit 1
+    fi
+    for d in $(find * -maxdepth 0 -type d); do
+        cd $d
+        find -type d | tail -n +2 | xargs -I{} mkdir -vp "../{}"
+        cd ..
+    done
+}
+
 # Install stow packages
 install() {
     for d in $(find * -maxdepth 0 -type d); do
@@ -33,6 +46,12 @@ elif [ "$1"x = "adopt"x ]; then
     adopt
 elif [ "$1"x = "restow"x ]; then
     restow
+elif [ "$1"x = "makedirs"x ]; then
+    makedirs
 else
-    install
+    echo "Usage: ./install <stow,restow,adopt>"
+    echo "    ./install stow      | (Install stow packages) DEFAULT"
+    echo "    ./install restow    | (Restow stow packages)"
+    echo "    ./install adopt     | (Atopt stow packages)"
+    echo "    ./install makedirs  | (Create directory tree)"
 fi
