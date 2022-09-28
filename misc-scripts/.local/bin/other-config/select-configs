@@ -14,6 +14,7 @@ if [ "$COMPUTER" = "desktop" ] || [ "$COMPUTER" = "laptop" ]; then
     ln -sv ~/.config/ncmpcpp/art.sh.$COMPUTER ~/.config/ncmpcpp/art.sh
     ln -sv ~/.config/ncmpcpp/tmux_session.$COMPUTER ~/.config/ncmpcpp/tmux_session
     ln -sv ~/.config/hypr/hyprland-monitors.conf.$COMPUTER ~/.config/hypr/hyprland-monitors.conf
+    ln -sv ~/.config/hypr/hyprland-startup.conf.$COMPUTER ~/.config/hypr/hyprland-startup.conf
     ln -sv ~/.config/hypr/hyprpaper.conf.$COMPUTER ~/.config/hypr/hyprpaper.conf
 else
     echo "Invalid option!"
