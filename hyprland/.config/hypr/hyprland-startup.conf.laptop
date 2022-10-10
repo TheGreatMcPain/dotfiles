@@ -1,0 +1,5 @@
+# Startup applications (will move to seperate file)
+exec-once=mpd
+exec-once=syncthing -no-browser -logflags=0
+exec-once=steam -silent %U
+exec-once=discord --start-minimized
