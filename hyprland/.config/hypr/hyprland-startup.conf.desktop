@@ -1,0 +1,10 @@
+exec-once=discord --start-minimized
+exec-once=mpd
+exec-once=mpdscribble
+exec-once=mpd_discord_richpresence --no-idle
+exec-once=discord-rich-presence-plex
+exec-once=openrgb --startminimized --mode direct --color FFFFF
+exec-once=gamemoded
+exec-once=steam -silent %U -no-cef-sandbox
+exec-once=ckb-next -b
+#exec-once=qbittorrent
