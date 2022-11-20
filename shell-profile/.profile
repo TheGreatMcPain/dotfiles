@@ -72,10 +72,10 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.d
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
 # Use nvimpager as PAGER
-if which nvimpager &>/dev/null; then
-  export MANPAGER="nvimpager"
-  export PAGER="nvimpager"
-fi
+# if which nvimpager &>/dev/null; then
+#   export MANPAGER="nvimpager"
+#   export PAGER="nvimpager"
+# fi
 
 # Make QT use Gtk themes.
 # Requires qtstyleplugin
