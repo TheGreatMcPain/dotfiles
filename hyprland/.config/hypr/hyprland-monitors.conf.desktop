@@ -1,8 +1,13 @@
-monitor=DP-1,2560x1440@144,0x0,1
+# GTX 1050
+monitor=DP-1,2560x1440@120,0x0,1
 monitor=DVI-D-1,1920x1080@60,2560x0,1
-#monitor=HDMI-A-1,1920x1080@60,4480x0,1
+monitor=HDMI-A-1,1920x1080@60,4480x0,1
 #monitor=DVI-D-1,disable
-monitor=HDMI-A-1,disable
-workspace=DP-1,11
+#monitor=HDMI-A-1,disable
+workspace=DP-1,21
 workspace=DVI-D-1,1
-#workspace=HDMI-A-1,9
+workspace=HDMI-A-1,11
+
+# RTX 3060
+monitor=DP-2,2560x1440@120,0x0,1
+monitor=DP-3,disable
