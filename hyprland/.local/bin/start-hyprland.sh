@@ -7,9 +7,11 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export MOZ_ENABLE_WAYLAND=1
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __GLX_GSYNC_ALLOWED=1
+export __GL_VRR_ALLOWED=1
 export WLR_NO_HARDWARE_CURSORS=1
 export WLR_BACKEND=vulkan
-export QT_QPA_PLATFORM=wayland
-export GDK_BACKEND=wayland
+export QT_QPA_PLATFORM="wayland;xcb"
+export GDK_BACKEND="wayland,x11"
 export XDG_CURRENT_DESKTOP="Unity"
 exec dbus-run-session Hyprland
