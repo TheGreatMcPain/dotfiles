@@ -1,4 +1,4 @@
-exec-once=discord --start-minimized
+exec-once=webcord --start-minimized
 exec-once=mpd
 exec-once=mpdscribble
 exec-once=mpd_discord_richpresence --no-idle
