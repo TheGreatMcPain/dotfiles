@@ -1,7 +1,14 @@
 ncmpcpp_directory = ~/.config/ncmpcpp
 lyrics_directory = ~/.config/ncmpcpp/lyrics
 mpd_host = "~/.config/mpd/socket"
-execute_on_song_change = "~/.config/ncmpcpp/art.sh > /dev/null 2>&1"
+execute_on_song_change = "~/.config/ncmpcpp/ncmpcpp_cover_art.sh"
 user_interface = alternative
 autocenter_mode = yes
 display_bitrate = yes
+
+visualizer_look = "  "
+visualizer_spectrum_smooth_look = no
+startup_screen = visualizer
+startup_slave_screen = playlist
+startup_slave_screen_focus = yes
+locked_screen_width_part = 15
