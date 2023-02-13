@@ -8,4 +8,5 @@ exec-once=openrgb --startminimized
 exec-once=gamemoded
 exec-once=steam -silent %U -no-cef-sandbox
 exec-once=ckb-next -b
+exec-once=syncthing --no-browser
 #exec-once=qbittorrent
