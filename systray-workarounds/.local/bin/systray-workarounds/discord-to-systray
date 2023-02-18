@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-until wmctrl -F -c "Discord"; do sleep 2; done &
-
-exec /usr/bin/discord -no-sandbox

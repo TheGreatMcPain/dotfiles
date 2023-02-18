@@ -28,6 +28,6 @@ bspwm_exec -e redshift-gtk
 bspwm_exec -e steam -o '-silent %U -no-cef-sandbox'
 bspwm_exec -e ckb-next -o '-b'
 # bspwm_exec -e hp-systray
-bspwm_exec -e discord-to-systray -p 'Discord'
-bspwm_exec -e qbittorrent-to-systray -s 20 -p 'qbittorrent'
+# bspwm_exec -e Discord
+# bspwm_exec -e qbittorrent
 # bspwm_exec -e qbittorrent-nox -s 20
