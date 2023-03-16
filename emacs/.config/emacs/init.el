@@ -26,6 +26,9 @@
 
 (add-hook 'emacs-startup-hook #'jimjam/display-startup-time)
 
+;; Use "unstable" branch to be emacs-29 compatible.
+(setq straight-repository-branch "develop")
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
