@@ -1,11 +1,14 @@
 #!/bin/sh
 
-export LIBVA_DRIVER_NAME=nvdec
+export LIBVA_DRIVER_NAME=nvidia
+export NVD_BACKEND=direct
 export CLUTTER_BACKEND=wayland
 export XDG_SESSION_TYPE=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export MOZ_ENABLE_WAYLAND=1
 export GBM_BACKEND=nvidia-drm
+export EGL_PLATFORM=wayland
+export MOZ_DISABLE_RDD_SANDBOX=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export __GLX_GSYNC_ALLOWED=1
 export __GL_VRR_ALLOWED=1
