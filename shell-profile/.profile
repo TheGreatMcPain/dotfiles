@@ -92,23 +92,8 @@ export MPD_HOST=$XDG_CONFIG_HOME/mpd/socket
 export SXHKD_SHELL=/bin/sh
 
 # EDITOR settings
-if which /usr/bin/emacs &>/dev/null; then
-    # If emacs daemon is running use emacsclient as EDITOR
-    # otherwise fallback to NeoVim.
-    if ! emacsclient -a false -e 't' >/dev/null 2>&1; then
-        # Use NeoVim if emacs daemon is not running.
-        export EDITOR=nvim
-        export VISUAL=nvim
-    else
-        # Use Emacs
-        export EDITOR="emacsclient -c -nw"
-        export VISUAL=$EDITOR
-    fi
-else
-    # Use NeoVim if emacs is not present.
-    export EDITOR=nvim
-    export VISUAL=nvim
-fi
+export EDITOR=nvim
+export VISUAL=nvim
 
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"
