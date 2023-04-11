@@ -49,7 +49,6 @@
       - [[#member-functionsel][member-functions.el]]
       - [[#cc-mode-configuration][cc-mode configuration]]
     - [[#java][Java]]
-    - [[#dot-graphviz][Dot (graphviz)]]
     - [[#yaml][Yaml]]
   - [[#company-mode][Company Mode]]
   - [[#code-formatting][Code formatting]]
@@ -908,19 +907,6 @@ We also set the default coding style to "linux" which is close to the custom sty
     :config
     (setq lsp-java-java-path "/opt/openjdk-bin-11/bin/java")
     (add-hook 'java-mode-hook 'lsp))
-  
-#+end_src
-
-*** Dot (graphviz)
-dot is Small language for making graphs.
-
-#+begin_src emacs-lisp
-  
-  (use-package graphviz-dot-mode
-    :after company
-    :config
-    (setq graphviz-dot-indent-width 4)
-    (load "company-graphviz-dot"))
   
 #+end_src
 

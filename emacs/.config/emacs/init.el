@@ -525,12 +525,6 @@
   (setq lsp-java-java-path "/opt/openjdk-bin-11/bin/java")
   (add-hook 'java-mode-hook 'lsp))
 
-(use-package graphviz-dot-mode
-  :after company
-  :config
-  (setq graphviz-dot-indent-width 4)
-  (load "company-graphviz-dot"))
-
 (use-package yaml-mode
   :mode "Procfile\\'"
   :hook (yaml-mode . lsp-deferred))
