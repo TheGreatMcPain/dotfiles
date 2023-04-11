@@ -9,12 +9,6 @@ for dir in $(du "$HOME/.local/bin/" | cut -f2); do
 done
 export PATH
 
-## portage/compiler settings ##
-export NPROC=$(nproc)
-export NPROC_PLUS_ONE=$((NPROC+1))
-export MAKEOPTS="-j$NPROC_PLUS_ONE -l$NPROC"
-export EMERGE_DEFAULT_OPTS="--jobs=$NPROC_PLUS_ONE --load-average=$NPROC"
-
 ## Workaround fuse issue with appimages.
 export APPIMAGE_EXTRACT_AND_RUN=1
 
