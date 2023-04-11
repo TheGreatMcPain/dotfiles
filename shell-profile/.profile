@@ -95,6 +95,9 @@ export SXHKD_SHELL=/bin/sh
 export EDITOR=nvim
 export VISUAL=nvim
 
+# Emacs lsp-mode enable plists for better performance
+export LSP_USE_PLISTS=true
+
 # slrn (Usenet)
 export NNTPSERVER="news.newsgroup.ninja"
 

@@ -15,7 +15,10 @@
               tab-width 4)
 
 ;; The default is 800 kilobytes. Measured in bytes.
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold 100000000)
+
+;; The default is 4 kilobytes
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (defun jimjam/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
@@ -469,6 +472,7 @@
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . jimjam/lsp-mode-setup)
   :init
+  (setq lsp-use-plists "true")
   (setq lsp-keymap-prefix "C-c l") ;; Or "C-l", "s-l"
   :custom
   (lsp-enable-on-type-formatting nil)
@@ -541,8 +545,8 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+;; (use-package company-box
+;;   :hook (company-mode . company-box-mode))
 
 (use-package format-all)
 
