@@ -1,4 +1,5 @@
 # Startup applications (will move to seperate file)
+exec-once=~/.config/waybar/start.sh coretemp
 exec-once=mpd
 exec-once=syncthing -no-browser -logflags=0
 exec-once=steam -silent %U
