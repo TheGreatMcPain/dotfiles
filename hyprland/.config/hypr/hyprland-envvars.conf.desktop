@@ -19,4 +19,4 @@ env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = WLR_BACKEND,vulkan
 #env = QT_QPA_PLATFORM,"wayland"
 #env = GDK_BACKEND,"wayland"
-env = XDG_CURRENT_DESKTOP,"Unity"
+env = XDG_CURRENT_DESKTOP,Unity
