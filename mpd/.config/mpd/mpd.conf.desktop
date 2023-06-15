@@ -19,6 +19,12 @@ audio_output {
 }
 
 audio_output {
+	type "pipewire"
+	name "PipeWire Output"
+	mixer_type "null"
+}
+
+audio_output {
 	type "alsa"
 	name "SMSL M100"
 	auto_resample "no"
