@@ -1,13 +1,14 @@
 # GTX 1050
-monitor=desc:CMT GP27-FQS,2560x1440@144,0x0,1
-monitor=desc:CMT GP27-FQS US1225100540,2560x1440@144,0x0,1
+monitor=desc:CMT GP27-FQS,2560x1440@144,0x0,1,bitdepth,10
+monitor=desc:CMT GP27-FQS US1225100540,2560x1440@144,0x0,1,bitdepth,10
 monitor=desc:Acer Technologies GN246HL LW3AA0018533,1920x1080@144,2560x0,1
 monitor=desc:Samsung Electric Company SAMSUNG,1920x1080@60,4480x0,1
 #monitor=desc:Acer Technologies GN246HL LW3AA0018533,disable
-monitor=desc:Samsung Electric Company SAMSUNG,disable
+#monitor=desc:Samsung Electric Company SAMSUNG,disable
 workspace=desc:CMT GP27-FQS,21
+workspace=desc:CMT GP27-FQS US1225100540,21
 workspace=desc:Acer Technologies GN246HL LW3AA0018533,1
-#workspace=desc:Samsung Electric Company SAMSUNG,11
+workspace=desc:Samsung Electric Company SAMSUNG,11
 
 # RTX 3060
 monitor=DP-3,disable
