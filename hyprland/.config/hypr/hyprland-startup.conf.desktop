@@ -1,5 +1,5 @@
 exec-once=~/.config/waybar/start.sh zenpower
-exec-once=webcord --start-minimized
+exec-once=webcord --disable-gpu --start-minimized
 exec-once=mpd
 exec-once=mpdscribble
 exec-once=mpd_discord_richpresence --no-idle
