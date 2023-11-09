@@ -8,7 +8,7 @@
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces", "tray", "mpd"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "disk", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
+    "modules-right": ["wireplumber", "network", "disk", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
     "wlr/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
@@ -157,23 +157,10 @@
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
         "format-alt": "{bandwidthDownBytes}  {bandwidthUpBytes} "
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
         "on-click": "pavucontrol"
     },
 }

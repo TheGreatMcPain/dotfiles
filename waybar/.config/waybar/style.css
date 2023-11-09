@@ -74,6 +74,7 @@ window#waybar.chromium {
 #backlight,
 #network,
 #pulseaudio,
+#wireplumber,
 #custom-media,
 #tray,
 #mode,
@@ -158,6 +159,16 @@ label:focus {
 
 #network.disconnected {
   background-color: #f53c3c;
+}
+
+#wireplumber {
+  background-color: #f1c40f;
+  color: #000000;
+}
+
+#wireplumber.muted {
+  background-color: #90b1b1;
+  color: #2a5c45;
 }
 
 #pulseaudio {
