@@ -6,10 +6,10 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces", "tray", "mpd"],
+    "modules-left": ["hyprland/workspaces", "tray", "mpd"],
     "modules-center": ["sway/window"],
     "modules-right": ["wireplumber", "network", "disk", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "active-only": false,
