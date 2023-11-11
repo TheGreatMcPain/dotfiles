@@ -6,7 +6,7 @@
 #-------------------------------#
 
 function ImageLayer {
-    ueberzug layer -sp json
+    ueberzug layer -o kitty
 }
 
 COVER="/tmp/cover.png"
@@ -15,7 +15,7 @@ Y_PADDING=0
 
 function add_cover {
     if [ -e $COVER ]; then
-        echo "{\"action\": \"add\", \"identifier\": \"cover\", \"x\": $X_PADDING, \"y\": $Y_PADDING, \"path\": \"$COVER\"}";
+        echo "{\"action\": \"add\", \"identifier\": \"cover\", \"x\": $X_PADDING, \"y\": $Y_PADDING, \"max_height\": 0, \"max_width\": 0, \"path\": \"$COVER\"}";
     fi
 }
 
