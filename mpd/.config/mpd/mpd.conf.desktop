@@ -11,12 +11,12 @@ group               "james"
 bind_to_address     "any"
 bind_to_address     "~/.config/mpd/socket"
 
-audio_output {
-        type           "pulse"
-	name           "Pulse Output"
-	format         "384000:32:2"
-	mixer_type     "null"
-}
+# audio_output {
+#         type           "pulse"
+# 	name           "Pulse Output"
+# 	format         "384000:32:2"
+# 	mixer_type     "null"
+# }
 
 audio_output {
 	type "pipewire"
