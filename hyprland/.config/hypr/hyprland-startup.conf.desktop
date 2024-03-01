@@ -1,5 +1,5 @@
 exec-once=~/.config/waybar/start.sh zenpower
-exec-once=webcord --disable-gpu --start-minimized
+exec-once=vesktop --disable-gpu --start-minimized
 exec-once=mpd
 exec-once=mpdscribble
 exec-once=mpd_discord_richpresence --no-idle
@@ -9,5 +9,5 @@ exec-once=openrgb --startminimized
 exec-once=gamemoded
 exec-once=steam -silent %U -no-cef-sandbox
 exec-once=syncthing --no-browser
-exec-once=discordnp.pl --config ~/.config/discordnp.ini
+#exec-once=discordnp.pl --config ~/.config/discordnp.ini
 #exec-once=qbittorrent
