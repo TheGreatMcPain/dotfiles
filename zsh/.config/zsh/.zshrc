@@ -224,12 +224,10 @@ add-zsh-hook -Uz chpwd (){ vterm_set_directory }
 # export PRIMUS_VK_DISPLAYID=10de:1c81
 # export PRIMUS_VK_RENDERID=10de:2504
 
-# Run neofetch if running in 'kitty'
-# If not in kitty just run neofetch without the image.
-if which neofetch >/dev/null; then
-    # Don't run neofetch if in tmux, using neovim's terminal emulator, or using root.
+if which fastfetch >/dev/null; then
+    # Don't run fastfetch if in tmux, using neovim's terminal emulator, or using root.
     if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || \
         [ -n "$MYVIMRC" ] || [ "$USER" = root ]; ) then
-        neofetch --ascii "$(fortune -s | cowsay -f stegosaurus)"
+        fastfetch --pipe false --data-raw "$(fortune -o -s | cowsay -f stegosaurus)"
     fi
 fi
