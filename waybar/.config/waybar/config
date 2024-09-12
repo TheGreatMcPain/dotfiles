@@ -10,6 +10,7 @@
     "modules-center": ["sway/window"],
     "modules-right": ["wireplumber", "network", "disk", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock"],
     "hyprland/workspaces": {
+      "all-outputs": false,
       "format": "{icon}",
       "on-click": "activate",
       "active-only": false,
