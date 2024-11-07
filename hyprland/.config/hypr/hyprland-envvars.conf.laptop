@@ -8,4 +8,5 @@ env = XDG_SESSION_TYPE,wayland
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 #env = QT_QPA_PLATFORM,"wayland"
 #env = GDK_BACKEND,"wayland"
-env = XDG_CURRENT_DESKTOP,Unity
+env = XDG_SESSION_DESKTOP,Hyprland
+env = XDG_CURRENT_DESKTOP,Hyprland
