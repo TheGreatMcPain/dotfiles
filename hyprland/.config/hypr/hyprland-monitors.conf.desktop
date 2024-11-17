@@ -1,11 +1,9 @@
 # GTX 1050
-monitor=desc:CMT GP27-FQS,2560x1440@144,0x0,1,vrr,2,bitdepth,10
-monitor=desc:CMT GP27-FQS US1225100168,2560x1440@144,0x0,1,vrr,2,bitdepth,10
-monitor=desc:Acer Technologies GN246HL LW3AA0018533,1920x1080@144,2560x0,1
-#monitor=desc:Acer Technologies GN246HL LW3AA0018533,disable
-workspace=monitor:desc:CMT GP27-FQS,11
-workspace=monitor:desc:CMT GP27-FQS US1225100168,11
-workspace=monitor:desc:Acer Technologies GN246HL LW3AA0018533,1
+monitor=desc:CMT GP27-FUS 0000000000001,2560x1440@120,0x0,1
+#monitor=desc:Acer Technologies GN246HL LW3AA0018533,1920x1080@144,2560x0,1
+monitor=desc:Acer Technologies GN246HL LW3AA0018533,disable
+workspace=monitor:desc:CMT GP27-FUS 0000000000001,1
+#workspace=monitor:desc:Acer Technologies GN246HL LW3AA0018533,1
 
 # RTX 3080
 monitor=DP-3,disable
