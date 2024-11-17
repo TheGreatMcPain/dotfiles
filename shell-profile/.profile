@@ -72,7 +72,7 @@ alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 # fi
 
 # Make QT use Gtk themes.
-# Requires qtstyleplugin
+# Requires qtstyleplugin and qt6gtk2
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # Fix Java applications on bspwm
