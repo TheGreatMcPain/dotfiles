@@ -6,6 +6,9 @@
   "python.linting.enabled": false,
   "python.linting.pylintEnabled": true,
   "python.formatting.provider": "black",
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
 
   "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/utils/snips"],
 
@@ -43,5 +46,6 @@
       "path": "/usr/lib64/openjdk-11",
       "default": true
     }
-  ]
+  ],
+  "snippets.ultisnips.pythonPrompt": false
 }
