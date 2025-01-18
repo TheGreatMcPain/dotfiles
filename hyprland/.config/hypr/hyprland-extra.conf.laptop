@@ -1,18 +1,8 @@
-# Hardware decoding on Firefox via nvidia-vaapi-drivers
-env = NVD_BACKEND,direct
+## Env variables
+
+# Hardware decoding on Firefox via vaapi
 env = MOZ_DISABLE_RDD_SANDBOX,1
 env = MOZ_ENABLE_WAYLAND,1
-
-# Nvidia stuff
-env = GBM_BACKEND,nvidia-drm
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-env = LIBVA_DRIVER_NAME,nvidia
-env = __GLX_GSYNC_ALLOWED,1
-env = __GL_VRR_ALLOWED,1
-
-cursor {
-    no_hardware_cursors = true
-}
 
 # Toolkit Backend Variables
 env = QT_QPA_PLATFORM,wayland;xcb
@@ -27,3 +17,17 @@ env = XDG_SESSION_DESKTOP,Hyprland
 # QT Variables
 env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+
+## Monitors
+
+monitor=LVDS-1,1366x768@60,0x0,1
+workspace=LVDS-1,1
+
+## Startup
+
+exec-once=~/.config/waybar/start.sh coretemp
+exec-once=mpd
+exec-once=syncthing -no-browser -logflags=0
+#exec-once=steam -silent %U
+exec-once=vesktop --start-minimized
+exec-once=gammastep-indicator
