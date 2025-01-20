@@ -142,15 +142,22 @@ if ! [ -d "${ZDOTDIR}/powerlevel10k" ]; then
     git clone https://github.com/romkatv/powerlevel10k "${ZDOTDIR}/powerlevel10k"
 fi
 
-# Enable powerlevel10k on non-tty terminals
-if ! ( [ "$TERM" = "linux" ]; ) then
+# Source powerlevel10k
+if [[ -f "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
     # Enable powerlevel10k
     source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
-    
-    # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+fi
+
+# Don't use fancy powerlevel10k config if we're in a tty.
+if [ `tput colors` = "256" ]; then
+    POWERLEVEL9K_MODE="nerdfont-complete"
+
     [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 else
     prompt gentoo
+    
+    [[ ! -f ~/.config/zsh/.p10k.tty.zsh ]] || source ~/.config/zsh/.p10k.tty.zsh
+    echo "FUCK"
 fi
 
 # Needed for foot's (ctrl+shift+n) keybind to work properly
