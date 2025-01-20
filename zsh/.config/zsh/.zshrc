@@ -157,7 +157,6 @@ else
     prompt gentoo
     
     [[ ! -f ~/.config/zsh/.p10k.tty.zsh ]] || source ~/.config/zsh/.p10k.tty.zsh
-    echo "FUCK"
 fi
 
 # Needed for foot's (ctrl+shift+n) keybind to work properly
