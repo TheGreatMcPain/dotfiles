@@ -13,6 +13,9 @@ env = __GL_GSYNC_ALLOWED,1
 env = __GL_VRR_ALLOWED,1
 env = OGL_DEDICATED_HW_STATE_PER_CONTEXT,ENABLE_ROBUST
 
+# Electron flickering fix
+env = ELECTRON_OZONE_PLATFORM_HINT,auto
+
 # Toolkit Backend Variables
 env = QT_QPA_PLATFORM,wayland;xcb
 env = GDK_BACKEND,wayland,x11,*
@@ -30,6 +33,7 @@ env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 ## Monitors
 
 monitor=desc:CMT GP27-FUS 0000000000001,2560x1440@120,0x0,1,bitdepth,10
+monitor=DP-4,3840x2160@144,0x0,1.5,bitdepth,10
 monitor=desc:Acer Technologies GN246HL LW3AA0018533,1920x1080@120,auto-right,1
 monitor=HDMI-A-2,disable
 
@@ -64,5 +68,6 @@ misc {
 
 render {
     direct_scanout=true
-    explicit_sync=0
+    explicit_sync=1
+    explicit_sync_kms=0
 }
