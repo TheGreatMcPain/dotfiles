@@ -41,7 +41,7 @@ monitor=HDMI-A-2,disable
 
 exec-once=~/.config/waybar/start.sh zenstats
 exec-once=vesktop --disable-gpu --start-minimized
-exec-once=mpd
+exec-once=mpd --no-daemon
 exec-once=mpdscribble
 exec-once=mpDris2
 #exec-once=openrgb --startminimized
