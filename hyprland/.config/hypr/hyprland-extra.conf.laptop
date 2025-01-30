@@ -31,3 +31,7 @@ exec-once=syncthing -no-browser -logflags=0
 #exec-once=steam -silent %U
 exec-once=vesktop --start-minimized
 exec-once=gammastep-indicator
+
+render {
+    direct_scanout = true
+}
