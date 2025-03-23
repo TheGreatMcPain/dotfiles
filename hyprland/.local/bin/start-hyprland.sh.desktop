@@ -1,4 +1,4 @@
 #!/bin/sh
 
 export AQ_DRM_DEVICES=/dev/dri/card0
-exec dbus-run-session Hyprland
+exec dbus-launch --exit-with-session Hyprland
