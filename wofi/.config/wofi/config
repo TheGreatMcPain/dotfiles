@@ -1,2 +1,4 @@
 # Allows --show=run to work like dmenu
 always_parse_args=true
+allow_images=true
+normal_window=true
