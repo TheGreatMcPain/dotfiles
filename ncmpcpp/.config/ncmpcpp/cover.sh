@@ -6,7 +6,7 @@
 #-------------------------------#
 
 function ImageLayer {
-    ueberzug layer -o kitty
+    ueberzug layer -o sixel
 }
 
 COVER="/tmp/cover.png"
