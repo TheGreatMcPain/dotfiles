@@ -68,7 +68,4 @@ misc {
 
 render {
     direct_scanout=true
-    explicit_sync=1
-    explicit_sync_kms=0
-    cm_fs_passthrough=true
 }
