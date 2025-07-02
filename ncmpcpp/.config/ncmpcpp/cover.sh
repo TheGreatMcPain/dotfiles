@@ -19,6 +19,12 @@ function add_cover {
     fi
 }
 
+test -e "$COVER" || ~/.config/ncmpcpp/art.sh
+
+while ! test -e "$COVER"; do
+    sleep 1
+done
+
 clear
 ImageLayer -< <(
     add_cover
