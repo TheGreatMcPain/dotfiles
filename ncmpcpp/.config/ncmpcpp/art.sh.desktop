@@ -13,7 +13,7 @@
 #    fi
 #done
 
-MUSIC_DIR="/media/multi-media/Music"
+MUSIC_DIR="/media/multi-media/Media/Music"
 COVER="/tmp/cover.png"
 COVER_SIZE=265
 
