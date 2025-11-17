@@ -30,27 +30,53 @@ env = XDG_SESSION_DESKTOP,Hyprland
 env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 
+# Enable HDR Vulkan Layer
+#env = ENABLE_HDR_WSI,1
+
 ## Monitors
 
-monitor=desc:CMT GP27-FUS 0000000000001,2560x1440@144,0x0,1,bitdepth,10
-#monitor=DP-3,3840x2160@144,0x0,1.5,bitdepth,10
-#monitor=desc:Acer Technologies GN246HL LW3AA0018533,1920x1080@120,auto-right,1
-monitor=desc:Acer Technologies GN246HL LW3AA0018533,disable
-#monitor=desc:Hisense Electric Co. Ltd. HISENSE 0x616D0000,disable
-monitor=desc:Hisense Electric Co. Ltd. HISENSE 0x616D0000,3840x2160@120,0x0,2,bitdepth,10
+monitorv2 {
+    output = desc:CMT GP27-FUS 0000000000001
+    mode = 2560x1440@120
+    position = 0x0
+    scale = 1
+    bitdepth = 10
+    supports_wide_color = 1
+    supports_hdr = 1
+}
+
+monitorv2 {
+    output = desc:Hisense Electric Co. Ltd. HISENSE 0x616D0000
+    mode = 3840x2160@120
+    position = auto-right
+    scale = 1.5
+    bitdepth = 10
+    supports_wide_color = 1
+    supports_hdr = 1
+    disabled = 1
+}
+
+monitorv2 {
+    output = desc:Acer Technologies GN246HL LW3AA0018533
+    mode = 1920x1080@120
+    position = auto-right
+    scale = 1
+    disabled = 1
+}
 
 ## Startup
 
-exec-once=~/.config/waybar/start.sh zenstats
-exec-once=vesktop --disable-gpu --start-minimized
+exec-once=~/.config/waybar/start.sh zenpower
+exec-once=vesktop-bin --disable-gpu --start-minimized
 exec-once=mpd --no-daemon
 exec-once=mpdscribble
 exec-once=mpDris2
-#exec-once=openrgb --startminimized
+exec-once=openrgb --startminimized
 exec-once=gamemoded
 exec-once=steam -silent %U -no-cef-sandbox
 exec-once=syncthing --no-browser
-#exec-once=qbittorrent
+exec-once=qbittorrent
+exec-once=jellyfin-rpc
 
 experimental {
     xx_color_management_v4 = true
@@ -66,6 +92,12 @@ misc {
     vfr=true
 }
 
+debug {
+    full_cm_proto = true
+}
+
 render {
-    direct_scanout=true
+    direct_scanout=1
+    cm_fs_passthrough=2
+    cm_auto_hdr = 0
 }
