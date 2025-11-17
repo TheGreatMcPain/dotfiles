@@ -1,4 +1,4 @@
-music_directory     "/media/multi-media/Music"
+music_directory     "/media/multi-media/Media/Music"
 playlist_directory  "~/.config/mpd/playlists"
 db_file             "~/.config/mpd/database"
 log_file            "~/.config/mpd/log"
@@ -10,6 +10,8 @@ group               "james"
 
 bind_to_address     "any"
 bind_to_address     "~/.config/mpd/socket"
+
+replaygain  "album"
 
 # audio_output {
 #         type           "pulse"
@@ -34,16 +36,6 @@ audio_output {
 	dop "no"
 	mixer_type    "null"
 }
-
-# audio_output {
-# 	type "alsa"
-# 	name "Xonar DGX"
-# 	auto_resample "no"
-# 	auto_channels "no"
-# 	auto_format   "no"
-# 	device "hw:CARD=DGX"
-# 	mixer_type     "null"
-# }
 
 audio_output {
 	type "alsa"
