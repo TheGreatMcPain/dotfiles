@@ -37,9 +37,10 @@ env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 
 monitorv2 {
     output = desc:CMT GP27-FUS 0000000000001
-    mode = 2560x1440@120
+    #mode = 2560x1440@120
+    mode = 3840x2160@144
     position = 0x0
-    scale = 1
+    scale = 1.5
     bitdepth = 10
     supports_wide_color = 1
     supports_hdr = 1
@@ -77,6 +78,8 @@ exec-once=steam -silent %U -no-cef-sandbox
 exec-once=syncthing --no-browser
 exec-once=qbittorrent
 exec-once=jellyfin-rpc
+
+animation = fadeDpms,0
 
 experimental {
     xx_color_management_v4 = true
