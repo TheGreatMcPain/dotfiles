@@ -35,15 +35,7 @@ else
     alias root="sudo -i"
 fi
 
-# Emacs
-alias emacs-client="emacsclient -a 'emacs' -c"
-alias emacs-client-nw="emacsclient -a 'emacs -nw' -c -nw"
-alias emacs-kill-daemon="emacsclient -e '(save-buffers-kill-emacs)'"
-alias emacs-start-daemon='/usr/bin/emacs --daemon & disown'
-
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
-alias virtualbox='QT_QPA_PLATFORMTHEME=none virtualbox'
-alias VirtualBox='QT_QPA_PLATFORMTHEME=none VirtualBox'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles'
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
