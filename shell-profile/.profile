@@ -18,10 +18,7 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-export DISTCC_DIR=$XDG_CACHE_HOME/distcc
-export CCACHE_DIR=$XDG_CACHE_HOME/ccache
-export CCACHE_CONFIGPATH=$XDG_CONFIG_HOME/ccache.conf
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export DISTCC_DIR=/tmp/distcc
 export LESSHISTFILE="-"
 export INPUTRC=$XDG_CONFIG_HOME/inputrc
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
@@ -30,21 +27,6 @@ export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-
-# Since emerge likes to take exported vars first
-# before reading /etc/make.conf we need to disable these
-# when running emerge, or ebuild.
-if [ "$USER" = "root" ]; then
-    alias fix-emerge-env='unset XDG_CACHE_HOME DISTCC_DIR CCACHE_DIR CCACHE_CONFIGPATH WGETRC'
-    alias emerge='fix-emerge-env ; emerge'
-    alias ebuild='fix-emerge-env ; ebuild'
-    alias genup='fix-emerge-env ; genup'
-    alias buildkernel='fix-emerge-env ; buildkernel'
-    alias crossdev='fix-emerge-env ; crossdev'
-    alias emtee='fix-emerge-env ; emtee'
-    alias haskell-updater='fix-emerge-env ; haskell-updater'
-    alias lto-rebuild='fix-emerge-env ; lto-rebuild'
-fi
 
 # Aliases
 if [ "$USER" = "root" ]; then
