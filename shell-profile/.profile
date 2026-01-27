@@ -36,7 +36,6 @@ else
 fi
 
 alias music='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME/.dotfiles'
 alias dino-fortune='clear && fortune -o -s | cowsay -f stegosaurus'
 
 # Use nvimpager as PAGER
