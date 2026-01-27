@@ -1,6 +1,5 @@
 " Global list of extentions.
 let g:coc_global_extensions = [
-      \'coc-clangd',
       \'coc-dictionary',
       \'coc-explorer',
       \'coc-java',
