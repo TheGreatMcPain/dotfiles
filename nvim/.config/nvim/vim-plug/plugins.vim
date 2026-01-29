@@ -31,5 +31,3 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
-
-lua require('ansi').setup()
