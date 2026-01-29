@@ -19,6 +19,7 @@ Plug 'gentoo/gentoo-syntax'                             " Gentoo support
 Plug 'wlangstroth/vim-racket'                           " Racket support
 
 Plug 'jbyuki/instant.nvim'                              " Collaberative editing
+Plug '0xferrous/ansi.nvim'
 
 " NeoVim in FireFox
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -30,3 +31,5 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " Plugin's go before this line
 call plug#end()           " Stop vim-plug
+
+lua require('ansi').setup()
