@@ -8,6 +8,9 @@ done
 export PATH
 
 # Completion
+if [ -d "$HOME/.config/zsh/zfunc" ]; then
+    fpath+=~/.config/zsh/zfunc
+fi
 autoload -Uz compinit
 compinit
 # Prettify Completion
