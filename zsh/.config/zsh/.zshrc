@@ -239,10 +239,6 @@ add-zsh-hook -Uz chpwd (){ vterm_set_directory }
 
 ### END emacs-libvterm config ###
 
-# If my 3060 is attached to the nvidia driver then use it to render Vulkan and OpenGL
-# export PRIMUS_VK_DISPLAYID=10de:1c81
-# export PRIMUS_VK_RENDERID=10de:2504
-
 if which fastfetch >/dev/null; then
     # Don't run fastfetch if in tmux, using neovim's terminal emulator, or using root.
     if ! ( [ "$TERM" = "screen" ] || [ -n "$TMUX" ] || \
