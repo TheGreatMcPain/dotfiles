@@ -20,12 +20,16 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 python = { "ruff_format" },
+                json = { "jq" }
             },
             format_on_save = {
                 timeout_ms = 500,
                 lsp_format = "fallback",
             }
         })
+        require("conform").formatters.jq = {
+            append_args = { "--indent", "2" },
+        }
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -132,10 +136,12 @@ return {
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
+                { name = 'path' },
                 {
                     name = 'dictionary',
                     keyword_length = 2,
@@ -143,6 +149,23 @@ return {
             }, {
                 { name = 'buffer' },
             })
+        })
+
+        cmp.setup.cmdline({ '/', '?' }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
         })
 
         require("cmp_dictionary").setup({
