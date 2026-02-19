@@ -7,6 +7,7 @@ pupdate() { case ":${PATH:=$1}:" in *:"$1":*) ;; *) PATH="$1:$PATH" ;; esac; }
 for dir in $(du "$HOME/.local/bin/" | cut -f2); do
     pupdate $dir
 done
+pupdate "$HOME/.cargo/bin"
 export PATH
 
 ## Workaround fuse issue with appimages.
