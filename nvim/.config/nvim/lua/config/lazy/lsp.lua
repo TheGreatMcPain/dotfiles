@@ -51,7 +51,18 @@ return {
             }
         })
 
+        vim.lsp.config('bashls', {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('bashls')
+
+        vim.lsp.config('rust_analyzer', {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('rust_analyzer')
+
         vim.lsp.config('zls', {
+            capabilities = capabilities,
             settings = {
                 zls = {
                     enable_inlay_hints = true,
@@ -93,12 +104,13 @@ return {
         vim.lsp.enable('lua_ls')
 
         vim.lsp.config('ty', {
+            capabilities = capabilities,
             settings = {
                 ty = {
                     diagnosticMode = "off",
                     inlayHints = {
-                        variableTypes = false,
-                        callArgumentNames = false,
+                        variableTypes = true,
+                        callArgumentNames = true,
                     }
                 }
             }
@@ -106,6 +118,7 @@ return {
         vim.lsp.enable('ty')
 
         vim.lsp.config('ruff', {
+            capabilities = capabilities,
             init_options = {
                 settings = {
                     lineLength = 100,
@@ -113,8 +126,10 @@ return {
                 }
             }
         })
+        vim.lsp.enable('ruff')
 
         vim.lsp.config('ccls', {
+            capabilities = capabilities,
             init_options = {
                 index = {
                     threads = 0,
@@ -122,6 +137,8 @@ return {
             }
         })
         vim.lsp.enable('ccls')
+
+        vim.lsp.set_log_level("off")
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -142,10 +159,10 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
                 { name = 'path' },
-                {
-                    name = 'dictionary',
-                    keyword_length = 2,
-                },
+                ---{
+                ---    name = 'dictionary',
+                ---    keyword_length = 2,
+                ---},
             }, {
                 { name = 'buffer' },
             })
