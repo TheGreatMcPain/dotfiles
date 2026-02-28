@@ -13,6 +13,11 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        {
+            'mrcjkb/rustaceanvim',
+            version = '^8', -- Recommended
+            lazy = false,   -- This plugin is already lazy
+        },
     },
 
     config = function()
@@ -43,7 +48,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
                 "gopls",
                 "vtsls",
                 "ty",
@@ -56,10 +60,14 @@ return {
         })
         vim.lsp.enable('bashls')
 
-        vim.lsp.config('rust_analyzer', {
-            capabilities = capabilities,
-        })
-        vim.lsp.enable('rust_analyzer')
+        -- Handled via rustaceanvim
+        --vim.lsp.config('rust_analyzer', {
+        --    capabilities = capabilities,
+        --    checkOnSave = {
+        --        command = "clippy",
+        --    },
+        --})
+        --vim.lsp.enable('rust_analyzer')
 
         vim.lsp.config('zls', {
             capabilities = capabilities,
