@@ -54,8 +54,6 @@ return {
                 "lua_ls",
                 "gopls",
                 "vtsls",
-                "ty",
-                "ruff",
             }
         })
 
@@ -149,6 +147,8 @@ return {
             }
         })
         vim.lsp.enable('ccls')
+
+        vim.lsp.enable('taplo')
 
         vim.lsp.set_log_level("off")
 
