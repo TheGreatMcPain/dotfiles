@@ -33,13 +33,26 @@ env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 # Enable HDR Vulkan Layer
 #env = ENABLE_HDR_WSI,1
 
+# Unscale xwayland (Makes it not blurry)
+xwayland {
+    force_zero_scaling = true
+}
+
+#env = HYPRCURSOR_THEME,rose-pine-hyprcursor
+env = HYPRCURSOR_SIZE,24
+
+# Toolkit scale
+#env = GDK_SCALE,2
+#env = QT_SCALE_FACTOR,2
+#env = PLASMA_USE_QT_SCALING=1
+
 ## Monitors
 
 monitorv2 {
     output = desc:CMT GP27-FUS 0000000000001
     #mode = 2560x1440@120
     mode = 3840x2160@144
-    position = 0x0
+    position = auto-left
     scale = 1.5
     bitdepth = 10
     supports_wide_color = 1
@@ -48,9 +61,9 @@ monitorv2 {
 
 monitorv2 {
     output = desc:Hisense Electric Co. Ltd. HISENSE 0x616D0000
-    mode = 3840x2160@120
-    position = auto-right
-    scale = 1.5
+    mode = 2560x1440@120
+    position = 0x0
+    scale = 1.0
     bitdepth = 10
     supports_wide_color = 1
     supports_hdr = 1
