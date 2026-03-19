@@ -137,29 +137,10 @@ if [[ "$TERM" == "dumb" ]]; then
     return
 fi
 
-# Download powerlevel10k if folder doesn't exist.
-if ! [ -d "${ZDOTDIR}/powerlevel10k" ]; then
-    echo "PowerLevel10k not in ZDOTDIR! Installing from github."
+PS1="%n@%m %1~$ "
 
-    # Clone repo
-    git clone https://github.com/romkatv/powerlevel10k "${ZDOTDIR}/powerlevel10k"
-fi
-
-# Source powerlevel10k
-if [[ -f "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-    # Enable powerlevel10k
-    source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
-fi
-
-# Don't use fancy powerlevel10k config if we're in a tty.
-if [ `tput colors` = "256" ]; then
-    POWERLEVEL9K_MODE="nerdfont-complete"
-
-    [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-else
-    prompt gentoo
-    
-    [[ ! -f ~/.config/zsh/.p10k.tty.zsh ]] || source ~/.config/zsh/.p10k.tty.zsh
+if which starship >/dev/null; then
+    eval "$(starship init zsh)"
 fi
 
 # Needed for foot's (ctrl+shift+n) keybind to work properly
