@@ -80,7 +80,7 @@ monitorv2 {
 
 ## Startup
 
-exec-once=~/.config/waybar/start.sh zenpower
+exec-once=ashell
 exec-once=vesktop-bin --disable-gpu --start-minimized
 exec-once=mpd --no-daemon
 exec-once=mpdscribble
@@ -89,14 +89,10 @@ exec-once=openrgb --startminimized
 exec-once=gamemoded
 exec-once=steam -silent %U -no-cef-sandbox
 exec-once=syncthing --no-browser
-exec-once=qbittorrent
+#exec-once=qbittorrent
 exec-once=jellyfin-rpc
 
 animation = fadeDpms,0
-
-experimental {
-    xx_color_management_v4 = true
-}
 
 cursor {
     no_hardware_cursors = true
