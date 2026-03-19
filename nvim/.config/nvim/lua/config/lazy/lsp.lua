@@ -25,7 +25,8 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 python = { "ruff_format" },
-                json = { "jq" }
+                json = { "jq" },
+                yaml = { "yq" }
             },
             format_on_save = {
                 timeout_ms = 500,
@@ -33,6 +34,9 @@ return {
             }
         })
         require("conform").formatters.jq = {
+            append_args = { "--indent", "2" },
+        }
+        require("conform").formatters.yq = {
             append_args = { "--indent", "2" },
         }
         local cmp = require('cmp')
