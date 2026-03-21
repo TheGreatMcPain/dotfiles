@@ -48,35 +48,7 @@ env = HYPRCURSOR_SIZE,24
 
 ## Monitors
 
-monitorv2 {
-    output = desc:CMT GP27-FUS 0000000000001
-    #mode = 2560x1440@120
-    mode = 3840x2160@144
-    position = auto-left
-    scale = 1.5
-    bitdepth = 10
-    supports_wide_color = 1
-    supports_hdr = 1
-}
-
-monitorv2 {
-    output = desc:Hisense Electric Co. Ltd. HISENSE 0x616D0000
-    mode = 2560x1440@120
-    position = 0x0
-    scale = 1.0
-    bitdepth = 10
-    supports_wide_color = 1
-    supports_hdr = 1
-    disabled = 1
-}
-
-monitorv2 {
-    output = desc:Acer Technologies GN246HL LW3AA0018533
-    mode = 1920x1080@120
-    position = auto-right
-    scale = 1
-    disabled = 1
-}
+source=~/.config/hypr/monitors.conf
 
 ## Startup
 
