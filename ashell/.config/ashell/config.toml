@@ -1,0 +1,85 @@
+log_level = "warn"
+position = "Top"
+outputs = "All"
+
+[renderer]
+backend = "egl"
+
+[modules]
+left = [ [ "Workspaces", "Tray", "MediaPlayer" ] ]
+center = ["WindowTitle"]
+right = [ ["Tempo", "Settings" ], "SystemInfo", ["Privacy"] ]
+
+[workspaces]
+visibility_mode = "MonitorSpecific"
+enable_workspace_filling = false
+workspace_names = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+]
+
+[tempo]
+weather_location = {City = "Dunkerton"}
+weather_indicator = "Icon"
+
+[settings]
+indicators = [ "Battery", "Audio", "Network" ]
+audio_indicator_format = "IconAndPercentage"
+
+[system_info]
+interface_name = "br0"
+indicators = ["DownloadSpeed", "UploadSpeed", "IpAddress", "Cpu", "Memory", "Temperature" ]
+
+[system_info.memory]
+format = "UsedGB"
+
+[system_info.temperature]
+sensor = "zenpower Tctl"
+
+[appearance]
+scale_factor = 1.2
+success_color = "#98971A"
+text_color = "#EBDBB2"
+
+workspace_colors = [ "#D3869B", "#D3869B", "#D3869B" ]
+
+[appearance.primary_color]
+base = "#D3869B"
+text = "#32302F"
+
+[appearance.danger_color]
+base = "#CC241D"
+
+[appearance.background_color]
+base = "#32302F"
+
+[appearance.secondary_color]
+base = "#665C54"
