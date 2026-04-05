@@ -25,3 +25,5 @@
 !! *.font: Hack;
 !! *.font: Hack:size=12:antialias=true;
 !! *.font: autohint=true;
+Xcursor.theme: Adwaita
+Xcursor.size: 24
