@@ -155,7 +155,7 @@ return {
 
         vim.lsp.enable('taplo')
 
-        vim.lsp.set_log_level("off")
+        vim.lsp.log.set_level("off")
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
