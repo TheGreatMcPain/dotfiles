@@ -20,6 +20,8 @@ env = ELECTRON_OZONE_PLATFORM_HINT,auto
 env = QT_QPA_PLATFORM,wayland;xcb
 env = GDK_BACKEND,wayland,x11,*
 env = CLUTTER_BACKEND,wayland
+env = QT_QPA_PLATFORMTHEME,gtk3
+env = QT_QPA_PLATFORMTHEME_QT6,gtk3
 
 # XDG Specifications
 env = XDG_CURRENT_DESKTOP,Hyprland
@@ -48,11 +50,10 @@ env = HYPRCURSOR_SIZE,24
 
 ## Monitors
 
-source=~/.config/hypr/monitors.conf
+#source=~/.config/hypr/monitors.conf
 
 ## Startup
 
-exec-once=ashell
 exec-once=vesktop-bin --disable-gpu --start-minimized
 exec-once=mpd --no-daemon
 exec-once=mpdscribble
@@ -71,10 +72,10 @@ cursor {
     no_break_fs_vrr = true
 }
 
-misc {
-    vrr=2
-    vfr=true
-}
+#misc {
+#    vrr=2
+#    vfr=true
+#}
 
 debug {
     full_cm_proto = true
@@ -82,6 +83,6 @@ debug {
 
 render {
     direct_scanout=1
-    cm_fs_passthrough=2
+    cm_fs_passthrough=1
     cm_auto_hdr = 0
 }
