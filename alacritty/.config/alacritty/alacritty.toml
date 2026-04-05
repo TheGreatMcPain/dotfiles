@@ -1,0 +1,2 @@
+[general]
+import = ["/home/james/.config/alacritty/dank-theme.toml", "/home/james/.config/alacritty/font.toml", "/home/james/.config/alacritty/misc.toml", "/home/james/.config/alacritty/keybinds.toml"]

@@ -1,0 +1,21 @@
+
+[scrolling]
+history = 10000
+multiplier = 10
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = """,│`|:"' ()[]{}<>"""
+
+[window]
+opacity = 0.85
+
+[window.padding]
+x = 0
+y = 0
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[general]
+live_config_reload = true
