@@ -39,6 +39,12 @@ return {
         require("conform").formatters.yq = {
             append_args = { "--indent", "2" },
         }
+
+        require("conform").formatters.ron = {
+            command = "ronfmt",
+            args = { "$FILENAME" },
+        }
+
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
