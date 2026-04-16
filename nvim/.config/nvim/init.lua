@@ -36,8 +36,10 @@ vim.opt.colorcolumn = "100"
 vim.opt.textwidth = 100
 vim.opt.wrap = false
 
-vim.opt.completeopt = "menu,menuone,popup,fuzzy,noinsert"
---vim.o.autocomplete = true
+vim.opt.complete = ".,o,w,b,u"
+vim.opt.completeopt = "fuzzy,menuone,popup,noselect"
+vim.opt.autocomplete = true
+vim.opt.pumheight = 10 -- Don't make the autocomplete window so huge.
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -68,7 +70,7 @@ require("gruvbox-material").setup({
 })
 
 -- Only use treesitter
-vim.cmd("syntax off")
+--vim.cmd("syntax off")
 
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -79,6 +81,7 @@ require("mason-tool-installer").setup({
         "stylua",
         "ty",
         "ruff",
+        "jsonls",
     },
 })
 
@@ -102,7 +105,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         -- Enable completion for LSPs
         if client:supports_method("textDocument/completion") then
-            --vim.o.complete = 'o,.,w,b,u'
             vim.lsp.completion.enable(true, client.id, args.buf, {
                 autotrigger = true,
             })
@@ -137,4 +139,5 @@ vim.lsp.enable({
     "ty",
     "ruff",
     "ccls",
+    "jsonls",
 })
